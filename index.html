@@ -5,7 +5,42 @@
     <title>World Water Shortage</title>
 </head>
 <body>
-<div id="water-calculator"></div>
+<div id="water-calculator">
+        <h2>How much water do you consume?</h2>
+    <form class="form-group">
+        <div class="form-group row">
+            <label for="shower" class="col-md-2 col-form-label">Minutes showering per week</label>
+            <div class="col-md-1">
+                <input class="form-control" type="number" id="shower">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="flush" class="col-md-2 col-form-label">Toilet flushes per day</label>
+            <div class="col-md-1">
+                <input class="form-control" type="number" id="flush">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="runningWater" class="col-md-2 col-form-label">Minutes running water per day</label>
+            <small id="runningWaterExamples" class="form-text text-muted">E.g. brushing teeth, washing hands, dishes</small>
+            <div class="col-md-1">
+                <input class="form-control" type="number" id="runningWater">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="laundry" class="col-md-2 col-form-label">Loads of laundry per month</label>
+            <div class="col-md-1">
+                <input class="form-control" type="number" id="laundry">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="dishes" class="col-md-2 col-form-label">Loads of dishes per month</label>
+            <div class="col-md-1">
+                <input class="form-control" type="number" id="dishes">
+            </div>
+        </div>
+    </form>
+</div>
 <div id="choropleth"></div>
 <div id="line-graph"></div>
 <div id="symbol-graph"></div>
