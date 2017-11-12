@@ -13,43 +13,53 @@
 </head>
 
 <body>
-    <div id="water-calculator">
-        <h2>How much water do you consume?</h2>
-        <form class="form-group">
-            <div class="form-group row">
-                <label for="shower" class="col-md-2 col-form-label">Minutes showering per week</label>
-                <div class="col-md-1">
-                    <input class="form-control" type="number" id="shower">
-                </div>
+    <div id="water-calculator" class="col-md-6">
+    <h2>How much water do you consume?</h2>
+    <form id="waterForm" class="form-group">
+        <div class="form-group row">
+            <label for="shower" class="col-md-4 col-form-label">Minutes showering per day</label>
+            <div class="col-md-2">
+                <input class="form-control" type="number" id="shower">
             </div>
-            <div class="form-group row">
-                <label for="flush" class="col-md-2 col-form-label">Toilet flushes per day</label>
-                <div class="col-md-1">
-                    <input class="form-control" type="number" id="flush">
-                </div>
+        </div>
+        <div class="form-group row">
+            <label for="flush" class="col-md-4 col-form-label">Toilet flushes per day</label>
+            <div class="col-md-2">
+                <input class="form-control" type="number" id="flush">
             </div>
-            <div class="form-group row">
-                <label for="runningWater" class="col-md-2 col-form-label">Minutes running water per day</label>
-                <small id="runningWaterExamples" class="form-text text-muted">E.g. brushing teeth, washing hands, dishes</small>
-                <div class="col-md-1">
-                    <input class="form-control" type="number" id="runningWater">
-                </div>
+        </div>
+        <div class="form-group row">
+            <label for="runningWater" class="col-md-4 col-form-label">Minutes running water per day</label>
+            <small id="runningWaterExamples" class="form-text text-muted">E.g. brushing teeth, washing hands, dishes</small>
+            <div class="col-md-2">
+                <input class="form-control" type="number" id="runningWater">
             </div>
-            <div class="form-group row">
-                <label for="laundry" class="col-md-2 col-form-label">Loads of laundry per month</label>
-                <div class="col-md-1">
-                    <input class="form-control" type="number" id="laundry">
-                </div>
+        </div>
+        <div class="form-group row">
+            <label for="laundry" class="col-md-4 col-form-label">Loads of laundry per month</label>
+            <div class="col-md-2">
+                <input class="form-control" type="number" id="laundry">
             </div>
-            <div class="form-group row">
-                <label for="dishes" class="col-md-2 col-form-label">Loads of dishes per month</label>
-                <div class="col-md-1">
-                    <input class="form-control" type="number" id="dishes">
-                </div>
+        </div>
+        <div class="form-group row">
+            <label for="dishes" class="col-md-4 col-form-label">Loads of dishes per week</label>
+            <div class="col-md-2">
+                <input class="form-control" type="number" id="dishes">
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-    </div>
+        </div>
+        <button type="button" class="btn btn-default" onClick="getValues()">Submit</button>
+    </form>
+</div>
+<div id="water-calculator-comparison" class="col-md-6 offset-md-6">
+    <h2>Water Calculator Results</h2>
+    <div id="water-results-shower"></div>
+    <div id="water-results-flush"></div>
+    <div id="water-results-runningWater"></div>
+    <div id="water-results-laundry"></div>
+    <div id="water-results-dishes"></div>
+    <div id="water-results-total"></div>
+    <div id="water-results-indirect"></div>
+</div>
     <div id="choropleth"></div>
     <div id="line-graph"></div>
     <div id="symbol-graph"></div>
