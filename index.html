@@ -13,65 +13,103 @@
 </head>
 
 <body>
-    <div id="water-calculator" class="col-md-6">
-    <h2>How much water do you consume?</h2>
-    <form id="waterForm" class="form-group">
-        <div class="form-group row">
-            <label for="shower" class="col-md-4 col-form-label">Minutes showering per day</label>
-            <div class="col-md-2">
-                <input class="form-control" type="number" id="shower">
-            </div>
+    <div class="row">
+        <div id="water-calculator.js" class="col-md-6">
+            <h2>How much water do you consume?</h2>
+            <form id="waterForm" class="form-group">
+                <div class="form-group row">
+                    <label for="shower" class="col-md-4 col-form-label">Minutes showering per day</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="number" id="shower">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="flush" class="col-md-4 col-form-label">Toilet flushes per day</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="number" id="flush">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="runningWater" class="col-md-4 col-form-label">Minutes running water per day</label>
+                    <small id="runningWaterExamples" class="form-text text-muted">E.g. brushing teeth, washing hands, dishes</small>
+                    <div class="col-md-2">
+                        <input class="form-control" type="number" id="runningWater">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="laundry" class="col-md-4 col-form-label">Loads of laundry per month</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="number" id="laundry">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="dishes" class="col-md-4 col-form-label">Loads of dishes per week</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="number" id="dishes">
+                    </div>
+                </div>
+                <button type="button" class="btn btn-default" onClick="getValues()">Submit</button>
+            </form>
         </div>
-        <div class="form-group row">
-            <label for="flush" class="col-md-4 col-form-label">Toilet flushes per day</label>
-            <div class="col-md-2">
-                <input class="form-control" type="number" id="flush">
-            </div>
+        <div id="water-calculator-comparison" class="col-md-6 offset-md-6">
+            <h2>Water Calculator Results</h2>
+            <div id="water-results-shower"></div>
+            <div id="water-results-flush"></div>
+            <div id="water-results-runningWater"></div>
+            <div id="water-results-laundry"></div>
+            <div id="water-results-dishes"></div>
+            <div id="water-results-total"></div>
+            <div id="water-results-indirect"></div>
         </div>
-        <div class="form-group row">
-            <label for="runningWater" class="col-md-4 col-form-label">Minutes running water per day</label>
-            <small id="runningWaterExamples" class="form-text text-muted">E.g. brushing teeth, washing hands, dishes</small>
-            <div class="col-md-2">
-                <input class="form-control" type="number" id="runningWater">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="laundry" class="col-md-4 col-form-label">Loads of laundry per month</label>
-            <div class="col-md-2">
-                <input class="form-control" type="number" id="laundry">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="dishes" class="col-md-4 col-form-label">Loads of dishes per week</label>
-            <div class="col-md-2">
-                <input class="form-control" type="number" id="dishes">
-            </div>
-        </div>
-        <button type="button" class="btn btn-default" onClick="getValues()">Submit</button>
-    </form>
     </div>
-    <div id="water-calculator-comparison" class="col-md-6 offset-md-6">
-        <h2>Water Calculator Results</h2>
-        <div id="water-results-shower"></div>
-        <div id="water-results-flush"></div>
-        <div id="water-results-runningWater"></div>
-        <div id="water-results-laundry"></div>
-        <div id="water-results-dishes"></div>
-        <div id="water-results-total"></div>
-        <div id="water-results-indirect"></div>
+    <div class="row">
+        <h2> Water Shortage Crisis</h2>
+        <p> Text explaining water shortage crisis</p>
     </div>
-    <div id="choropleth"></div>
-    <div id="line-graph"></div>
-    <div id="symbol-graph"></div>
-    <div id="tree-diagram"></div>
+
+    <div class="row">
+        <h2> Facts </h2>
+        <p> Interactive scrolly-telling symbol graph</p>
+        <div id="symbol-graph"></div>
+    </div>
+
+    <div class="row">
+        <h2>Access to Improved Water Sources Worldwide</h2>
+        <div id="choropleth"></div>
+    </div>
+
+    <div class="row">
+        <h2> Price of an Invaluable Resource </h2>
+        <p> Line graph with corresponding bar of price </p>
+        <div id="line-graph"></div>
+    </div>
+
+    <div class="row">
+        <h2> Potential Solutions</h2>
+        <div id="tree-diagram"></div>
+    </div>
+
+    <div class="row">
+        <h3> Sources</h3>
+        <ul>
+            <li> Country Codes: https://datahub.io/core/country-codes</li>
+            <li> World Bank</li>
+        </ul>
+    </div>
+
 
     <!-- Load JS libraries -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/d3.js"></script>
+    <script src="js/colorbrewer.js"></script>
+    <script src="js/queue.v1.min.js"></script>
+    <script src="js/topojson.v1.min.js"></script>
     
     <!-- Load data, create visualizations -->
     <script src="js/tree.js"></script>
     <script src="js/water-calculator.js"></script>
+    <script src="js/choropleth.js"></script>
+
 </body>
 </html>

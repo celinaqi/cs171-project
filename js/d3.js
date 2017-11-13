@@ -5432,7 +5432,7 @@ function add(tree, x, y, d) {
       i,
       j;
 
-  // If the tree is empty, initialize the root as a leaf.
+  // If the tree.js is empty, initialize the root as a leaf.
   if (!node) return tree._root = leaf, tree;
 
   // Find the existing leaf for the new point, or add it.
@@ -5482,7 +5482,7 @@ function addAll(data) {
   if (x1 < x0) x0 = this._x0, x1 = this._x1;
   if (y1 < y0) y0 = this._y0, y1 = this._y1;
 
-  // Expand the tree to cover the new points.
+  // Expand the tree.js to cover the new points.
   this.cover(x0, y0).cover(x1, y1);
 
   // Add the new points.
@@ -5664,7 +5664,7 @@ var tree_remove = function(d) {
       i,
       j;
 
-  // If the tree is empty, initialize the root as a leaf.
+  // If the tree.js is empty, initialize the root as a leaf.
   if (!node) return this;
 
   // Find the leaf node for the point.
@@ -10458,7 +10458,7 @@ function treeRoot(root) {
   return tree;
 }
 
-// Node-link tree diagram using the Reingold-Tilford "tidy" algorithm
+// Node-link tree.js diagram using the Reingold-Tilford "tidy" algorithm
 var tree = function() {
   var separation = defaultSeparation$1,
       dx = 1,
@@ -10475,7 +10475,7 @@ var tree = function() {
     // If a fixed node size is specified, scale x and y.
     if (nodeSize) root.eachBefore(sizeNode);
 
-    // If a fixed tree size is specified, scale x and y based on the extent.
+    // If a fixed tree.js size is specified, scale x and y based on the extent.
     // Compute the left-most, right-most, and depth-most nodes for extents.
     else {
       var left = root,
