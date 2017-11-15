@@ -11,6 +11,10 @@ h3 {
     margin: 30px;
 }
 /* Viz 0: water calculator */
+#water-calculator {
+    padding-left: 50px;
+    padding-right: 50px;
+}
 
 /* Viz 1: choropleth */
 
