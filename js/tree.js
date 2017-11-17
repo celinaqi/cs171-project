@@ -110,7 +110,7 @@ var margin = {top: 20, right: 90, bottom: 30, left: 90},
 // append the svg object to the body of the page
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
-var svg = d3.select("#tree-diagram").append("svg")
+var svg1 = d3.select("#tree-diagram").append("svg")
     .attr("width", width + margin.right + margin.left)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
@@ -158,7 +158,7 @@ function update(source) {
     // ****************** Nodes section ***************************
 
     // Update the nodes...
-    var node = svg.selectAll('g.node')
+    var node = svg1.selectAll('g.node')
         .data(nodes, function(d) {return d.id || (d.id = ++i); });
 
     // Enter any new modes at the parent's previous position.
@@ -226,7 +226,7 @@ function update(source) {
     // ****************** links section ***************************
 
     // Update the links...
-    var link = svg.selectAll('path.link')
+    var link = svg1.selectAll('path.link')
         .data(links, function(d) { return d.id; });
 
     // Enter any new links at the parent's previous position.
