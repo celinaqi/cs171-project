@@ -10,10 +10,15 @@ h2 {
 h3 {
     margin: 30px;
 }
+
+.row {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
 /* Viz 0: water calculator */
-#water-calculator {
-    padding-left: 50px;
-    padding-right: 50px;
+.btn {
+    margin-left: 30px;
 }
 
 /* Viz 1: choropleth */
