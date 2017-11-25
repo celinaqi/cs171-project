@@ -1,5 +1,9 @@
-var width = 1000,
-    height = 500;
+var width = 1200,
+    height = 500,
+    rotate = 60,
+    maxlat = 83;
+
+
 
 var svg = d3.select("#choropleth").append("svg")
     .attr("width", width)
@@ -7,7 +11,7 @@ var svg = d3.select("#choropleth").append("svg")
 
 var projection = d3.geoMercator()
     .scale(150)
-    .translate([width / 2, height / 2]);
+    .translate([width / 2, (height / 2) + 40])
 
 var path = d3.geoPath()
     .projection(projection);
@@ -33,14 +37,21 @@ function initVis(error, stress, codes, world) {
     // Convert TopoJSON to GeoJSON
     var world = topojson.feature(world, world.objects.countries).features;
 
+    svg.append("defs")
+        .append("clipPath")
+        .attr("id", "clip")
+        .append("rect")
+        .attr("width", width)
+        .attr("height", height);
+
     var countries = svg.selectAll(".world")
         .data(world);
     countries.enter()
         .append("path")
         .attr("class", "world")
         .attr("d", path)
-        .attr("stroke", "white");
-
+        .attr("stroke", "white")
+        .attr("clip-path", "url(#clip)");
 
 
     // integrating ISO codes for countries into topojson dataset
