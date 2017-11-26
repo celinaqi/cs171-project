@@ -34,7 +34,7 @@ function updateVisualization(total) {
         {"student" : "Harvard student 1", "consumption" : 94},
         {"student" : "Harvard student 2", "consumption" : 71},
         {"student" : "Harvard student 3", "consumption" : 63},
-        {"student" : "Harvard student 4", "consumption" : 57}
+        {"student" : "Harvard student 4", "consumption" : 46}
     ];
 
     studentData.push({"student" : "You", "consumption" : total});
