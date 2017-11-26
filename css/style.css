@@ -24,6 +24,22 @@ h3 {
 
 /* Viz 1: choropleth */
 
+.legendTitle {
+    font-size: 13px;
+}
+
+.legendText {
+    font-size: 10px;
+}
+
+.bartitle {
+    font-weight: bold;
+}
+
+.barcountry {
+    font-weight: bold;
+}
+
 /* As shown in http://bl.ocks.org/Caged/6476579 */
 .d3-tip {
     line-height: 1;

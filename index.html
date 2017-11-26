@@ -70,21 +70,35 @@
 
     <div class="row">
         <h2>Projected Water Stress</h2>
+        <div class="row">
+            <div class="form-group">
+                <label class="col-lg-1 selectlabel"> Year: </label>
+                <div class="col-lg-2">
+                    <select class="selectpicker form-control" id="select" onchange = updateChoropleth()>
+                        <option value="2020">2020</option>
+                        <option value="2030">2030 </option>
+                        <option value="2040">2040</option>
+                    </select>
+                </div>
+            </div>
 
-        <div class="form-group">
-            <label class="col-lg-1 selectlabel"> Year: </label>
-            <div class="col-lg-2">
-                <select class="selectpicker form-control" id="select" onchange = updateChoropleth()>
-                    <option value="2020">2020</option>
-                    <option value="2030">2030 </option>
-                    <option value="2040">2040</option>
-                </select>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div id="choropleth"></div>
+
+            </div>
+
+            <div class="col-lg-4">
+                <div id="barchart"></div>
+
             </div>
         </div>
 
-        <div id="choropleth"></div>
+    </div>
 
-
+    <div class="row">
         <h2> Facts </h2>
         <p>As shown above, experts predict that the water shortage crisis will only get worse. Symptoms of climate change, such as longer, more intense heat waves and decreasing rainfall, will result in even more people becoming water insecure. Here are some ways that water shortages are already taking a toll on people worldwide:</p>
         <p><i>Interactive scrolly-telling symbol graph</i></p>
@@ -96,7 +110,6 @@
         <h2> Water Consumption and Usages By Country </h2>
         <p>Based on their water resources and regulations, countries consume different amounts of water and use it differently.</p>
         <p><i>Line graphs with countries' water consumptions per capita with corresponding bar graph of water usages</i></p>
-        <div id="line-graph"></div>
     </div>
 
     <div class="row">
@@ -128,5 +141,7 @@
     <script src="js/tree.js"></script>
     <script src="js/water-calculator.js"></script>
     <script src="js/choropleth.js"></script>
+    <!--<script src="js/linechart.js"></script>-->
+    <script src="js/barchart.js"></script>
 
 </html>
