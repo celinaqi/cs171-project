@@ -18,8 +18,20 @@ h3 {
 }
 
 /* Viz 0: water calculator */
+#water-calculator-title {
+    text-align: center;
+}
+
 .btn {
     margin-left: 30px;
+}
+
+.bar {
+    fill: steelblue;
+}
+
+.label {
+    font-size: 8pt;
 }
 
 /* Viz 1: choropleth */
