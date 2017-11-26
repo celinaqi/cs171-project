@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div class="row">
+     <div class="row">
         <div id="water-calculator" class="col-md-6">
             <h2>How much water do you consume?</h2>
             <form id="waterForm" class="form-group">
@@ -30,10 +30,17 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="runningWater" class="col-md-4 col-form-label">Minutes running water per day</label>
-                    <small id="runningWaterExamples" class="form-text text-muted">E.g. brushing teeth, washing hands, dishes</small>
+                    <label for="runningWater" class="col-md-4 col-form-label">Minutes running faucet per day</label>
+                    <small id="runningWaterExamples" class="form-text text-muted">E.g. brushing teeth, washing hands, cooking</small>
                     <div class="col-md-2">
                         <input class="form-control" type="number" id="runningWater">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="hose" class="col-md-4 col-form-label">Minutes running hose per week</label>
+                    <small id="runningHoseExamples" class="form-text text-muted">E.g. filling pool, watering lawn, washing car</small>
+                    <div class="col-md-2">
+                        <input class="form-control" type="number" id="hose">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -44,22 +51,35 @@
                 </div>
                 <div class="form-group row">
                     <label for="dishes" class="col-md-4 col-form-label">Loads of dishes per week</label>
+                    <small id="dishesExamples" class="form-text text-muted">Dishwasher or by hand</small>
                     <div class="col-md-2">
                         <input class="form-control" type="number" id="dishes">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="drink" class="col-md-4 col-form-label">Amount of drinking water per day</label>
+                    <small id="drinkingWaterExamples" class="form-text text-muted">In 8oz cups</small>
+                    <div class="col-md-2">
+                        <input class="form-control" type="number" id="drink">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="drive" class="col-md-4 col-form-label">Number of miles driven per week</label>
+                    <small id="drivingExamples" class="form-text text-muted">Including the shuttle!</small>
+                    <div class="col-md-2">
+                        <input class="form-control" type="number" id="drive">
                     </div>
                 </div>
                 <button type="button" class="btn btn-default" onClick="getValues()">Submit</button>
             </form>
         </div>
         <div id="water-calculator-comparison" class="col-md-6 offset-md-6">
-            <h2>Water Calculator Results</h2>
-            <div id="water-results-shower"></div>
-            <div id="water-results-flush"></div>
-            <div id="water-results-runningWater"></div>
-            <div id="water-results-laundry"></div>
-            <div id="water-results-dishes"></div>
+            <h2 id="water-calculator-title">Water Calculator Results</h2>
             <div id="water-results-total"></div>
-            <div id="water-results-indirect"></div>
+            <div id="water-chart1"></div>
+            <div id="water-results-indirect"></div></br>
+            <div id="water-comparison"></div>
+            <div id="water-chart2"></div>
         </div>
     </div>
     <div class="row">
