@@ -65,7 +65,7 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
         return b.consumption - a.consumption;
     });
 
-    var margin1 = {top: 60, right: 20, bottom: 40, left: 80},
+    var margin1 = {top: 40, right: 40, bottom: 40, left: 40},
         width1 = $('#water-chart1').width() - margin1.left - margin1.right,
         height1 = 300 - margin1.top - margin1.bottom;
 
@@ -123,8 +123,6 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
     var bars1 = svgCalculator1.selectAll(".bar")
         .data(studentData);
 
-    bars1.exit().remove();
-
     bars1.enter()
         .append("rect")
         .attr("class", "bar")
@@ -166,11 +164,7 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
 
     // PIE STUFF
 
-    // svgCalculator1.selectAll(".bar").on("click", function() {
-    //     console.log(d3.select(this)._groups[0][0].__data__);
-    // });
-
-    var marginPie = {top: 60, right: 20, bottom: 40, left: 80},
+    var marginPie = {top: 120, right: 40, bottom: 40, left: 150},
         widthPie = $('#water-chart1-pie').width() - marginPie.left - marginPie.right,
         heightPie = 300 - marginPie.top - marginPie.bottom;
 
@@ -180,20 +174,30 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
         .append("g")
         .attr("transform", "translate(" + marginPie.left + "," + marginPie.top + ")");
 
+    // var radius = Math.min(widthPie, heightPie) / 2;
+    var radius = 100;
+
+    svgPie.append("text")
+        .attr("class", "title")
+        .attr("x", widthPie / 8)
+        .attr("y", -100)
+        .text("Composition of Water Consumption");
+
     svgCalculator1.selectAll(".bar").on("click", function () {
         var selected = d3.select(this)._groups[0][0].__data__;
-        // clickHandler(selected);
-        updatePie(svgPie, selected, 100);
+        createPie(svgPie, selected, radius, widthPie);
     });
-
-    // function clickHandler(selected) {
-    //     console.log("in clickHandler");
-    //     updatePie(svgPie, selected, 100);
-    // }
 }
-    function updatePie (svgPie, data, radius) {
 
-        var color = d3.scaleOrdinal(d3.schemeCategory10);
+    function createPie(svgPie, data, radius, widthPie) {
+        // // var color = d3.scaleOrdinal(d3.schemeCategory10)
+        var color = d3.scaleOrdinal()
+            .range(["#fff7fb", "#ece2f0", "#d0d1e6", "#a6bddb", "#67a9cf", "#3690c0", "#02818a", "#016450"]);
+
+        updatePie(svgPie, data, radius, widthPie, color);
+    }
+
+    function updatePie (svgPie, data, radius, widthPie, color) {
 
         var arc = d3.arc()
             .outerRadius(radius)
@@ -209,22 +213,23 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
                 return d;
             });
 
-        var gPie = svgPie.selectAll(".arc")
+        var Pie = svgPie.selectAll(".arc")
             .data(pie(data.breakdown));
 
-        gPie.enter().append("g")
+        Pie.enter().append("g")
             .attr("class", "arc")
-            .merge(gPie);
+            .merge(Pie)
+            .transition()
+            .duration(800);
 
-        gPie.append("path")
-            // .attr("class", "arc")
+        Pie.append("path")
+            .attr("class", "arc")
             .attr("d", arc)
-            .merge(gPie)
             .style("fill", function(d, i) {
                 return color(d.data)
             });
 
-        gPie.append("text")
+        Pie.append("text")
             .attr("transform", function(d) {
                 return "translate(" + labelArc.centroid(d) + ")";
             })
@@ -242,9 +247,9 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
 
         legend.enter().append("g")
             .attr("class", "legend")
-            .merge(legend)
-            .transition()
-            .duration(800)
+            // .merge(legend)
+            // .transition()
+            // .duration(800)
             .attr("transform", function(d, i) {
                 var height = legendRectSize + legendSpacing;
                 var offset =  height * color.domain().length / 2;
@@ -258,16 +263,17 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
             .attr("height", legendRectSize)
             .style("fill", color)
             .style("stroke", color)
-            .attr("transform", "translate(" + (widthPie - 50) + ", 40)");
+            .attr("transform", "translate(" + (widthPie - 70) + ", 40)");
 
         legend.append("text")
             .attr("x", legendRectSize + legendSpacing)
             .attr("y", legendRectSize - legendSpacing)
-            .attr("transform", "translate(" + (widthPie - 50) + ", 40)")
+            .attr("transform", "translate(" + (widthPie - 70) + ", 40)")
             .text(function(d, i) {
                 return data.labels[i];
             });
 
-        gPie.exit().remove();
+        Pie.exit().remove();
         legend.exit().remove();
-}
+
+    }
