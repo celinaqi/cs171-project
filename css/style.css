@@ -30,6 +30,11 @@ h3 {
     fill: steelblue;
 }
 
+.bar:hover {
+    opacity: .8;
+    cursor: pointer;
+}
+
 .label {
     font-size: 8pt;
 }

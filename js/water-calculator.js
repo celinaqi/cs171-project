@@ -1,14 +1,14 @@
 // water calculator
 
 function getValues() {
-    var shower = document.getElementById("shower").value;
-    var flush = document.getElementById("flush").value;
-    var runningWater = document.getElementById("runningWater").value;
-    var runningHose = document.getElementById("hose").value;
-    var laundry = document.getElementById("laundry").value;
-    var dishes = document.getElementById("dishes").value;
-    var drinks = document.getElementById("drink").value;
-    var drives = document.getElementById("drive").value;
+    var shower = (document.getElementById("shower").value) * 2;
+    var flush = (document.getElementById("flush").value) * 2;
+    var runningWater = (document.getElementById("runningWater").value) * 2;
+    var runningHose = (document.getElementById("hose").value) * 7 / 7;
+    var laundry = (document.getElementById("laundry").value) * 4 / 30;
+    var dishes = (document.getElementById("dishes").value) * 6 / 7;
+    var drinks = (document.getElementById("drink").value) * 8 / 128;
+    var drives = (document.getElementById("drive").value) * 7 / 7;
 
     waterCalculator(shower, flush, runningWater, runningHose, laundry, dishes, drinks, drives);
 }
@@ -19,33 +19,55 @@ function waterCalculator(shower, flush, runningWater, runningHose, laundry, dish
     // $("#water-results-runningWater").html("<b>Running water: </b>" + (+runningWater * 2) + " gallons/day");
     // $("#water-results-laundry").html("<b>Laundry: </b>" + (+laundry * 4) + " gallons/month");
     // $("#water-results-dishes").html("<b>Dishwasher: </b>" + (+dishes) + " gallons/week");
-    var total = Math.round((+shower * 2) + (+flush * 2) + (+runningWater * 2) + (+runningHose * 7 / 7) + (+laundry * 4 / 30) + (+dishes / 7) + (+drinks * 8 / 128) + (+drives * 7 / 7));
+    var total = Math.round((+shower) + (+flush) + (+runningWater) + (+runningHose) + (+laundry) + (+dishes) + (+drinks) + (+drives));
     $("#water-results-total").html("You directly consume <b>" + total + " gallons of water per day</b>. Here's how that compares to other Harvard students:");
 
-    updateVisualization (total);
-
-    $("#water-results-indirect").html("However, this is just your measurable direct water consumption. You also consume water in other ways:<ul><li><b>Food</b>. It requires 11 gallons of water to produce 1 slice of bread, and 1,799 gallons of water to produce 1lb of beef.</li><li><b>Electricity</b>. The average American household uses 120,000 - 300,000 gallons of water's worth of electricity per year (Boston specifically gets its electricity from hydropower).</li><li><b>Material consumption</b>. It takes about 100 gallons of water to produce 1lb of cotton material, which is representative of other fabrics and furniture.</li><li><b>Not recycling</b>. Forgetting to recycle paper, plastic, and bottles can waste an additional 15 gallons of water/day.</li><li><b>Going to Harvard</b>. Harvard uses water to irrigate its lawns, clean buildings, wash dining hall dishes, fill pools, etc.</li></ul>And so on. When we account for both direct and virtual water consumption, experts estimate <b>the average American consumes 2,200 gallons of water per day</b>.</br>");
-    $("#water-comparison").html("This is how water consumption per capita per day in the United States compares to water consumption in other countries:");
+    updateVisualization (shower, flush, runningWater, runningHose, laundry, dishes, drinks, drives, total);
 }
 
-function updateVisualization(total) {
+function updateVisualization(shower, flush, runningWater, runningHose, laundry, dishes, drinks, drives, total) {
 
     var studentData = [
-        {"student" : "Harvard student 1", "consumption" : 94},
-        {"student" : "Harvard student 2", "consumption" : 71},
-        {"student" : "Harvard student 3", "consumption" : 63},
-        {"student" : "Harvard student 4", "consumption" : 46}
+        {
+            "student": "Harvard student 1",
+            "consumption": 238,
+            "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
+            "breakdown": [16, 14, 30, 10, 0.4, 6, 0.56, 107.5]
+        },
+        {
+            "student": "Harvard student 2",
+            "consumption": 87,
+            "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
+            "breakdown": [30, 8, 10, 0, 0.4, 0.86, 0.75, 37]
+        },
+        {
+            "student": "Harvard student 3",
+            "consumption": 65,
+            "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
+            "breakdown": [40, 10, 6, 0, 0.27, 0.86, 0.56, 7]
+        },
+        {
+            "student": "Harvard student 4",
+            "consumption": 47,
+            "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
+            "breakdown": [10, 8, 8, 0, 0.13, 0, 0.62, 20]
+        }
     ];
 
-    studentData.push({"student" : "You", "consumption" : total});
+    studentData.push({
+        "student": "You",
+        "consumption": total,
+        "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
+        "breakdown": [shower, flush, runningWater, runningHose, laundry, dishes, drinks, drives]
+    });
 
-    studentData.sort(function(a,b) {
+    studentData.sort(function (a, b) {
         return b.consumption - a.consumption;
     });
 
-    var margin1 = {top: 60, right: 20, bottom: 40, left: 80},
+    var margin1 = {top: 40, right: 40, bottom: 40, left: 40},
         width1 = $('#water-chart1').width() - margin1.left - margin1.right,
-        height1 = 200 - margin1.top - margin1.bottom;
+        height1 = 300 - margin1.top - margin1.bottom;
 
     var svgCalculator1 = d3.select("#water-chart1").append("svg")
         .attr("width", width1 + margin1.left + margin1.right)
@@ -56,13 +78,13 @@ function updateVisualization(total) {
     // set scales
     var x1 = d3.scaleBand()
         .range([0, width1])
-        .domain(studentData.map(function(d) {
+        .domain(studentData.map(function (d) {
             return d.student;
         }));
 
     var y1 = d3.scaleLinear()
         .range([height1, 0])
-        .domain([0, d3.max(studentData, function(d) {
+        .domain([0, d3.max(studentData, function (d) {
             return d.consumption;
         })]);
 
@@ -81,7 +103,7 @@ function updateVisualization(total) {
 
     svgCalculator1.append("text")
         .attr("class", "label")
-        .attr("x", -100)
+        .attr("x", -130)
         .attr("y", -30)
         .attr("transform", "rotate(-90)")
         .text("Gallons per day");
@@ -101,19 +123,17 @@ function updateVisualization(total) {
     var bars1 = svgCalculator1.selectAll(".bar")
         .data(studentData);
 
-    bars1.exit().remove();
-
     bars1.enter()
         .append("rect")
         .attr("class", "bar")
         .merge(bars1)
-        .attr("x", function(d) {
+        .attr("x", function (d) {
             return x1(d.student);
         })
-        .attr("y", function(d) {
+        .attr("y", function (d) {
             return y1(d.consumption);
         })
-        .attr("height", function(d) {
+        .attr("height", function (d) {
             return height1 - y1(d.consumption);
         })
         .attr("width", x1.bandwidth() - 10);
@@ -131,124 +151,129 @@ function updateVisualization(total) {
         .enter()
         .append("text")
         .attr("x", function (d, i) {
-            return i * x1.bandwidth() + x1.bandwidth()/2;
+            return i * x1.bandwidth() + x1.bandwidth() / 2;
         })
         .attr("y", function (d) {
             return y1(d.consumption) - 5;
         })
-        .text(function(d) {
+        .text(function (d) {
             return d.consumption;
         })
         .attr("font-size", 10)
         .attr("text-anchor", "end");
 
-    var countryData = [
-        {"country" : "United States", "consumption" : 100},
-        {"country" : "Australia", "consumption" : 86},
-        {"country" : "Japan", "consumption" : 65},
-        {"country" : "France", "consumption" : 50},
-        {"country" : "Peru", "consumption" : 30},
-        {"country" : "India", "consumption" : 23},
-        {"country" : "Nigeria", "consumption" : 06},
-        {"country" : "Haiti", "consumption" : 03},
-        {"country" : "Mozambique", "consumption" : 01}
-    ];
+    // PIE STUFF
 
-    var margin2 = {top: 60, right: 20, bottom: 40, left: 80},
-        width2 = $('#water-chart2').width() - margin2.left - margin2.right,
-        height2 = 200 - margin2.top - margin2.bottom;
+    var marginPie = {top: 120, right: 40, bottom: 40, left: 150},
+        widthPie = $('#water-chart1-pie').width() - marginPie.left - marginPie.right,
+        heightPie = 300 - marginPie.top - marginPie.bottom;
 
-    var svgCalculator2 = d3.select("#water-chart2").append("svg")
-        .attr("width", width2 + margin2.left + margin2.right)
-        .attr("height", height2 + margin2.top + margin2.bottom)
+    var svgPie = d3.select("#water-chart1-pie").append("svg")
+        .attr("width", widthPie + marginPie.left + marginPie.right)
+        .attr("height", heightPie + marginPie.top + marginPie.bottom)
         .append("g")
-        .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
+        .attr("transform", "translate(" + marginPie.left + "," + marginPie.top + ")");
 
-    // set scales
-    var x2 = d3.scaleBand()
-        .range([0, width2])
-        .domain(countryData.map(function(d) {
-            return d.country;
-        }));
+    // var radius = Math.min(widthPie, heightPie) / 2;
+    var radius = 100;
 
-    var y2 = d3.scaleLinear()
-        .range([height2, 0])
-        .domain([0, d3.max(countryData, function(d) {
-            return d.consumption;
-        })]);
-
-    var xAxis2 = d3.axisBottom()
-        .scale(x2);
-
-    var yAxis2 = d3.axisLeft()
-        .scale(y2);
-
-    var xAxisGroup2 = svgCalculator2.append("g")
-        .attr("class", "x-axis axis")
-        .attr("transform", "translate(0," + height2 + ")");
-
-    var yAxisGroup2 = svgCalculator2.append("g")
-        .attr("class", "y-axis axis");
-
-    svgCalculator2.append("text")
-        .attr("class", "label")
-        .attr("x", -100)
-        .attr("y", -30)
-        .attr("transform", "rotate(-90)")
-        .text("% US consumption");
-
-    svgCalculator2.append("text")
-        .attr("class", "label")
-        .attr("x", width2 / 2 - 25)
-        .attr("y", height2 + 35)
-        .text("Country");
-
-    svgCalculator2.append("text")
+    svgPie.append("text")
         .attr("class", "title")
-        .attr("x", 20)
-        .attr("y", -20)
-        .text("Countries' Percentage of United States' Water Consumptions Per Capita Per Day");
+        .attr("x", widthPie / 8)
+        .attr("y", -100)
+        .text("Composition of Water Consumption");
 
-    var bars2 = svgCalculator2.selectAll(".bar")
-        .data(countryData);
-
-    bars2.exit().remove();
-
-    bars2.enter()
-        .append("rect")
-        .attr("class", "bar")
-        .merge(bars2)
-        .attr("x", function(d) {
-            return x2(d.country);
-        })
-        .attr("y", function(d) {
-            return y2(d.consumption);
-        })
-        .attr("height", function(d) {
-            return height2 - y2(d.consumption);
-        })
-        .attr("width", x2.bandwidth() - 10);
-
-    xAxisGroup2 = svgCalculator2.select(".x-axis")
-        .attr("transform", "translate(0," + height2 + ")")
-        .call(xAxis2);
-
-    yAxisGroup2 = svgCalculator2.select(".y-axis")
-        .call(yAxis2);
-
-    // Add numbers
-    var numbers2 = svgCalculator2.selectAll("text.numbers2")
-        .data(countryData)
-        .enter()
-        .append("text")
-        .attr("x", function (d, i) {
-            return i * x2.bandwidth() + x2.bandwidth()/3;
-        })
-        .attr("y", function (d) {
-            return y2(d.consumption) - 5;
-        })
-        .text(function(d) {
-            return d.consumption + "%";
-        })
-        .attr("font-size", 10);
+    svgCalculator1.selectAll(".bar").on("click", function () {
+        var selected = d3.select(this)._groups[0][0].__data__;
+        createPie(svgPie, selected, radius, widthPie);
+    });
 }
+
+    function createPie(svgPie, data, radius, widthPie) {
+        // // var color = d3.scaleOrdinal(d3.schemeCategory10)
+        var color = d3.scaleOrdinal()
+            .range(["#fff7fb", "#ece2f0", "#d0d1e6", "#a6bddb", "#67a9cf", "#3690c0", "#02818a", "#016450"]);
+
+        updatePie(svgPie, data, radius, widthPie, color);
+    }
+
+    function updatePie (svgPie, data, radius, widthPie, color) {
+
+        var arc = d3.arc()
+            .outerRadius(radius)
+            .innerRadius(0);
+
+        var labelArc = d3.arc()
+            .outerRadius(radius - 40)
+            .innerRadius (radius - 40);
+
+        var pie = d3.pie()
+            .sort(null)
+            .value(function(d) {
+                return d;
+            });
+
+        var Pie = svgPie.selectAll(".arc")
+            .data(pie(data.breakdown));
+
+        Pie.enter().append("g")
+            .attr("class", "arc")
+            .merge(Pie)
+            .transition()
+            .duration(800);
+
+        Pie.append("path")
+            .attr("class", "arc")
+            .attr("d", arc)
+            .style("fill", function(d, i) {
+                return color(d.data)
+            });
+
+        Pie.append("text")
+            .attr("transform", function(d) {
+                return "translate(" + labelArc.centroid(d) + ")";
+            })
+            .attr("dy", ".35em")
+            .text(function(d) {
+                return Math.round(d.data);
+            });
+
+        // Legend
+        var legendRectSize = 18;
+        var legendSpacing = 4;
+
+        var legend = svgPie.selectAll(".legend")
+            .data(color.domain());
+
+        legend.enter().append("g")
+            .attr("class", "legend")
+            // .merge(legend)
+            // .transition()
+            // .duration(800)
+            .attr("transform", function(d, i) {
+                var height = legendRectSize + legendSpacing;
+                var offset =  height * color.domain().length / 2;
+                var horz = -2 * legendRectSize;
+                var vert = i * height - offset;
+                return "translate(" + horz + "," + vert + ")";
+            });
+
+        legend.append("rect")
+            .attr("width", legendRectSize)
+            .attr("height", legendRectSize)
+            .style("fill", color)
+            .style("stroke", color)
+            .attr("transform", "translate(" + (widthPie - 70) + ", 40)");
+
+        legend.append("text")
+            .attr("x", legendRectSize + legendSpacing)
+            .attr("y", legendRectSize - legendSpacing)
+            .attr("transform", "translate(" + (widthPie - 70) + ", 40)")
+            .text(function(d, i) {
+                return data.labels[i];
+            });
+
+        Pie.exit().remove();
+        legend.exit().remove();
+
+    }
