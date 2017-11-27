@@ -1,4 +1,18 @@
-// water calculator
+var color, arc, labelArc;
+
+var selected, pie, Pie;
+
+
+// water calculator default values
+document.getElementById("shower").defaultValue = 10;
+document.getElementById("flush").defaultValue = 5;
+document.getElementById("runningWater").defaultValue = 10;
+document.getElementById("hose").defaultValue = 0;
+document.getElementById("laundry").defaultValue = 4;
+document.getElementById("dishes").defaultValue = 21;
+document.getElementById("drink").defaultValue = 8;
+document.getElementById("drive").defaultValue = 20;
+
 
 function getValues() {
     var shower = (document.getElementById("shower").value) * 2;
@@ -60,6 +74,8 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
         "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
         "breakdown": [shower, flush, runningWater, runningHose, laundry, dishes, drinks, drives]
     });
+
+    console.log(studentData);
 
     studentData.sort(function (a, b) {
         return b.consumption - a.consumption;
@@ -183,51 +199,86 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
         .attr("y", -100)
         .text("Composition of Water Consumption");
 
+    color = d3.scaleOrdinal()
+        .range(["#fff7fb", "#ece2f0", "#d0d1e6", "#a6bddb", "#67a9cf", "#3690c0", "#02818a", "#016450"]);
+
+    arc = d3.arc()
+        .outerRadius(radius)
+        .innerRadius(0);
+
+    labelArc = d3.arc()
+        .outerRadius(radius - 40)
+        .innerRadius (radius - 40);
+
+    studentData.forEach(function(d) {
+        if (d.student === "You")
+        {selected = d};
+    });
+    console.log(selected);
+
+    pie = d3.pie()
+        .sort(null)
+        .value(function(d) {
+            return d;
+        });
+
+    updatePie(svgPie, selected, radius, widthPie, color);
+
     svgCalculator1.selectAll(".bar").on("click", function () {
-        var selected = d3.select(this)._groups[0][0].__data__;
-        createPie(svgPie, selected, radius, widthPie);
+        selected = d3.select(this)._groups[0][0].__data__;
+        console.log(selected);
+        updatePie(svgPie, selected, radius, widthPie, color);
     });
 }
 
-    function createPie(svgPie, data, radius, widthPie) {
-        // // var color = d3.scaleOrdinal(d3.schemeCategory10)
-        var color = d3.scaleOrdinal()
-            .range(["#fff7fb", "#ece2f0", "#d0d1e6", "#a6bddb", "#67a9cf", "#3690c0", "#02818a", "#016450"]);
-
-        updatePie(svgPie, data, radius, widthPie, color);
-    }
-
+    // function createPie(svgPie, data, radius, widthPie) {
+    //     // // var color = d3.scaleOrdinal(d3.schemeCategory10)
+    //     console.log("pie");
+    //
+    //
+    //     updatePie(svgPie, data, radius, widthPie, color);
+    // }
+    //
     function updatePie (svgPie, data, radius, widthPie, color) {
+    console.log("pie2");
 
-        var arc = d3.arc()
-            .outerRadius(radius)
-            .innerRadius(0);
-
-        var labelArc = d3.arc()
-            .outerRadius(radius - 40)
-            .innerRadius (radius - 40);
-
-        var pie = d3.pie()
-            .sort(null)
-            .value(function(d) {
-                return d;
-            });
-
-        var Pie = svgPie.selectAll(".arc")
+        Pie = svgPie.selectAll(".arc")
             .data(pie(data.breakdown));
 
-        Pie.enter().append("g")
-            .attr("class", "arc")
+        Pie.enter().append("path")
             .merge(Pie)
-            .transition()
-            .duration(800);
-
-        Pie.append("path")
-            .attr("class", "arc")
+            .attr("fill", function(d, i) { return color(i); })
             .attr("d", arc)
-            .style("fill", function(d, i) {
-                return color(d.data)
-            });
+            .attr("class", "arc");
+
+        Pie.exit()
+            .datum(function(d, i) { return findNeighborArc(i, data1, data0, key) || d; })
+            .transition()
+            .duration(750)
+            .attrTween("d", arcTween)
+            .remove();
+
+        Pie.transition()
+            .duration(750)
+            .attrTween("d", arcTween);
+
+        // var Pie = svgPie.selectAll(".arc")
+        //     .data(pie(data.breakdown))
+        //     .enter().append("g")
+        //     .attr("class", "arc");
+
+        console.log(pie(data.breakdown));
+
+        // Pie.append("path")
+        //     .attr("d", arc)
+        //     .merge(Pie)
+        //     .style("fill", function(d) {
+        //         return color(d.index)
+        //     })
+        //     .attr("class", "arc");
+        //
+        // // Pie.exit().remove();
+        //
 
         Pie.append("text")
             .attr("transform", function(d) {
@@ -236,20 +287,17 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
             .attr("dy", ".35em")
             .text(function(d) {
                 return Math.round(d.data);
-            });
+            })
+            .attr("fill", "black");
 
         // Legend
         var legendRectSize = 18;
         var legendSpacing = 4;
 
         var legend = svgPie.selectAll(".legend")
-            .data(color.domain());
-
-        legend.enter().append("g")
+            .data(color.domain())
+            .enter().append("g")
             .attr("class", "legend")
-            // .merge(legend)
-            // .transition()
-            // .duration(800)
             .attr("transform", function(d, i) {
                 var height = legendRectSize + legendSpacing;
                 var offset =  height * color.domain().length / 2;
@@ -277,3 +325,21 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
         legend.exit().remove();
 
     }
+
+    // function pieChange(data) {
+    // Pie = Pie.data(pie(data.breakdown));
+    // Pie.transition().attr("d", arc);
+    // }
+
+function findNeighborArc(i, data0, data1, key) {
+    var d;
+    return (d = findPreceding(i, data0, data1, key)) ? {startAngle: d.endAngle, endAngle: d.endAngle}
+        : (d = findFollowing(i, data0, data1, key)) ? {startAngle: d.startAngle, endAngle: d.startAngle}
+            : null;
+}
+
+function arcTween(d) {
+    var i = d3.interpolate(this._current, d);
+    this._current = i(0);
+    return function(t) { return arc(i(t)); };
+}
