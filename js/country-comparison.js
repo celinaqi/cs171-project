@@ -49,7 +49,7 @@ var yAxisGroup2 = svgCalculator2.append("g")
 
 svgCalculator2.append("text")
     .attr("class", "label")
-    .attr("x", -100)
+    .attr("x", -180)
     .attr("y", -30)
     .attr("transform", "rotate(-90)")
     .text("% US consumption");
@@ -62,7 +62,7 @@ svgCalculator2.append("text")
 
 svgCalculator2.append("text")
     .attr("class", "title")
-    .attr("x", 380)
+    .attr("x", 300)
     .attr("y", -20)
     .text("Countries' Percentage of United States' Water Consumptions Per Capita Per Day");
 
