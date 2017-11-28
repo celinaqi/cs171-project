@@ -11,6 +11,8 @@ var tim;
 
 var formatNum = d3.format(",");
 
+document.getElementById("freshwater").innerHTML = formatNum(start);
+
 
 setInterval(function()
     {if (start>= day) {clearInterval(tim); return 0;}
@@ -34,6 +36,9 @@ var origCounter = new Date(2017, 10, 27, 22, 24, 01);
 var addPeople = Math.round((today - origCounter) / 1000);
 
 var startPeople = origPeople + addPeople;
+
+ document.getElementById("inneed").innerHTML = formatNum(startPeople);
+
 
 setInterval(function()
         // $('#count').text(++start);
