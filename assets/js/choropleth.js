@@ -1,5 +1,5 @@
-var width = 800,
-    height = 500;
+var width = 780,
+    height = 440;
 
 var resources, barChart;
 
@@ -8,14 +8,14 @@ var svg = d3.select("#choropleth").append("svg")
     .attr("height", height);
 
 var projection = d3.geoMercator()
-    .scale(140)
+    .scale(120)
     .translate([width / 2, (height / 2) + 40])
 
 var path = d3.geoPath()
     .projection(projection);
 
-var color = d3.scaleQuantize()
-    .range(colorbrewer.Reds["5"])
+var colorChor = d3.scaleQuantize()
+    .range(colorbrewer.Oranges["5"])
     .domain([0, 5]);
 
 var tip = d3.tip()
@@ -23,6 +23,8 @@ var tip = d3.tip()
     .offset(function() {
         return [this.getBBox().height/2 - 10, -5]
     });
+
+var selectedChor;
 
 d3.queue()
     .defer(d3.csv, "data/water-stress-p.csv")
@@ -55,8 +57,8 @@ function initVis(error, stress, codes, world, aquastat) {
             d3.selectAll(".clicked")
                 .classed("clicked", false)
                 .attr("fill", function(d) {
-                if (!isNaN(d[selected])) {
-                    return color(d[selected]);
+                if (!isNaN(d[selectedChor])) {
+                    return colorChor(d[selectedChor]);
                 }
                 else {return "gray"}
             });
@@ -105,7 +107,7 @@ function initVis(error, stress, codes, world, aquastat) {
 
     // create legend
     var legend = svg.selectAll(".legend")
-        .data(color.range())
+        .data(colorChor.range())
         .enter().append("g");
 
     legend.append("rect")
@@ -121,7 +123,7 @@ function initVis(error, stress, codes, world, aquastat) {
         .attr("x", 70)
         .attr("y", function(d, i) {return i*20 + 305})
         .text(function(d) {
-            var legendRange = color.invertExtent(d);
+            var legendRange = colorChor.invertExtent(d);
             if (legendRange[1] == 1) {return "Low (<10%)"}
             else if (legendRange[1] == 2) {return "Low to Medium (10-20%)"}
             else if (legendRange[1] == 3) {return "Medium to High (20-40%)"}
@@ -175,7 +177,7 @@ function initVis(error, stress, codes, world, aquastat) {
 function updateChoropleth() {
 
     // get value from select box
-    selected = $("#select").val();
+    selectedChor = $("#select").val();
 
     // chloropleth
     svg.selectAll(".world")
@@ -184,18 +186,21 @@ function updateChoropleth() {
         .transition()
         .duration(600)
         .attr("fill", function(d) {
-            if (!isNaN(d[selected])) {
-                return color(d[selected]);
+            if (!isNaN(d[selectedChor])) {
+                return colorChor(d[selectedChor]);
             }
             else {return "gray"}
         });
 
     // text for tooltip
     tip.html(function(d) {
-        if (d[selected] || d[selected] === 0) {
-            return d.name + "<br/>" + "Score: " + d[selected] + "<br/>" + "Stress Level: " + stresslevel(d[selected]);
+        if (d[selectedChor] || d[selectedChor] === 0) {
+            console.log(d)
+            return d.name + "<br/>" + "Score: " + d[selectedChor] + "<br/>" + "Stress Level: " + stresslevel(d[selectedChor]);
         }
         else {
+            console.log(d);
+            console.log(selectedChor);
             return d.name + "<br/>" + "No Data Found"
         }
     });

@@ -1,4 +1,4 @@
-var color, arc, labelArc;
+var colorPie, arc, labelArc;
 
 var selected, pie, Pie;
 
@@ -200,7 +200,7 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
     // var radius = Math.min(widthPie, heightPie) / 2;
     var radius = 200;
 
-    color = d3.scaleOrdinal()
+    colorPie = d3.scaleOrdinal()
         .range(["#fff7fb", "#ece2f0", "#d0d1e6", "#a6bddb", "#67a9cf", "#3690c0", "#02818a", "#016450"]);
 
     arc = d3.arc()
@@ -234,13 +234,13 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
     svgPie.append("g")
         .attr("class", "lines");
 
-    updatePie(svgPie, selected, radius, widthPie, color);
-    updatePie(svgPie, selected, radius, widthPie, color);
+    updatePie(svgPie, selected, radius, widthPie, colorPie);
+    updatePie(svgPie, selected, radius, widthPie, colorPie);
 
     svgCalculator1.selectAll(".bar").on("click", function () {
         selected = d3.select(this)._groups[0][0].__data__;
         console.log(selected);
-        updatePie(svgPie, selected, radius, widthPie, color);
+        updatePie(svgPie, selected, radius, widthPie, colorPie);
     });
 }
 
@@ -252,7 +252,7 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
     //     updatePie(svgPie, data, radius, widthPie, color);
     // }
     //
-    function updatePie (svgPie, data, radius, widthPie, color) {
+    function updatePie (svgPie, data, radius, widthPie, colorPie) {
     console.log("pie2");
 
         Pie = svgPie.selectAll(".arc")
@@ -260,7 +260,7 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
 
         Pie.enter().append("path")
             .merge(Pie)
-            .attr("fill", function(d, i) { return color(i); })
+            .attr("fill", function(d, i) { return colorPie(i); })
             .attr("d", arc)
             .attr("class", "arc");
 
@@ -358,7 +358,7 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
         // var legendSpacing = 4;
 
         var legend = svgPie.selectAll(".legend")
-            .data(color.domain())
+            .data(colorPie.domain())
             .enter().append("g")
             .attr("class", "legend")
             .attr("transform", function(d, i) {
@@ -369,7 +369,7 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
                 // return "translate(" + horz + "," + vert + ")";
 
                 var height = legendRectSize + legendSpacing;
-                var offset =  height * color.domain().length / 2;
+                var offset =  height * colorPie.domain().length / 2;
                 var horz = -3 * legendRectSize;
                 var vert = i * height - offset;
                 return 'translate(' + horz + ',' + vert + ')';
@@ -378,8 +378,8 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
         legend.append("rect")
             .attr("width", legendRectSize)
             .attr("height", legendRectSize)
-            .style("fill", color)
-            .style("stroke", color)
+            .style("fill", colorPie)
+            .style("stroke", colorPie)
             // .attr("transform", "translate(" + (widthPie - 70) + ", 40)");
 
         legend.append("text")

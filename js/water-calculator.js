@@ -1,4 +1,4 @@
-var color, arc, labelArc;
+var colorPie, arc, labelArc;
 
 var selected, pie, Pie;
 
@@ -200,7 +200,7 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
     // var radius = Math.min(widthPie, heightPie) / 2;
     var radius = 200;
 
-    color = d3.scaleOrdinal()
+    colorPie = d3.scaleOrdinal()
         .range(["#fff7fb", "#ece2f0", "#d0d1e6", "#a6bddb", "#67a9cf", "#3690c0", "#02818a", "#016450"]);
 
     arc = d3.arc()
@@ -234,13 +234,13 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
     svgPie.append("g")
         .attr("class", "lines");
 
-    updatePie(svgPie, selected, radius, widthPie, color);
-    updatePie(svgPie, selected, radius, widthPie, color);
+    updatePie(svgPie, selected, radius, widthPie, colorPie);
+    updatePie(svgPie, selected, radius, widthPie, colorPie);
 
     svgCalculator1.selectAll(".bar").on("click", function () {
         selected = d3.select(this)._groups[0][0].__data__;
         console.log(selected);
-        updatePie(svgPie, selected, radius, widthPie, color);
+        updatePie(svgPie, selected, radius, widthPie, colorPie);
     });
 }
 
