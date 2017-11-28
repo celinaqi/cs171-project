@@ -27,7 +27,7 @@ setInterval(function()
 
 // people counter
 
-var origPeople = 33863207650;
+var origPeople = 3386338765;
 var minutes = today.getMinutes();
 
 
@@ -47,7 +47,7 @@ setInterval(function()
 
         document.getElementById("inneed").innerHTML = formatNum(need);
     }
-    , 1000);
+    , 800);
 
 
 // children counter

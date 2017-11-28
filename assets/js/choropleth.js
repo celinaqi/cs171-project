@@ -1,5 +1,5 @@
 var width = 780,
-    height = 440;
+    height = 420;
 
 var resources, barChart;
 
