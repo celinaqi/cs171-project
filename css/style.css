@@ -86,12 +86,15 @@ h3 {
     left: 0;
 }
 
+/* counters */
 .counter {
-    text-align: center;
+    font-size: 100px;
 }
 
-#count {
-    font-size: 100px;
+.counttext {
+
+    text-align: center;
+
 }
 
 polyline{

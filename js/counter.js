@@ -1,4 +1,6 @@
-var day=10410958904;
+// freshwater counter
+
+var day = 10410958904;
 var perhour = day/24;
 var today = new Date();
 var hour = today.getHours();
@@ -10,47 +12,56 @@ var tim;
 var formatNum = d3.format(",");
 
 
-// var svgCounter =  d3.select("#count").append("svg")
-//     .attr("width", 1000)
-//     .attr("height", 200)
-//     .append("g")
-//     .attr("transform", "translate(500, 100)");
-//
-// svgCounter.append("text")
-//     .attr("x", 20)
-//     .attr("y", 20)
-//     .text(run());
-
-// function run(){
-//
-//
-// //     tim = setInterval(function()
-//     {if(start>=day){clearInterval(tim); return 0;}
-//         $('#count').innerHTML(++start);
-//     }
-//     ,1000);
-// }
-
-
-    tim = setInterval(function()
+setInterval(function()
     {if (start>= day) {clearInterval(tim); return 0;}
         // $('#count').text(++start);
 
         var tons = ++start;
 
-        document.getElementById("count").innerHTML = formatNum(tons);
+        document.getElementById("freshwater").innerHTML = formatNum(tons);
     }
-    , 100);
-
-function myTimer() {
-    // var d = new Date();
-    // document.getElementById("count").innerHTML = d.toLocaleTimeString();
-
-    if(start>=day){clearInterval(tim); return 0;}
-
-    document.getElementById("count").innerHTML(++start);
+    , 20);
 
 
-}
+// people counter
 
-// run();
+var origPeople = 33863207650;
+var minutes = today.getMinutes();
+
+
+var origCounter = new Date(2017, 10, 27, 22, 24, 01);
+
+var addPeople = Math.round((today - origCounter) / 1000);
+
+var startPeople = origPeople + addPeople;
+
+setInterval(function()
+        // $('#count').text(++start);
+
+    {var need = ++startPeople;
+
+        document.getElementById("inneed").innerHTML = formatNum(need);
+    }
+    , 1000);
+
+
+// children counter
+
+var childrenperday = 989;
+
+var childrenperhour = childrenperday/24;
+
+var childrenminute = minutes*0.75;
+
+var startChildren = hour * childrenperhour + childrenminute;
+
+console.log(childrenperhour);
+
+setInterval(function()
+        // $('#count').text(++start);
+
+    {var children = ++startChildren;
+
+        document.getElementById("children").innerHTML = Math.round(children);
+    }
+    , 2000);
