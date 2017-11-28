@@ -86,6 +86,14 @@ h3 {
     left: 0;
 }
 
+.counter {
+    text-align: center;
+}
+
+#count {
+    font-size: 100px;
+}
+
 polyline{
     opacity: .3;
     stroke: black;
