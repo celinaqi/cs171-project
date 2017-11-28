@@ -180,9 +180,9 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
 
     // PIE STUFF
 
-    var marginPie = {top: 120, right: 40, bottom: 40, left: 150},
+    var marginPie = {top: 220, right: 40, bottom: 40, left: 150},
         widthPie = $('#water-chart1-pie').width() - marginPie.left - marginPie.right,
-        heightPie = 300 - marginPie.top - marginPie.bottom;
+        heightPie = 500 - marginPie.top - marginPie.bottom;
 
     var svgPie = d3.select("#water-chart1-pie").append("svg")
         .attr("width", widthPie + marginPie.left + marginPie.right)
@@ -203,12 +203,16 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
         .range(["#fff7fb", "#ece2f0", "#d0d1e6", "#a6bddb", "#67a9cf", "#3690c0", "#02818a", "#016450"]);
 
     arc = d3.arc()
-        .outerRadius(radius)
-        .innerRadius(0);
+        .outerRadius(radius * 0.8)
+        .innerRadius(radius * 0.4);
 
     labelArc = d3.arc()
-        .outerRadius(radius - 40)
-        .innerRadius (radius - 40);
+        .innerRadius(radius * 0.9)
+        .outerRadius(radius * 0.9);
+
+    // labelArc = d3.arc()
+    //     .outerRadius(radius - 40)
+    //     .innerRadius (radius - 40);
 
     studentData.forEach(function(d) {
         if (d.student === "You")
@@ -222,6 +226,14 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
             return d;
         });
 
+    svgPie.append("g")
+        .attr("class", "labelName");
+    svgPie.append("g")
+        .attr("class", "labelValue");
+    svgPie.append("g")
+        .attr("class", "lines");
+
+    updatePie(svgPie, selected, radius, widthPie, color);
     updatePie(svgPie, selected, radius, widthPie, color);
 
     svgCalculator1.selectAll(".bar").on("click", function () {
@@ -280,15 +292,66 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
         // // Pie.exit().remove();
         //
 
-        Pie.append("text")
-            .attr("transform", function(d) {
-                return "translate(" + labelArc.centroid(d) + ")";
-            })
+        // Pie.append("text")
+        //     .attr("transform", function(d) {
+        //         return "translate(" + labelArc.centroid(d) + ")";
+        //     })
+        //     .attr("dy", ".35em")
+        //     .text(function(d) {
+        //         return Math.round(d.data);
+        //     })
+        //     .attr("fill", "black");
+
+
+        var text = svgPie.select(".labelName").selectAll("text")
+            .data(pie(data.breakdown));
+
+        text.enter()
+            .append("text")
             .attr("dy", ".35em")
             .text(function(d) {
-                return Math.round(d.data);
+                return (d.data);
+            });
+
+        function midAngle(d){
+            return d.startAngle + (d.endAngle - d.startAngle)/2;
+        }
+
+        text
+            .transition().duration(1000)
+            .attrTween("transform", function(d) {
+                this._current = this._current || d;
+                var interpolate = d3.interpolate(this._current, d);
+                this._current = interpolate(0);
+                return function(t) {
+                    var d2 = interpolate(t);
+                    var pos = labelArc.centroid(d2);
+                    pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
+                    return "translate("+ pos +")";
+                };
             })
-            .attr("fill", "black");
+            .styleTween("text-anchor", function(d){
+                this._current = this._current || d;
+                var interpolate = d3.interpolate(this._current, d);
+                this._current = interpolate(0);
+                return function(t) {
+                    var d2 = interpolate(t);
+                    return midAngle(d2) < Math.PI ? "start":"end";
+                };
+            })
+            .text(function(d) {
+                return (d.data);
+            });
+
+
+        text.exit()
+            .remove();
+
+
+
+
+
+
 
         // Legend
         var legendRectSize = 18;
@@ -321,8 +384,28 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
                 return data.labels[i];
             });
 
-        Pie.exit().remove();
-        legend.exit().remove();
+        var polyline = svgPie.select(".lines").selectAll("polyline")
+            .data(pie(data.breakdown));
+
+        polyline.enter()
+            .append("polyline");
+
+        polyline.transition().duration(1000)
+            .attrTween("points", function(d){
+                this._current = this._current || d;
+                var interpolate = d3.interpolate(this._current, d);
+                this._current = interpolate(0);
+                return function(t) {
+                    var d2 = interpolate(t);
+                    var pos = labelArc.centroid(d2);
+                    pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
+                    return [arc.centroid(d2), labelArc.centroid(d2), pos];
+                };
+            });
+
+        polyline.exit()
+            .remove();
+
 
     }
 
