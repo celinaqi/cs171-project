@@ -30,6 +30,7 @@ setInterval(function()
 var origPeople = 3386338765;
 var minutes = today.getMinutes();
 
+console.log(formatNum(origPeople));
 
 var origCounter = new Date(2017, 10, 27, 22, 24, 01);
 
