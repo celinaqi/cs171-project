@@ -1,238 +1,184 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
 
-<head>
-    <meta charset="UTF-8">
-    <title>World Water Shortage</title>
-
-    <!-- CSS libraries -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-
-    <!-- Custom CSS code -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-
-<div>
-    <p id="freshwater" class="counter counttext"></p>
-    <p class="counttext" id="counttext">Tons of Freshwater Used Today Worldwide</p>
-
-    <p id="inneed" class="counter counttext"></p>
-    <p id="counttext" class="counttext">Number of People in Need of Water Worldwide</p>
-
-    <p id="children" class="counter counttext"></p>
-    <p id="counttext" class="counttext"> Child Deaths from Water Sanitation-Linked Disease Today </p>
-
-</div>
-
-     <div class="row">
-        <div id="water-calculator" class="col-md-6">
-            <h2>How much water do you consume?</h2>
-            <form id="waterForm" class="form-group">
-                <div class="form-group row">
-                    <label for="shower" class="col-md-4 col-form-label">Minutes showering per day</label>
-                    <div class="col-md-2">
-                        <input class="form-control" type="number" id="shower">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="flush" class="col-md-4 col-form-label">Toilet flushes per day</label>
-                    <div class="col-md-2">
-                        <input class="form-control" type="number" id="flush">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="runningWater" class="col-md-4 col-form-label">Minutes running faucet per day</label>
-                    <small id="runningWaterExamples" class="form-text text-muted">E.g. brushing teeth, washing hands, cooking</small>
-                    <div class="col-md-2">
-                        <input class="form-control" type="number" id="runningWater">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="hose" class="col-md-4 col-form-label">Minutes running hose per week</label>
-                    <small id="runningHoseExamples" class="form-text text-muted">E.g. filling pool, watering lawn, washing car</small>
-                    <div class="col-md-2">
-                        <input class="form-control" type="number" id="hose">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="laundry" class="col-md-4 col-form-label">Loads of laundry per month</label>
-                    <div class="col-md-2">
-                        <input class="form-control" type="number" id="laundry">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="dishes" class="col-md-4 col-form-label">Loads of dishes per week</label>
-                    <small id="dishesExamples" class="form-text text-muted">Dishwasher or by hand</small>
-                    <div class="col-md-2">
-                        <input class="form-control" type="number" id="dishes">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="drink" class="col-md-4 col-form-label">Amount of drinking water per day</label>
-                    <small id="drinkingWaterExamples" class="form-text text-muted">In 8oz cups</small>
-                    <div class="col-md-2">
-                        <input class="form-control" type="number" id="drink">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="drive" class="col-md-4 col-form-label">Number of miles driven per week</label>
-                    <small id="drivingExamples" class="form-text text-muted">Including the shuttle!</small>
-                    <div class="col-md-2">
-                        <input class="form-control" type="number" id="drive">
-                    </div>
-                </div>
-                <button type="button" class="btn btn-default" onClick="getValues()">Submit</button>
-            </form>
-        </div>
-        <div id="water-calculator-comparison" class="col-md-6 offset-md-6">
-            <h2 id="water-calculator-title">Water Calculator Results</h2>
-            <div id="water-results-total"></div>
-            <div id="water-chart1"></div>
-            <div id="water-chart1-pie"></div>
-        </div>
-    </div>
-    
-    <div class="row">
-        <h2>Water Consumption in the United States</h2>
-        <p>However, this is just your measurable direct water consumption. You also consume water in other ways:</p>
-        <ul>
-            <li><b>Food</b>. It requires 11 gallons of water to produce 1 slice of bread, and 1,799 gallons of water to produce 1lb of beef.</li>
-            <li><b>Electricity</b>. The average American household uses 120,000 - 300,000 gallons of water's worth of electricity per year (Boston specifically gets its electricity from hydropower).</li>
-            <li><b>Material consumption</b>. It takes about 100 gallons of water to produce 1lb of cotton material, which is representative of other fabrics and furniture.</li>
-            <li><b>Not recycling</b>. Forgetting to recycle paper, plastic, and bottles can waste an additional 15 gallons of water/day.</li>
-            <li><b>Going to Harvard</b>. Harvard uses water to irrigate its lawns, clean buildings, wash dining hall dishes, fill pools, etc.</li>
-        </ul>
-        <p>And so on. When we account for both direct and virtual water consumption, experts estimate <b>the average American consumes 2,200 gallons of water per day</b>. This is how water consumption per capita per day in the United States compares to water consumption in other countries:</p>
-        <div id="water-chart2"></div>
-    </div>
-    
-    <div class="row">
-        <h2> Water Shortage Crisis</h2>
-        <p>Not everyone is as privileged in being able to access as much water. For many people, in many parts of the world, water shortages are serious, life-threatening problems. From lack of water to water contamination, this crisis affects millions already. Let's see how:</p>
-    </div>
+<html>
+	<head>
+		<title>Water We Going to Do?</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-    <div class="row">
-        <h2>Projected Water Stress</h2>
-        <div class="row">
-            <div class="form-group">
-                <label class="col-lg-1 selectlabel"> Year: </label>
-                <div class="col-lg-2">
-                    <select class="selectpicker form-control" id="select" onchange = updateChoropleth()>
-                        <option value="2020">2020</option>
-                        <option value="2030">2030 </option>
-                        <option value="2040">2040</option>
-                    </select>
-                </div>
-            </div>
+		<!-- CSS Libraries -->
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 
-        </div>
 
-        <div class="row">
-            <div class="col-lg-8">
-                <div id="choropleth"></div>
+		<!-- Favicon -->
+		<link rel="shortcut icon" type="image/ico" href="no_water.ico"/>
 
-            </div>
 
-            <div class="col-lg-4">
-                <div id="barchart"></div>
+	</head>
+	<body class="landing">
 
-            </div>
-        </div>
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
 
-    </div>
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">Water We Gonna Do?</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="index.html">Introduction</a></li>
+											<li><a href="implications.html">Implications</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
 
-    <div class="row">
-        <h2> Facts </h2>
-        <p>As shown above, experts predict that the water shortage crisis will only get worse. Symptoms of climate change, such as longer, more intense heat waves and decreasing rainfall, will result in even more people becoming water insecure. Here are some ways that water shortages are already taking a toll on people worldwide:</p>
-        <p><i>Interactive scrolly-telling symbol graph</i></p>
-        <div id="symbol-graph"></div>
+				<!-- Banner -->
+					<section id="banner">
+						<div class="inner">
+							<h2>Water We Gonna Do?</h2>
+							<p>A Humanization of<br/>
+							the Global Water Scarcity Crisis<br/>
+						</div>
+						<a href="#main" class="more scrolly">Explore</a>
+					</section>
 
-    </div>
+				<!-- Main -->
+				<article id="main">
+					<header>
+						<h2>I thought water was everywhere.</h2>
+						<p><i>Understanding how one of Earth's most seemingly ubiquitous substances can be so scarce</i></p>
+					</header>
 
-    <!--<div class="row">-->
-        <!--<h2> Water Consumption and Usages By Country </h2>-->
-        <!--<p>Based on their water resources and regulations, countries consume different amounts of water and use it differently.</p>-->
-        <!--<p><i>Line graphs with countries' water consumptions per capita with corresponding bar graph of water usages</i></p>-->
-    <!--</div>-->
 
-    <div class="row">
-        <h2> Potential Solutions</h2>
-        <p>While the water shortage crisis is huge, there are steps that everyone can take to be more conscious of their water consumption footprint. While these are just a few simple examples for an extremely complex issue, select the path below that best applies to you in order to see ways you can help:</p>
-        <div id="tree-diagram"></div>
-    </div>
+					<!-- Liquid Gauges -->
+					<section class="wrapper style1">
+						<div class = "row">
+							<div class="6u 12u$(medium)">
+								<h3 align="center">Click the Globe</h3>
+								<svg id="fillgauge1" width="100%" height="400" onclick="gauge1.update(NewValue());"></svg>
+							</div>
+							<div class="6u 12u$(medium)">
+								<ul id = bdown_facts class="alt">
+									<li id="factzero"><b>70% of Earth is covered in water.</b></li>
+									<li id="factone"><b>Of this, 5% of Earth's water has been mapped in detail <br/>
+										below the ocean surface.</b></li>
+									<li id="facttwo"><b>Still, just 1.75% of Earth's water is freshwater.</b></li>
+									<li id="factthree"><b>To make matters worse, a majority of the water is frozen, <br/>
+										leaving only .01% of Earth's water accessible for human use</b></li>
+								</ul>
+							</div>
+						</div>
+					</section>
 
-    <div class="row">
-        <h3> Sources</h3>
-        <ul>
-            <li>
-                <a href="https://datahub.io/core/country-codes">DataHub Country Codes</a>
-            </li>
+					<!-- Water Demand -->
+					<section class="wrapper style1">
+							<h3 align="center">We can see that safe/accessible water supply is limited,<br/>
+							but what does demand look like?</h3>
+							<div class="col-lg-6">
+								<img id="drinking" src="images/drinking.png" align="center">
+							</div>
+							<div class="col-lg-6">
+								<p align="center" id="counter1">Tons of Freshwater Used Today Worldwide (Demand):</p>
+									<p id="freshwater" class="counter counttext"></p>
+								<p class="counttext">Worldwide, this amounts to more than 4 trillion tons of water per year. <br/> <br/>
+									To put this in perspective, that's equivalent to 50 Olympic-sized swimming pools every second. <br/>
+								</p>
+							</div>
 
-            <li>
-                <a href="http://www.fao.org/nr/water/aquastat/data/query/results.html?regionQuery=true&yearGrouping=SURVEY&showCodes=false&yearRange.fromYear=1958&yearRange.toYear=2017&varGrpIds=4250%2C4251%2C4252%2C4253%2C4257&cntIds=&regIds=9805%2C9806%2C9807%2C9808%2C9809&edit=0&save=0&query_type=WUpage&lowBandwidth=1&newestOnly=true&_newestOnly=on&showValueYears=true&_showValueYears=on&categoryIds=-1&_categoryIds=1&XAxis=VARIABLE&showSymbols=true&_showSymbols=on&_hideEmptyRowsColoumns=on&lang=en">Food and Agriculture Organization</a>
-            </li>
+					<div class="col-lg-12">
+						<h3 id="deathheader" class="counttext">A limited supply with a growing demand. The result?</h3>
+							<p class="counttext" id="counter2">Number of People in Need of Water Worldwide:</p>
+							<p id="inneed" class="counter counttext aligning"></p>
 
-            <!--choropleth-->
-            <li>
-                <a href="http://www.wri.org/resources/data-sets/aqueduct-projected-water-stress-country-rankings">World Resources Institute</a>
-            </li>
 
-            <!--counters-->
+						<h3 class="counttext">This has tangible consequences for our future.</h3>
+							<p class="counttext" id="counter3">Child Deaths from Unsafe Water Use/Water Scarcity Today:</p>
+							<p id="children" class="counter counttext"></p>
+					</div>
+					</section>
 
-            <li>
-                <a href="http://www.who.int/mediacentre/news/releases/2017/water-sanitation-hygiene/en/">World Health Organization</a>
-            </li>
 
-            <li>
-                <a href="http://www.worldwatercouncil.org/fileadmin/wwc/Programs/Virtual_Water/virtual_water_final_synthesis.pdf">World Water Council</a>
-            </li>
+				</article>
 
-            <li>
-                <a href="http://www.ifpri.org/publication/world-water-and-food-2025">International Food Policy Research Institute</a>
-            </li>
+				<!-- One -->
+					<section id="one" class="wrapper style1 special">
+						<div class="inner">
+							<header class="major">
+								<h2><b>By 2025,<br/> two-thirds of the world’s population may face water shortages.</b></h2>
+								<p>Currently, water access is a life-threatening issue for 2.7 billion people. <br/>
+									If you are not personally affected right now, there is a high probability that you will be in the future.</p>
+							</header>
+							<ul class="actions vertical">
+								<li align="center"><a href="implications.html" class="button special fit">Implications</a></li>
+							</ul>
+						</div>
+					</section>
 
-            <li>
-                <a href="http://www.oecd.org/environment/indicators-modelling-outlooks/oecdenvironmentaloutlookto2030.htm">Organization for Economic Cooperation and Development</a>
-            </li>
 
-            <!--water calculator-->
-            <li>
-                <a href="https://www.watercalculator.org/">WaterCalculator.org</a>
-            </li>
+			</div>
+	</body>
 
-            <!--tree-->
-            <li>
-                <a href="http://www.data360.org/dsg.aspx?Data_Set_Group_Id=757">Data360</a>
-            </li>
 
-            <li>
-                <a href="http://www.circleofblue.org/waterpricing/">Circle of Blue</a>
-            </li>
+		<!-- Scripts -->
 
-        </ul>
-    </div>
+		<!-- Framing -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
 
-</body>
+		<!-- Gauge -->
+			<script src="http://d3js.org/d3.v3.min.js" language="JavaScript"></script>
+			<script src="assets/js/liquidFillGauge.js"></script>
 
-    <!-- Load JS libraries -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/d3.js"></script>
-    <script src="js/d3-tip.js"></script>
-    <script src="js/colorbrewer.js"></script>
-    <script src="js/queue.v1.min.js"></script>
-    <script src="js/topojson.v1.min.js"></script>
-    
-    <!-- Load data, create visualizations -->
-    <script src="js/tree.js"></script>
-    <script src="js/water-calculator.js"></script>
-    <script src="js/choropleth.js"></script>
-    <!--<script src="js/linechart.js"></script>-->
-    <script src="js/barchart.js"></script>
-    <script src="js/country-comparison.js"></script>
-    <script src="js/counter.js"></script>
+			<script>
+				var factlist = [70, 5, 1.75, .01];
+				var gauge1 = loadLiquidFillGauge("fillgauge1", factlist[0]);
+				var config1 = liquidFillGaugeDefaultSettings();
+				var count = 0;
+				var id_names = ["#factone", "#facttwo", "#factthree"];
 
+				config1.circleColor = "#FF7777";
+				config1.textColor = "#FF4444";
+				config1.waveTextColor = "#FFAAAA";
+				config1.waveColor = "#FFDDDD";
+				config1.circleThickness = 0.2;
+				config1.textVertPosition = 0.2;
+				config1.waveAnimateTime = 10000;
+
+				function NewValue(){
+					if (count <= 2) {
+						$(id_names[count]).show(1000);
+						count ++;
+						console.log(count);
+						return factlist[count];
+					}
+
+					else {
+						count = 0;
+						$("#factone, #facttwo, #factthree").hide(600);
+						console.log(count);
+						return factlist[count];
+					}
+				}
+			</script>
+
+			<script src="assets/js/counter.js"></script>
+
+		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+				<script src="assets/js/main.js"></script>
+
+	</body>
 </html>
