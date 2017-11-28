@@ -7,7 +7,7 @@ var start = Math.round(hour * perhour);
 
 var tim;
 
-var formatNum = d3.format(",.2r");
+var formatNum = d3.format(",");
 
 
 // var svgCounter =  d3.select("#count").append("svg")
@@ -38,7 +38,7 @@ var formatNum = d3.format(",.2r");
 
         var tons = ++start;
 
-        document.getElementById("count").innerHTML = tons;
+        document.getElementById("count").innerHTML = formatNum(tons);
     }
     , 100);
 
