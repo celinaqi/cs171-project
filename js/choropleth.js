@@ -1,5 +1,5 @@
 var width = 800,
-    height = 500;
+    height = 470;
 
 var resources, barChart;
 
@@ -8,14 +8,14 @@ var svg = d3.select("#choropleth").append("svg")
     .attr("height", height);
 
 var projection = d3.geoMercator()
-    .scale(140)
+    .scale(135)
     .translate([width / 2, (height / 2) + 40])
 
 var path = d3.geoPath()
     .projection(projection);
 
 var color = d3.scaleQuantize()
-    .range(colorbrewer.Reds["5"])
+    .range(colorbrewer.Oranges["5"])
     .domain([0, 5]);
 
 var tip = d3.tip()
