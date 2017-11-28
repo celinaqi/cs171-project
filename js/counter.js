@@ -57,6 +57,8 @@ var startChildren = hour * childrenperhour + childrenminute;
 
 console.log(childrenperhour);
 
+// Calculations from http://www.who.int/mediacentre/news/releases/2017/water-sanitation-hygiene/en/
+
 setInterval(function()
         // $('#count').text(++start);
 
