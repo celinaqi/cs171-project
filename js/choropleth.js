@@ -1,5 +1,5 @@
-var width = 800,
-    height = 470;
+var width = 780,
+    height = 420;
 
 var resources, barChart;
 
@@ -8,21 +8,25 @@ var svg = d3.select("#choropleth").append("svg")
     .attr("height", height);
 
 var projection = d3.geoMercator()
-    .scale(135)
+    .scale(120)
     .translate([width / 2, (height / 2) + 40])
 
 var path = d3.geoPath()
     .projection(projection);
 
-var color = d3.scaleQuantize()
+var colorChor = d3.scaleQuantize()
     .range(colorbrewer.Oranges["5"])
     .domain([0, 5]);
 
 var tip = d3.tip()
     .attr('class', 'd3-tip')
     .offset(function() {
-        return [this.getBBox().height/2, 0]
+        return [this.getBBox().height/2 - 10, -5]
     });
+
+var selectedChor;
+
+var worldmap;
 
 d3.queue()
     .defer(d3.csv, "data/water-stress-p.csv")
@@ -34,7 +38,8 @@ d3.queue()
 function initVis(error, stress, codes, world, aquastat) {
 
     // Convert TopoJSON to GeoJSON
-    var world = topojson.feature(world, world.objects.countries).features;
+    worldmap = topojson.feature(world, world.objects.countries).features;
+    console.log(worldmap);
 
     svg.append("defs")
         .append("clipPath")
@@ -44,22 +49,23 @@ function initVis(error, stress, codes, world, aquastat) {
         .attr("height", height);
 
     var countries = svg.selectAll(".world")
-        .data(world);
+        .data(worldmap);
     countries.enter()
         .append("path")
         .attr("class", "world")
         .attr("d", path)
-        .attr("stroke", "white")
+        .attr("stroke", "black")
+        .attr("stroke-width", 0.5)
         .attr("clip-path", "url(#clip)")
         .on("click", function(d) {
             d3.selectAll(".clicked")
                 .classed("clicked", false)
                 .attr("fill", function(d) {
-                if (!isNaN(d[selected])) {
-                    return color(d[selected]);
-                }
-                else {return "gray"}
-            });
+                    if (!isNaN(d[selectedChor])) {
+                        return colorChor(d[selectedChor]);
+                    }
+                    else {return "gray"}
+                });
             d3.select(this)
                 .classed("clicked", true)
                 .attr("fill", "navy");
@@ -81,7 +87,7 @@ function initVis(error, stress, codes, world, aquastat) {
                 e.country_num = numcode;
             };
 
-            world.forEach(function(f) {
+            worldmap.forEach(function(f) {
                 if (f.id === e.country_num) {
                     f.name = e.name;
                     f[2020] = +e[2020];
@@ -91,7 +97,7 @@ function initVis(error, stress, codes, world, aquastat) {
             })
         })
 
-        world.forEach(function(f) {
+        worldmap.forEach(function(f) {
             if (numcode == f.id) {
                 f.name = name;
             }
@@ -105,7 +111,7 @@ function initVis(error, stress, codes, world, aquastat) {
 
     // create legend
     var legend = svg.selectAll(".legend")
-        .data(color.range())
+        .data(colorChor.range())
         .enter().append("g");
 
     legend.append("rect")
@@ -121,7 +127,7 @@ function initVis(error, stress, codes, world, aquastat) {
         .attr("x", 70)
         .attr("y", function(d, i) {return i*20 + 305})
         .text(function(d) {
-            var legendRange = color.invertExtent(d);
+            var legendRange = colorChor.invertExtent(d);
             if (legendRange[1] == 1) {return "Low (<10%)"}
             else if (legendRange[1] == 2) {return "Low to Medium (10-20%)"}
             else if (legendRange[1] == 3) {return "Medium to High (20-40%)"}
@@ -138,12 +144,12 @@ function initVis(error, stress, codes, world, aquastat) {
 
     // cleaning aquastat data
     aquastat.forEach(function(d) {
-            d.ag_water_withdrawal = +d.ag_water_withdrawal;
-            d.ind_water_withdrawal = +d.ind_water_withdrawal;
-            d.mun_water_withdrawal = +d.mun_water_withdrawal;
-            d.total_water_withdrawal = +d.total_water_withdrawal;
-            d.withdrawal_per_capita = +d.withdrawal_per_capita;
-        });
+        d.ag_water_withdrawal = +d.ag_water_withdrawal;
+        d.ind_water_withdrawal = +d.ind_water_withdrawal;
+        d.mun_water_withdrawal = +d.mun_water_withdrawal;
+        d.total_water_withdrawal = +d.total_water_withdrawal;
+        d.withdrawal_per_capita = +d.withdrawal_per_capita;
+    });
 
 
     // nesting aquastat data
@@ -165,7 +171,7 @@ function initVis(error, stress, codes, world, aquastat) {
     // initializing barchart
     barChart = new BarChart("barchart", resources);
 
-    console.log(world);
+    console.log(worldmap);
 
 
     updateChoropleth();
@@ -175,7 +181,7 @@ function initVis(error, stress, codes, world, aquastat) {
 function updateChoropleth() {
 
     // get value from select box
-    selected = $("#select").val();
+    selectedChor = $("#select").val();
 
     // chloropleth
     svg.selectAll(".world")
@@ -184,22 +190,59 @@ function updateChoropleth() {
         .transition()
         .duration(600)
         .attr("fill", function(d) {
-            if (!isNaN(d[selected])) {
-                return color(d[selected]);
+            if (!isNaN(d[selectedChor])) {
+                return colorChor(d[selectedChor]);
             }
             else {return "gray"}
         });
 
     // text for tooltip
     tip.html(function(d) {
-        if (d[selected] || d[selected] === 0) {
-            return d.name + "<br/>" + "Score: " + d[selected] + "<br/>" + "Stress Level: " + stresslevel(d[selected]);
+        if (d[selectedChor] || d[selectedChor] === 0) {
+            console.log(d)
+            return d.name + "<br/>" + "Score: " + d[selectedChor] + "<br/>" + "Stress Level: " + stresslevel(d[selectedChor]);
         }
         else {
+            console.log(d);
+            console.log(selectedChor);
             return d.name + "<br/>" + "No Data Found"
         }
     });
     svg.call(tip);
+
+
+    // leaflet
+
+    var leafletmap = L.map('leaflet-map').setView([37.8, -96], 4);
+
+    var mapboxAccessToken = "pk.eyJ1IjoiY2VsaW5hcWkiLCJhIjoiY2phbTgxYXpwMzIyMTJ4bWhhcm15dmJ3NSJ9.Vwx2SBPvfStc1hSgMOfwRQ"
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + mapboxAccessToken, {
+        id: 'mapbox.light'
+    }).addTo(leafletmap);
+
+    function style(feature) {
+        return {
+            fillColor: colorChor(function(d) {if (!isNaN(d[selectedChor])) {
+                return colorChor(d[selectedChor]);
+            }
+            else {return "gray"}}),
+
+            weight: 2,
+            opacity: 1,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.7
+        };
+    }
+
+    L.geoJson(worldmap, {style: style}).addTo(leafletmap);
+
+
+
+
+
+
 
 }
 

@@ -57,11 +57,11 @@ function initVis(error, stress, codes, world, aquastat) {
             d3.selectAll(".clicked")
                 .classed("clicked", false)
                 .attr("fill", function(d) {
-                if (!isNaN(d[selectedChor])) {
-                    return colorChor(d[selectedChor]);
-                }
-                else {return "gray"}
-            });
+                    if (!isNaN(d[selectedChor])) {
+                        return colorChor(d[selectedChor]);
+                    }
+                    else {return "gray"}
+                });
             d3.select(this)
                 .classed("clicked", true)
                 .attr("fill", "navy");
@@ -140,12 +140,12 @@ function initVis(error, stress, codes, world, aquastat) {
 
     // cleaning aquastat data
     aquastat.forEach(function(d) {
-            d.ag_water_withdrawal = +d.ag_water_withdrawal;
-            d.ind_water_withdrawal = +d.ind_water_withdrawal;
-            d.mun_water_withdrawal = +d.mun_water_withdrawal;
-            d.total_water_withdrawal = +d.total_water_withdrawal;
-            d.withdrawal_per_capita = +d.withdrawal_per_capita;
-        });
+        d.ag_water_withdrawal = +d.ag_water_withdrawal;
+        d.ind_water_withdrawal = +d.ind_water_withdrawal;
+        d.mun_water_withdrawal = +d.mun_water_withdrawal;
+        d.total_water_withdrawal = +d.total_water_withdrawal;
+        d.withdrawal_per_capita = +d.withdrawal_per_capita;
+    });
 
 
     // nesting aquastat data
@@ -169,15 +169,17 @@ function initVis(error, stress, codes, world, aquastat) {
 
     console.log(world);
 
-
-    updateChoropleth();
+    var defaultyear = 2020;
+    updateChoropleth(defaultyear);
 
 }
 
-function updateChoropleth() {
+function updateChoropleth(d) {
+
+    console.log("radio");
 
     // get value from select box
-    selectedChor = $("#select").val();
+    selectedChor = d;
 
     // chloropleth
     svg.selectAll(".world")
@@ -195,12 +197,9 @@ function updateChoropleth() {
     // text for tooltip
     tip.html(function(d) {
         if (d[selectedChor] || d[selectedChor] === 0) {
-            console.log(d)
             return d.name + "<br/>" + "Score: " + d[selectedChor] + "<br/>" + "Stress Level: " + stresslevel(d[selectedChor]);
         }
         else {
-            console.log(d);
-            console.log(selectedChor);
             return d.name + "<br/>" + "No Data Found"
         }
     });
@@ -220,8 +219,6 @@ function stresslevel (d) {
 
 // gathering data for country that was clicked
 function selectCountry(d) {
-
-    console.log(d.name);
 
     var countryName = d.name;
 

@@ -4010,3 +4010,14 @@ polyline{
 	padding-right: 500px;
 }
 
+/*#leaflet-map {*/
+	/*height: 800px;*/
+/*}*/
+
+.d3-tip {
+	position: absolute;
+	pointer-events: none !important;
+}
+
+
+

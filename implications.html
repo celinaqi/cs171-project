@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-
+		<link rel="stylesheet" href="assets/css/leaflet.css" />
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/ico" href="no_water.ico"/>
 
@@ -165,26 +165,32 @@
 						<h2>Projected Water Stress</h2>
 					</div>
 						<div class="row">
-
 							<div class="form-group">
-								<div class="col-lg-4">
-									<label for="select"> Year: </label>
+								<div class="col-lg-12">
+									<form id="select">
+										<div class="row uniform">
+											<label>Year: </label>
+											<div class="3u 12u$(small)">
+												<input type="radio" id="2020" class="select" name="year" value="2020" checked onchange="updateChoropleth(2020)">
+												<label for="2020">2020</label>
+											</div>
+											<div class="3u 12u$(small)">
+												<input type="radio" id="2030" class="select" name="year" value="2030" onchange="updateChoropleth(2030)">
+												<label for="2030">2030</label>
+											</div>
+											<div class="3u$ 12u$(small)">
+												<input type="radio" id="2040" class="select" name="year" value="2040" onchange="updateChoropleth(2040)">
+												<label for="2040">2040</label>
+											</div>
+										</div>
+									</form>
 								</div>
-								<div class="col-lg-8">
-									<select class="selectpicker form-control" id="select" onchange = updateChoropleth()>
-										<option value="2020">2020</option>
-										<option value="2030">2030 </option>
-										<option value="2040">2040</option>
-									</select>
-								</div>
-
 							</div>
 						</div>
 
 					<div class="row">
 						<div class="col-lg-8">
 							<div id="choropleth"></div>
-
 						</div>
 
 						<div class="col-lg-4">
@@ -322,6 +328,7 @@
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/bootstrap.min.js"></script>
+			<script src="assets/js/leaflet.js"></script>
 
 				<!-- Visualizations -->
 				<script src="assets/js/d3.js"></script>
@@ -336,7 +343,6 @@
 				<script src="assets/js/country-comparison.js"></script>
 				<script src="assets/js/choropleth.js"></script>
 				<script src="assets/js/barchart.js"></script>
-
 
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
