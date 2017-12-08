@@ -3703,6 +3703,7 @@
 		padding: 6em 0 4em 0 ;
 		background-color: #1d242a;
 		text-align: center;
+		display: inline-block;
 	}
 
 		#footer .icons {
@@ -3724,6 +3725,7 @@
 			list-style: none;
 			padding: 0;
 			text-transform: uppercase;
+			display: inline-block;
 		}
 
 			#footer .copyright li {
