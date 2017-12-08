@@ -3837,7 +3837,7 @@
 
 .barlabel {
 	font-size: 8px;
-	fill: white;
+	fill: black;
 }
 
 .form-group {
@@ -3863,7 +3863,7 @@
 .bartitle {
 	font-size: 13px;
 	font-weight: bold;
-	fill: white;
+	fill: black;
 }
 
 .barcountry {

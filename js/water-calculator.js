@@ -3,15 +3,58 @@ var colorPie, arc, labelArc;
 var selected, pie, Pie;
 
 
-// water calculator default values
-document.getElementById("shower").defaultValue = 10;
-document.getElementById("flush").defaultValue = 5;
-document.getElementById("runningWater").defaultValue = 10;
-document.getElementById("hose").defaultValue = 0;
-document.getElementById("laundry").defaultValue = 4;
-document.getElementById("dishes").defaultValue = 21;
-document.getElementById("drink").defaultValue = 8;
-document.getElementById("drive").defaultValue = 20;
+// bar chart global variables
+var margin1, height1, width1, svgCalculator1;
+var studentData = [
+    {
+        "student": "Harvard student 1",
+        "consumption": 238,
+        "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
+        "breakdown": [16, 14, 30, 10, 0.4, 6, 0.56, 107.5]
+    },
+    {
+        "student": "Harvard student 2",
+        "consumption": 87,
+        "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
+        "breakdown": [30, 8, 10, 0, 0.4, 0.86, 0.75, 37]
+    },
+    {
+        "student": "Harvard student 3",
+        "consumption": 65,
+        "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
+        "breakdown": [40, 10, 6, 0, 0.27, 0.86, 0.56, 7]
+    },
+    {
+        "student": "Harvard student 4",
+        "consumption": 47,
+        "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
+        "breakdown": [10, 8, 8, 0, 0.13, 0, 0.62, 20]
+    }
+];
+
+initialize();
+
+function initialize(){
+    margin1 = {top: 40, right: 40, bottom: 40, left: 50};
+    width1 = $('#water-chart1').width() - margin1.left - margin1.right;
+    height1 = 300 - margin1.top - margin1.bottom;
+
+    svgCalculator1 = d3.select("#water-chart1").append("svg")
+        .attr("width", width1 + margin1.left + margin1.right)
+        .attr("height", height1 + margin1.top + margin1.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin1.left + "," + margin1.top + ")");
+
+    // water calculator default values
+    document.getElementById("shower").defaultValue = 10;
+    document.getElementById("flush").defaultValue = 5;
+    document.getElementById("runningWater").defaultValue = 10;
+    document.getElementById("hose").defaultValue = 0;
+    document.getElementById("laundry").defaultValue = 4;
+    document.getElementById("dishes").defaultValue = 21;
+    document.getElementById("drink").defaultValue = 8;
+    document.getElementById("drive").defaultValue = 20;
+}
 
 
 function getValues() {
@@ -41,38 +84,13 @@ function waterCalculator(shower, flush, runningWater, runningHose, laundry, dish
 
 function updateVisualization(shower, flush, runningWater, runningHose, laundry, dishes, drinks, drives, total) {
 
-    var studentData = [
-        {
-            "student": "Harvard student 1",
-            "consumption": 238,
-            "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
-            "breakdown": [16, 14, 30, 10, 0.4, 6, 0.56, 107.5]
-        },
-        {
-            "student": "Harvard student 2",
-            "consumption": 87,
-            "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
-            "breakdown": [30, 8, 10, 0, 0.4, 0.86, 0.75, 37]
-        },
-        {
-            "student": "Harvard student 3",
-            "consumption": 65,
-            "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
-            "breakdown": [40, 10, 6, 0, 0.27, 0.86, 0.56, 7]
-        },
-        {
-            "student": "Harvard student 4",
-            "consumption": 47,
-            "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
-            "breakdown": [10, 8, 8, 0, 0.13, 0, 0.62, 20]
-        }
-    ];
+    var vis = this;
 
     studentData.push({
         "student": "You",
         "consumption": total,
         "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
-        "breakdown": [shower, flush, runningWater, runningHose, laundry, dishes, drinks, drives]
+        "breakdown": [shower, flush, runningWater, runningHose, laundry.toFixed(2), dishes, drinks.toFixed(2), drives]
     });
 
     console.log(studentData);
@@ -80,16 +98,6 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
     studentData.sort(function (a, b) {
         return b.consumption - a.consumption;
     });
-
-    var margin1 = {top: 40, right: 40, bottom: 40, left: 40},
-        width1 = $('#water-chart1').width() - margin1.left - margin1.right,
-        height1 = 300 - margin1.top - margin1.bottom;
-
-    var svgCalculator1 = d3.select("#water-chart1").append("svg")
-        .attr("width", width1 + margin1.left + margin1.right)
-        .attr("height", height1 + margin1.top + margin1.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin1.left + "," + margin1.top + ")");
 
     // set scales
     var x1 = d3.scaleBand()
@@ -118,21 +126,21 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
         .attr("class", "y-axis axis");
 
     svgCalculator1.append("text")
-        .attr("class", "label")
-        .attr("x", -130)
-        .attr("y", -30)
+        .attr("class", "axislabel")
+        .attr("x", -150)
+        .attr("y", -40)
         .attr("transform", "rotate(-90)")
         .text("Gallons per day");
 
     svgCalculator1.append("text")
-        .attr("class", "label")
+        .attr("class", "axislabel")
         .attr("x", width1 / 2 - 35)
         .attr("y", height1 + 35)
         .text("Peer comparison");
 
     svgCalculator1.append("text")
-        .attr("class", "title")
-        .attr("x", width1 / 8)
+        .attr("class", "wc_title")
+        .attr("x", 60)
         .attr("y", -20)
         .text("Comparison of Water Consumption Amongst Harvard Students");
 
@@ -192,7 +200,7 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
         .attr("transform", "translate(300, 200)");
 
     svgPie.append("text")
-        .attr("class", "title")
+        .attr("class", "wc_title")
         .attr("x", -100)
         .attr("y", -180)
         .text("Composition of Water Consumption");
@@ -242,183 +250,185 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
         console.log(selected);
         updatePie(svgPie, selected, radius, widthPie, colorPie);
     });
+
+
 }
 
-    // function createPie(svgPie, data, radius, widthPie) {
-    //     // // var color = d3.scaleOrdinal(d3.schemeCategory10)
-    //     console.log("pie");
-    //
-    //
-    //     updatePie(svgPie, data, radius, widthPie, color);
-    // }
-    //
-    function updatePie (svgPie, data, radius, widthPie, color) {
+// function createPie(svgPie, data, radius, widthPie) {
+//     // // var color = d3.scaleOrdinal(d3.schemeCategory10)
+//     console.log("pie");
+//
+//
+//     updatePie(svgPie, data, radius, widthPie, color);
+// }
+//
+function updatePie (svgPie, data, radius, widthPie, colorPie) {
     console.log("pie2");
 
-        Pie = svgPie.selectAll(".arc")
-            .data(pie(data.breakdown));
+    Pie = svgPie.selectAll(".arc")
+        .data(pie(data.breakdown));
 
-        Pie.enter().append("path")
-            .merge(Pie)
-            .attr("fill", function(d, i) { return color(i); })
-            .attr("d", arc)
-            .attr("class", "arc");
+    Pie.enter().append("path")
+        .merge(Pie)
+        .attr("fill", function(d, i) { return colorPie(i); })
+        .attr("d", arc)
+        .attr("class", "arc");
 
-        Pie.exit()
-            .datum(function(d, i) { return findNeighborArc(i, data1, data0, key) || d; })
-            .transition()
-            .duration(750)
-            .attrTween("d", arcTween)
-            .remove();
+    Pie.exit()
+        .datum(function(d, i) { return findNeighborArc(i, data1, data0, key) || d; })
+        .transition()
+        .duration(750)
+        .attrTween("d", arcTween)
+        .remove();
 
-        Pie.transition()
-            .duration(750)
-            .attrTween("d", arcTween);
+    Pie.transition()
+        .duration(750)
+        .attrTween("d", arcTween);
 
-        // var Pie = svgPie.selectAll(".arc")
-        //     .data(pie(data.breakdown))
-        //     .enter().append("g")
-        //     .attr("class", "arc");
+    // var Pie = svgPie.selectAll(".arc")
+    //     .data(pie(data.breakdown))
+    //     .enter().append("g")
+    //     .attr("class", "arc");
 
-        console.log(pie(data.breakdown));
+    console.log(pie(data.breakdown));
 
-        // Pie.append("path")
-        //     .attr("d", arc)
-        //     .merge(Pie)
-        //     .style("fill", function(d) {
-        //         return color(d.index)
-        //     })
-        //     .attr("class", "arc");
-        //
-        // // Pie.exit().remove();
-        //
+    // Pie.append("path")
+    //     .attr("d", arc)
+    //     .merge(Pie)
+    //     .style("fill", function(d) {
+    //         return color(d.index)
+    //     })
+    //     .attr("class", "arc");
+    //
+    // // Pie.exit().remove();
+    //
 
-        // Pie.append("text")
-        //     .attr("transform", function(d) {
-        //         return "translate(" + labelArc.centroid(d) + ")";
-        //     })
-        //     .attr("dy", ".35em")
-        //     .text(function(d) {
-        //         return Math.round(d.data);
-        //     })
-        //     .attr("fill", "black");
-
-
-        // text inspiration taken from http://bl.ocks.org/juan-cb/1984c7f2b446fffeedde
-        var text = svgPie.select(".labelName").selectAll("text")
-            .data(pie(data.breakdown));
-
-        text.enter()
-            .append("text")
-            .attr("dy", ".35em")
-            .text(function(d) {
-                return (d.data);
-            });
-
-        function midAngle(d){
-            return d.startAngle + (d.endAngle - d.startAngle)/2;
-        }
-
-        text
-            .transition().duration(1000)
-            .attrTween("transform", function(d) {
-                this._current = this._current || d;
-                var interpolate = d3.interpolate(this._current, d);
-                this._current = interpolate(0);
-                return function(t) {
-                    var d2 = interpolate(t);
-                    var pos = labelArc.centroid(d2);
-                    pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
-                    return "translate("+ pos +")";
-                };
-            })
-            .styleTween("text-anchor", function(d){
-                this._current = this._current || d;
-                var interpolate = d3.interpolate(this._current, d);
-                this._current = interpolate(0);
-                return function(t) {
-                    var d2 = interpolate(t);
-                    return midAngle(d2) < Math.PI ? "start":"end";
-                };
-            })
-            .text(function(d) {
-                return (d.data);
-            });
+    // Pie.append("text")
+    //     .attr("transform", function(d) {
+    //         return "translate(" + labelArc.centroid(d) + ")";
+    //     })
+    //     .attr("dy", ".35em")
+    //     .text(function(d) {
+    //         return Math.round(d.data);
+    //     })
+    //     .attr("fill", "black");
 
 
-        text.exit()
-            .remove();
+    // text inspiration taken from http://bl.ocks.org/juan-cb/1984c7f2b446fffeedde
+    var text = svgPie.select(".labelName").selectAll("text")
+        .data(pie(data.breakdown));
 
-        var legendRectSize = (radius * 0.05);
-        var legendSpacing = radius * 0.02;
+    text.enter()
+        .append("text")
+        .attr("dy", ".35em")
+        .text(function(d) {
+            return (Math.round(d.data));
+        });
 
-
-        // Legend
-        // var legendRectSize = 18;
-        // var legendSpacing = 4;
-
-        var legend = svgPie.selectAll(".legend")
-            .data(color.domain())
-            .enter().append("g")
-            .attr("class", "legend")
-            .attr("transform", function(d, i) {
-                // var height = legendRectSize + legendSpacing;
-                // var offset =  height * color.domain().length / 2;
-                // var horz = -2 * legendRectSize;
-                // var vert = i * height - offset;
-                // return "translate(" + horz + "," + vert + ")";
-
-                var height = legendRectSize + legendSpacing;
-                var offset =  height * color.domain().length / 2;
-                var horz = -3 * legendRectSize;
-                var vert = i * height - offset;
-                return 'translate(' + horz + ',' + vert + ')';
-            });
-
-        legend.append("rect")
-            .attr("width", legendRectSize)
-            .attr("height", legendRectSize)
-            .style("fill", color)
-            .style("stroke", color)
-            // .attr("transform", "translate(" + (widthPie - 70) + ", 40)");
-
-        legend.append("text")
-            .attr("x", legendRectSize + legendSpacing)
-            .attr("y", legendRectSize - legendSpacing)
-            // .attr("transform", "translate(" + (widthPie - 70) + ", 40)")
-            .text(function(d, i) {
-                return data.labels[i];
-            });
-
-        var polyline = svgPie.select(".lines").selectAll("polyline")
-            .data(pie(data.breakdown));
-
-        polyline.enter()
-            .append("polyline");
-
-        polyline.transition().duration(1000)
-            .attrTween("points", function(d){
-                this._current = this._current || d;
-                var interpolate = d3.interpolate(this._current, d);
-                this._current = interpolate(0);
-                return function(t) {
-                    var d2 = interpolate(t);
-                    var pos = labelArc.centroid(d2);
-                    pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
-                    return [arc.centroid(d2), labelArc.centroid(d2), pos];
-                };
-            });
-
-        polyline.exit()
-            .remove();
-
-
+    function midAngle(d){
+        return d.startAngle + (d.endAngle - d.startAngle)/2;
     }
 
-    // function pieChange(data) {
-    // Pie = Pie.data(pie(data.breakdown));
-    // Pie.transition().attr("d", arc);
-    // }
+    text
+        .transition().duration(1000)
+        .attrTween("transform", function(d) {
+            this._current = this._current || d;
+            var interpolate = d3.interpolate(this._current, d);
+            this._current = interpolate(0);
+            return function(t) {
+                var d2 = interpolate(t);
+                var pos = labelArc.centroid(d2);
+                pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
+                return "translate("+ pos +")";
+            };
+        })
+        .styleTween("text-anchor", function(d){
+            this._current = this._current || d;
+            var interpolate = d3.interpolate(this._current, d);
+            this._current = interpolate(0);
+            return function(t) {
+                var d2 = interpolate(t);
+                return midAngle(d2) < Math.PI ? "start":"end";
+            };
+        })
+        .text(function(d) {
+            return (d.data);
+        });
+
+
+    text.exit()
+        .remove();
+
+    var legendRectSize = (radius * 0.05);
+    var legendSpacing = radius * 0.02;
+
+
+    // Legend
+    // var legendRectSize = 18;
+    // var legendSpacing = 4;
+
+    var legend = svgPie.selectAll(".legend")
+        .data(colorPie.domain())
+        .enter().append("g")
+        .attr("class", "legend")
+        .attr("transform", function(d, i) {
+            // var height = legendRectSize + legendSpacing;
+            // var offset =  height * color.domain().length / 2;
+            // var horz = -2 * legendRectSize;
+            // var vert = i * height - offset;
+            // return "translate(" + horz + "," + vert + ")";
+
+            var height = legendRectSize + legendSpacing;
+            var offset =  height * colorPie.domain().length / 2;
+            var horz = -3 * legendRectSize;
+            var vert = i * height - offset;
+            return 'translate(' + horz + ',' + vert + ')';
+        });
+
+    legend.append("rect")
+        .attr("width", legendRectSize)
+        .attr("height", legendRectSize)
+        .style("fill", colorPie)
+        .style("stroke", colorPie)
+    // .attr("transform", "translate(" + (widthPie - 70) + ", 40)");
+
+    legend.append("text")
+        .attr("x", legendRectSize + legendSpacing)
+        .attr("y", legendRectSize - legendSpacing)
+        // .attr("transform", "translate(" + (widthPie - 70) + ", 40)")
+        .text(function(d, i) {
+            return data.labels[i];
+        });
+
+    var polyline = svgPie.select(".lines").selectAll("polyline")
+        .data(pie(data.breakdown));
+
+    polyline.enter()
+        .append("polyline");
+
+    polyline.transition().duration(1000)
+        .attrTween("points", function(d){
+            this._current = this._current || d;
+            var interpolate = d3.interpolate(this._current, d);
+            this._current = interpolate(0);
+            return function(t) {
+                var d2 = interpolate(t);
+                var pos = labelArc.centroid(d2);
+                pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
+                return [arc.centroid(d2), labelArc.centroid(d2), pos];
+            };
+        });
+
+    polyline.exit()
+        .remove();
+
+
+}
+
+// function pieChange(data) {
+// Pie = Pie.data(pie(data.breakdown));
+// Pie.transition().attr("d", arc);
+// }
 
 function findNeighborArc(i, data0, data1, key) {
     var d;
@@ -431,4 +441,4 @@ function arcTween(d) {
     var i = d3.interpolate(this._current, d);
     this._current = i(0);
     return function(t) { return arc(i(t)); };
-}
+}}
