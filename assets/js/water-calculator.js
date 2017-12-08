@@ -94,6 +94,8 @@ function waterCalculator(shower, flush, runningWater, runningHose, laundry, dish
 function updateVisualization(shower, flush, runningWater, runningHose, laundry, dishes, drinks, drives, total) {
     var vis = this;
 
+    // delete previous "You" data
+
     studentData.forEach(function(d, i) {
         if (d.student === "You") {studentData.splice(i, 1)}
     });
@@ -134,7 +136,10 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
         .attr("height", function (d) {
             return height1 - vis.y1(d.consumption);
         })
-        .attr("width", vis.x1.bandwidth() - 10);
+        .attr("width", vis.x1.bandwidth() - 10)
+        .attr("fill", function(d) {
+            if (d.student === "You") {return d3.rgb("#ed4933")}
+            else {return "steelblue"}})
 
     vis.bars1.exit().remove();
 
@@ -176,9 +181,6 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
     vis.svgCalculator1.select(".x-axis")
         .transition()
         .call(vis.xAxis1);
-
-
-
 
 
 }

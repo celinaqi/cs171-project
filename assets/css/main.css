@@ -3821,9 +3821,9 @@
 	text-align: center;
 }
 
-.bar {
-	fill: steelblue;
-}
+/*.bar {*/
+	/*fill: steelblue;*/
+/*}*/
 
 
 .bar:hover {
