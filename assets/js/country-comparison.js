@@ -85,8 +85,11 @@ bars2.enter()
     .attr("height", function(d) {
         return height2 - y2(d.consumption);
     })
-    .attr("width", 100);
-    // .attr("width", x2.bandwidth() - 10);
+    .attr("width", 100)
+    // .attr("width", x2.bandwidth() - 10)
+    .attr("fill", function(d) {
+    if (d.country === "United States") {return d3.rgb("#ed4933")}
+    else {return "steelblue"}});
 
 xAxisGroup2 = svgCalculator2.select(".x-axis")
     .attr("transform", "translate(0," + height2 + ")")
