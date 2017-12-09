@@ -182,5 +182,66 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
         .transition()
         .call(vis.xAxis1);
 
+    var treeMap =
+        {
+            "name": "map",
+            "children": [
+                {"name": "shower", "size": 10},
+                {"name": "flush", "size": 15},
+                {"name": "sink", "size": 5},
+                {"name": "laundry", "size": 6},
+                {"name": "dishes", "size": 3},
+                {"name": "drinking", "size": 8},
+                {"name": "driving", "size": 100}
+            ]
+        };
+
+    const margin = {top: 40, right: 10, bottom: 10, left: 10},
+        width = $('#water-chart1-treemap').width() - margin.left - margin.right,
+        height = 300 - margin.top - margin.bottom,
+        color = d3.scaleOrdinal().range(d3.schemeCategory20c);
+
+    const treemap = d3.treemap().size([width, height]);
+
+    const div = d3.select("#water-chart1-treemap").append("div")
+        .style("position", "relative")
+        .style("width", (width + margin.left + margin.right) + "px")
+        .style("height", (height + margin.top + margin.bottom) + "px")
+        .style("left", margin.left + "px")
+        .style("top", margin.top + "px");
+
+    //get data
+        const root = d3.hierarchy(treeData, (d) => d.children)
+    .sum((d) => d.size);
+
+        const tree = treemap(root);
+
+        const treeMapNode = div.datum(root).selectAll(".treeMapNode")
+            .data(tree.leaves())
+            .enter().append("div")
+            .attr("class", "treeMapNode")
+            .style("left", (d) => d.x0 + "px")
+    .style("top", (d) => d.y0 + "px")
+    .style("width", (d) => Math.max(0, d.x1 - d.x0 - 1) + "px")
+    .style("height", (d) => Math.max(0, d.y1 - d.y0  - 1) + "px")
+    .style("background", (d) => color(d.parent.data.name))
+    .text((d) => d.data.name);
+
+        d3.selectAll("input").on("change", function change() {
+            const value = this.value === "count"
+                ? (d) => { return d.size ? 1 : 0;}
+        : (d) => { return d.size; };
+
+            const newRoot = d3.hierarchy(data, (d) => d.children)
+        .sum(value);
+
+            treeMapNode.data(treemap(newRoot).leaves())
+                .transition()
+                .duration(1500)
+                .style("left", (d) => d.x0 + "px")
+        .style("top", (d) => d.y0 + "px")
+        .style("width", (d) => Math.max(0, d.x1 - d.x0 - 1) + "px")
+        .style("height", (d) => Math.max(0, d.y1 - d.y0  - 1) + "px")
+        });
 
 }
