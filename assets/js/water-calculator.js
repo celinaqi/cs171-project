@@ -95,7 +95,6 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
     var vis = this;
 
     // delete previous "You" data
-
     studentData.forEach(function(d, i) {
         if (d.student === "You") {studentData.splice(i, 1)}
     });
@@ -111,14 +110,11 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
         return b.consumption - a.consumption;
     });
 
-    console.log(studentData);
-
     vis.x1.domain(studentData.map(function (d) {return d.student}));
 
     vis.y1.domain([0, d3.max(studentData, function (d) {return d.consumption})]);
 
-    // bars
-
+    // Draw bar chart
     vis.bars1 = vis.svgCalculator1.selectAll(".bar")
         .data(studentData);
 
@@ -211,8 +207,8 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
         .style("top", margin.top + "px");
 
     //get data
-        const root = d3.hierarchy(treeData, (d) => d.children)
-    .sum((d) => d.size);
+    const root = d3.hierarchy(treeData, (d) => d.children)
+        .sum((d) => d.size);
 
         const tree = treemap(root);
 
@@ -232,7 +228,7 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
                 ? (d) => { return d.size ? 1 : 0;}
         : (d) => { return d.size; };
 
-            const newRoot = d3.hierarchy(data, (d) => d.children)
+            const newRoot = d3.hierarchy(treeData, (d) => d.children)
         .sum(value);
 
             treeMapNode.data(treemap(newRoot).leaves())

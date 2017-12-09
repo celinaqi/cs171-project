@@ -103,14 +103,14 @@ var treeData =
 
 // Draw SVG
 var margin = {top: 20, right: 50, bottom: 30, left: 50},
-    width = 960 - margin.left - margin.right,
+    width = 1100 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-var svg = d3.select("#tree-diagram").append("svg")
+var svgTree = d3.select("#tree-diagram").append("svg")
     .attr("width", width + margin.right + margin.left)
     .attr("height", height + margin.top + margin.bottom);
 
-var g = svg.append("g")
+var g = svgTree.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var i = 0,

@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9e5164ad-43fd-40ff-a9fb-51adc1cd28e5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/main.css" afterPath="$PROJECT_DIR$/assets/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/country-comparison.js" afterPath="$PROJECT_DIR$/assets/js/country-comparison.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/tree.js" afterPath="$PROJECT_DIR$/assets/js/tree.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/water-calculator.js" afterPath="$PROJECT_DIR$/assets/js/water-calculator.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,18 +21,18 @@
       <file leaf-file-name="water-calculator.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/water-calculator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="141" column="39" lean-forward="true" selection-start-line="139" selection-start-column="8" selection-end-line="141" selection-end-column="39" />
+            <state relative-caret-position="207">
+              <caret line="214" column="15" lean-forward="false" selection-start-line="214" selection-start-column="14" selection-end-line="214" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="country-comparison.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/assets/js/country-comparison.js">
+      <file leaf-file-name="tree.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/js/tree.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="87" column="23" lean-forward="true" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
+            <state relative-caret-position="262">
+              <caret line="274" column="1" lean-forward="true" selection-start-line="274" selection-start-column="1" selection-end-line="274" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -41,8 +41,8 @@
       <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="3836" column="0" lean-forward="true" selection-start-line="3836" selection-start-column="0" selection-end-line="3836" selection-end-column="0" />
+            <state relative-caret-position="57540">
+              <caret line="3836" column="0" lean-forward="false" selection-start-line="3836" selection-start-column="0" selection-end-line="3836" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -78,11 +78,11 @@
         <option value="$PROJECT_DIR$/css/stylesheet" />
         <option value="$PROJECT_DIR$/js/tree" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/assets/js/tree.js" />
         <option value="$PROJECT_DIR$/implications.html" />
-        <option value="$PROJECT_DIR$/assets/js/water-calculator.js" />
         <option value="$PROJECT_DIR$/assets/css/main.css" />
         <option value="$PROJECT_DIR$/assets/js/country-comparison.js" />
+        <option value="$PROJECT_DIR$/assets/js/water-calculator.js" />
+        <option value="$PROJECT_DIR$/assets/js/tree.js" />
       </list>
     </option>
   </component>
@@ -113,7 +113,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -148,6 +147,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -167,11 +167,17 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.implications.html">
+  <component name="RunManager" selected="JavaScript Debug.index.html">
     <configuration name="implications.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs171-project/implications.html" />
+    <configuration name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs171-project/index.html" />
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.implications.html" />
+      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
+    </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.implications.html" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
+        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.implications.html" />
       </list>
     </recent_temporary>
   </component>
@@ -188,7 +194,8 @@
       <workItem from="1510272092614" duration="532000" />
       <workItem from="1510272645471" duration="36000" />
       <workItem from="1512833097460" duration="4635000" />
-      <workItem from="1512838494856" duration="274000" />
+      <workItem from="1512838494856" duration="293000" />
+      <workItem from="1512854240707" duration="1002000" />
     </task>
     <task id="LOCAL-00001" summary="changed photo, removed &quot;hose&quot; from water calculator form">
       <created>1512833465832</created>
@@ -225,11 +232,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512837994785</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="made United States in bar chart red">
+      <created>1512838923588</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1512838923588</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5477000" />
+    <option name="totallyTimeSpent" value="6498000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="504" y="23" width="773" height="773" extended-state="0" />
@@ -264,13 +278,46 @@
     <MESSAGE value="working vertical collapsible tree" />
     <MESSAGE value="tree!" />
     <MESSAGE value="trying to add treemap" />
-    <option name="LAST_COMMIT_MESSAGE" value="trying to add treemap" />
+    <MESSAGE value="made United States in bar chart red" />
+    <option name="LAST_COMMIT_MESSAGE" value="made United States in bar chart red" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/assets/js/water-calculator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2115">
+          <caret line="141" column="39" lean-forward="false" selection-start-line="139" selection-start-column="8" selection-end-line="141" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57540">
+          <caret line="3836" column="0" lean-forward="true" selection-start-line="3836" selection-start-column="0" selection-end-line="3836" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/implications.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1680">
+          <caret line="112" column="37" lean-forward="true" selection-start-line="112" selection-start-column="37" selection-end-line="112" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/country-comparison.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1305">
+          <caret line="87" column="23" lean-forward="true" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/water-calculator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -319,14 +366,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/style" />
-    <entry file="file://$PROJECT_DIR$/assets/js/tree.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="21" lean-forward="true" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/implications.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1680">
@@ -339,30 +378,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1116">
           <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="3836" column="0" lean-forward="true" selection-start-line="3836" selection-start-column="0" selection-end-line="3836" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/water-calculator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="141" column="39" lean-forward="true" selection-start-line="139" selection-start-column="8" selection-end-line="141" selection-end-column="39" />
+        <state relative-caret-position="57540">
+          <caret line="3836" column="0" lean-forward="false" selection-start-line="3836" selection-start-column="0" selection-end-line="3836" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/country-comparison.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="87" column="23" lean-forward="true" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
+        <state relative-caret-position="359">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/water-calculator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="214" column="15" lean-forward="false" selection-start-line="214" selection-start-column="14" selection-end-line="214" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/tree.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="274" column="1" lean-forward="true" selection-start-line="274" selection-start-column="1" selection-end-line="274" selection-end-column="1" />
           <folding />
         </state>
       </provider>
