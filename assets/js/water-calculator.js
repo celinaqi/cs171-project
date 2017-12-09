@@ -2,28 +2,28 @@
 var margin1, height1, width1, svgCalculator1;
 var studentData = [
     {
-        "student": "Harvard student 1",
-        "consumption": 238,
-        "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
-        "breakdown": [16, 14, 30, 10, 0.4, 6, 0.56, 107.5]
+        "student": "Johanna",
+        "consumption": 61,
+        "labels": ["shower", "flush", "sink", "laundry", "dishes", "drinking", "driving"],
+        "breakdown": [16, 16, 4, 0.80, 3.43, 0.56, 20]
     },
     {
-        "student": "Harvard student 2",
-        "consumption": 87,
-        "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
-        "breakdown": [30, 8, 10, 0, 0.4, 0.86, 0.75, 37]
+        "student": "Ronell",
+        "consumption": 108,
+        "labels": ["shower", "flush", "sink", "laundry", "dishes", "drinking", "driving"],
+        "breakdown": [40, 20, 30, 1.60, 6, 0.63, 10]
     },
     {
-        "student": "Harvard student 3",
-        "consumption": 65,
-        "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
-        "breakdown": [40, 10, 6, 0, 0.27, 0.86, 0.56, 7]
+        "student": "Zona",
+        "consumption": 318,
+        "labels": ["shower", "flush", "sink", "laundry", "dishes", "drinking", "driving"],
+        "breakdown": [60, 10, 30, 1.60, 6, 0.63, 210]
     },
     {
-        "student": "Harvard student 4",
-        "consumption": 47,
-        "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
-        "breakdown": [10, 8, 8, 0, 0.13, 0, 0.62, 20]
+        "student": "Fritz",
+        "consumption": 45,
+        "labels": ["shower", "flush", "sink", "laundry", "dishes", "drinking", "driving"],
+        "breakdown": [20, 10, 6, 0.27, 8.57, 0.25, 0]
     }
 ];
 
@@ -46,7 +46,7 @@ function initialize(){
     document.getElementById("shower").defaultValue = 10;
     document.getElementById("flush").defaultValue = 5;
     document.getElementById("runningWater").defaultValue = 10;
-    document.getElementById("hose").defaultValue = 0;
+    // document.getElementById("hose").defaultValue = 0;
     document.getElementById("laundry").defaultValue = 4;
     document.getElementById("dishes").defaultValue = 21;
     document.getElementById("drink").defaultValue = 8;
@@ -74,24 +74,24 @@ function getValues() {
     var shower = (document.getElementById("shower").value) * 2;
     var flush = (document.getElementById("flush").value) * 2;
     var runningWater = (document.getElementById("runningWater").value) * 2;
-    var runningHose = (document.getElementById("hose").value) * 7 / 7;
+    // var runningHose = (document.getElementById("hose").value) * 7 / 7;
     var laundry = (document.getElementById("laundry").value) * 4 / 30;
     var dishes = (document.getElementById("dishes").value) * 6 / 7;
     var drinks = (document.getElementById("drink").value) * 8 / 128;
     var drives = (document.getElementById("drive").value) * 7 / 7;
 
-    waterCalculator(shower, flush, runningWater, runningHose, laundry, dishes, drinks, drives);
+    waterCalculator(shower, flush, runningWater, laundry, dishes, drinks, drives);
 }
 
-function waterCalculator(shower, flush, runningWater, runningHose, laundry, dishes, drinks, drives) {
-    var total = Math.round((+shower) + (+flush) + (+runningWater) + (+runningHose) + (+laundry) + (+dishes) + (+drinks) + (+drives));
+function waterCalculator(shower, flush, runningWater, laundry, dishes, drinks, drives) {
+    var total = Math.round((+shower) + (+flush) + (+runningWater) + (+laundry) + (+dishes) + (+drinks) + (+drives));
     $("#water-results-total").html("You directly consume <b>" + total + " gallons of water per day</b>. Here's how that compares to other Harvard students:");
 
-    updateVisualization (shower, flush, runningWater, runningHose, laundry, dishes, drinks, drives, total);
+    updateVisualization (shower, flush, runningWater, laundry, dishes, drinks, drives, total);
 
 }
 
-function updateVisualization(shower, flush, runningWater, runningHose, laundry, dishes, drinks, drives, total) {
+function updateVisualization(shower, flush, runningWater, laundry, dishes, drinks, drives, total) {
     var vis = this;
 
     // delete previous "You" data
@@ -103,8 +103,8 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
     studentData.push({
         "student": "You",
         "consumption": total,
-        "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
-        "breakdown": [shower, flush, runningWater, runningHose, laundry.toFixed(2), dishes, drinks.toFixed(2), drives]
+        "labels": ["shower", "flush", "sink", "laundry", "dishes", "drinking", "driving"],
+        "breakdown": [shower, flush, runningWater, laundry.toFixed(2), dishes, drinks.toFixed(2), drives]
     });
 
     studentData.sort(function (a, b) {
