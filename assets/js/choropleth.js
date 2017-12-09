@@ -1,12 +1,14 @@
-var width = 780,
-    height = 420;
+var width = 700,
+    height = 400;
 
-var resources, barChart;
+var resources = [];
+
+var barChart;
 
 var svg = d3.select("#choropleth").append("svg")
+    .attr("transform", "translate(-20, 0)")
     .attr("width", width)
     .attr("height", height);
-
 var projection = d3.geoMercator()
     .scale(120)
     .translate([width / 2, (height / 2) + 40])
@@ -149,23 +151,35 @@ function initVis(error, stress, codes, world, aquastat) {
 
 
     // nesting aquastat data
-    resources = d3.nest()
-        .key(function(d) {return d.country})
-        .rollup(function(v) {
-            return [
-                {type: "Agricultural", val: v[0].ag_water_withdrawal},
-                {type: "Industrial", val: v[0].ind_water_withdrawal},
-                {type: "Municipal", val: v[0].mun_water_withdrawal},
-                {type: "Total", val: v[0].total_water_withdrawal}
-            ]
-        })
-        .entries(aquastat);
 
+
+
+    // resources = d3.nest()
+    //     .key(function(d) {return d.country})
+    //     .rollup(function(v) {
+    //         return [
+    //             {type: "Agricultural", val: v[0].ag_water_withdrawal},
+    //             {type: "Industrial", val: v[0].ind_water_withdrawal},
+    //             {type: "Municipal", val: v[0].mun_water_withdrawal},
+    //             {type: "Total", val: v[0].total_water_withdrawal}
+    //         ]
+    //     })
+    //     .entries(aquastat);
+
+    resources = aquastat;
     console.log(resources);
 
 
+    console.log(codes);
+    console.log(stress);
+    console.log(world);
+    console.log(aquastat);
+
+
     // initializing barchart
-    barChart = new BarChart("barchart", resources);
+    // barChart = new BarChart("barchart", resources);
+
+    barChart = new BarChart("barchart", aquastat);
 
     console.log(world);
 
@@ -222,8 +236,10 @@ function selectCountry(d) {
 
     var countryName = d.name;
 
+    console.log(resources);
+
     resources.forEach(function(d) {
-        if (d.key == countryName) {
+        if (d.country == countryName) {
             console.log(d)
             barChart.wrangleData(d);
         };

@@ -9,7 +9,7 @@ BarChart = function(_parentElement, _data, _config){
 
 BarChart.prototype.initVis = function(){
     var vis = this;
-    vis.margin = {top: 20, right: 80, bottom: 60, left: 80};
+    vis.margin = {top: 30, right: 80, bottom: 60, left: 80};
     vis.widthBar = 400 - vis.margin.left - vis.margin.right,
         vis.heightBar = 400 - vis.margin.top - vis.margin.bottom;
 
@@ -35,6 +35,7 @@ BarChart.prototype.initVis = function(){
     // setting US as default bar data
 
     vis.selected = vis.displayData[87];
+    console.log(vis.selected);
 
     vis.wrangleData(vis.selected);
 
@@ -87,9 +88,9 @@ BarChart.prototype.updateVis = function(){
         .text(function (d) {
             return d.type;
         })
-        .attr("class", "label")
+        .attr("class", "barlabel")
         .style("text-anchor", "end")
-        .attr("x", function(d, i) {return i * 70 + 55})
+        .attr("x", function(d, i) {return i * 70 + 65})
         .attr("y", 370);
 
 
@@ -119,8 +120,8 @@ BarChart.prototype.updateVis = function(){
         .merge(vis.bartitle)
         .attr("class", "bartitle")
         .attr("text-anchor", "middle")
-        .attr("x", 110)
-        .attr("y", 5)
+        .attr("x", 115)
+        .attr("y", -20)
         .text("Water Withdrawal (Billion Cubic Meters) Per Year");
 
     vis.bartitle.exit().remove();
