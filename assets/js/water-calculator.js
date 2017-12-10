@@ -241,6 +241,18 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
                         {"name": "drinking", "size": 0.25},
                         {"name": "driving", "size": 0}
                     ]
+                },
+                {
+                    "name": "You",
+                    "children": [
+                        {"name": "shower", "size": shower},
+                        {"name": "flush", "size": flush},
+                        {"name": "sink", "size": runningWater},
+                        {"name": "laundry", "size": laundry.toFixed(2)},
+                        {"name": "dishes", "size": dishes},
+                        {"name": "drinking", "size": drinks.toFixed(2)},
+                        {"name": "driving", "size": drives}
+                    ]
                 }
             ]
         };
