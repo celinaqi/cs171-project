@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e5164ad-43fd-40ff-a9fb-51adc1cd28e5" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/price-hikes.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/waterBeef.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/waterCotton.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/waterPhone.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/waterPool.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/main.css" afterPath="$PROJECT_DIR$/assets/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/water-calculator.js" afterPath="$PROJECT_DIR$/assets/js/water-calculator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/implications.html" afterPath="$PROJECT_DIR$/implications.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -42,8 +44,8 @@
       <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="3875" column="17" lean-forward="false" selection-start-line="3875" selection-start-column="17" selection-end-line="3875" selection-end-column="17" />
+            <state relative-caret-position="2156">
+              <caret line="3869" column="21" lean-forward="true" selection-start-line="3869" selection-start-column="21" selection-end-line="3869" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -217,7 +219,7 @@
       <workItem from="1512838494856" duration="293000" />
       <workItem from="1512854240707" duration="1032000" />
       <workItem from="1512922442456" duration="3672000" />
-      <workItem from="1512943041934" duration="2128000" />
+      <workItem from="1512943041934" duration="2229000" />
     </task>
     <task id="LOCAL-00001" summary="changed photo, removed &quot;hose&quot; from water calculator form">
       <created>1512833465832</created>
@@ -289,11 +291,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512927660309</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="added icon photos">
+      <created>1512949831363</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1512949831363</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12328000" />
+    <option name="totallyTimeSpent" value="12429000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="372" y="23" width="905" height="773" extended-state="0" />
@@ -333,7 +342,8 @@
     <MESSAGE value="TF hardcoded treemap" />
     <MESSAGE value="&quot;you&quot; added to treemap" />
     <MESSAGE value="tooltip attempts" />
-    <option name="LAST_COMMIT_MESSAGE" value="tooltip attempts" />
+    <MESSAGE value="added icon photos" />
+    <option name="LAST_COMMIT_MESSAGE" value="added icon photos" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -561,8 +571,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="3875" column="17" lean-forward="false" selection-start-line="3875" selection-start-column="17" selection-end-line="3875" selection-end-column="17" />
+        <state relative-caret-position="2156">
+          <caret line="3869" column="21" lean-forward="true" selection-start-line="3869" selection-start-column="21" selection-end-line="3869" selection-end-column="21" />
           <folding />
         </state>
       </provider>
