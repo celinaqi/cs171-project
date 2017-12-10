@@ -202,7 +202,7 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
         //         {"name": "drinking", "size": 8},
         //         {"name": "driving", "size": 100}
         //     ]
-        // },
+        // };
         {
             "name": "Map",
             "children": [
@@ -216,58 +216,60 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
                         {"name": "dishes", "size": 3.43},
                         {"name": "drinking", "size": 0.56},
                         {"name": "driving", "size": 20}
-                    ]
-                },
-                {
-                    "name": "Ronell",
-                    "children": [
-                        {"name": "shower", "size": 40},
-                        {"name": "flush", "size": 20},
-                        {"name": "sink", "size": 30},
-                        {"name": "laundry", "size": 1.60},
-                        {"name": "dishes", "size": 6},
-                        {"name": "drinking", "size": 0.63},
-                        {"name": "driving", "size": 10}
-                    ]
-                },
-                {
-                    "name": "Zona",
-                    "children": [
-                        {"name": "shower", "size": 60},
-                        {"name": "flush", "size": 10},
-                        {"name": "sink", "size": 30},
-                        {"name": "laundry", "size": 1.60},
-                        {"name": "dishes", "size": 6},
-                        {"name": "drinking", "size": 0.63},
-                        {"name": "driving", "size": 210}
-                    ]
-                },
-                {
-                    "name": "Fritz",
-                    "children": [
-                        {"name": "shower", "size": 20},
-                        {"name": "flush", "size": 10},
-                        {"name": "sink", "size": 6},
-                        {"name": "laundry", "size": 0.27},
-                        {"name": "dishes", "size": 8.57},
-                        {"name": "drinking", "size": 0.25},
-                        {"name": "driving", "size": 0}
-                    ]
-                },
-                {
-                    "name": "You",
-                    "children": [
-                        {"name": "shower", "size": shower},
-                        {"name": "flush", "size": flush},
-                        {"name": "sink", "size": runningWater},
-                        {"name": "laundry", "size": laundry.toFixed(2)},
-                        {"name": "dishes", "size": dishes},
-                        {"name": "drinking", "size": drinks.toFixed(2)},
-                        {"name": "driving", "size": drives}
-                    ]
+                        ]
                 }
-            ]
+                ]
         };
+        //         {
+        //             "name": "Ronell",
+        //             "children": [
+        //                 {"name": "shower", "size": 40},
+        //                 {"name": "flush", "size": 20},
+        //                 {"name": "sink", "size": 30},
+        //                 {"name": "laundry", "size": 1.60},
+        //                 {"name": "dishes", "size": 6},
+        //                 {"name": "drinking", "size": 0.63},
+        //                 {"name": "driving", "size": 10}
+        //             ]
+        //         },
+        //         {
+        //             "name": "Zona",
+        //             "children": [
+        //                 {"name": "shower", "size": 60},
+        //                 {"name": "flush", "size": 10},
+        //                 {"name": "sink", "size": 30},
+        //                 {"name": "laundry", "size": 1.60},
+        //                 {"name": "dishes", "size": 6},
+        //                 {"name": "drinking", "size": 0.63},
+        //                 {"name": "driving", "size": 210}
+        //             ]
+        //         },
+        //         {
+        //             "name": "Fritz",
+        //             "children": [
+        //                 {"name": "shower", "size": 20},
+        //                 {"name": "flush", "size": 10},
+        //                 {"name": "sink", "size": 6},
+        //                 {"name": "laundry", "size": 0.27},
+        //                 {"name": "dishes", "size": 8.57},
+        //                 {"name": "drinking", "size": 0.25},
+        //                 {"name": "driving", "size": 0}
+        //             ]
+        //         },
+        //         {
+        //             "name": "You",
+        //             "children": [
+        //                 {"name": "shower", "size": shower},
+        //                 {"name": "flush", "size": flush},
+        //                 {"name": "sink", "size": runningWater},
+        //                 {"name": "laundry", "size": laundry.toFixed(2)},
+        //                 {"name": "dishes", "size": dishes},
+        //                 {"name": "drinking", "size": drinks.toFixed(2)},
+        //                 {"name": "driving", "size": drives}
+        //             ]
+        //         }
+        //     ]
+        // };
 
         // { "name": "shower",
         //     "children": [
