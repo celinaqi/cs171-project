@@ -3885,12 +3885,11 @@ div.tooltip {
 
 .legendText {
 	font-size: 10px;
-	fill: white;
+	fill: black;
 }
 
 .bartitle {
 	font-size: 13px;
-	font-weight: bold;
 	fill: black;
 }
 
@@ -3898,11 +3897,6 @@ div.tooltip {
 	font-size: 12px;
 	fill: white;
 }
-
-.amount {
-	fill: white;
-}
-
 
 /* As shown in http://bl.ocks.org/Caged/6476579 */
 .d3-tip {
@@ -4047,6 +4041,10 @@ polyline{
 .d3-tip {
 	position: absolute;
 	pointer-events: none !important;
+}
+
+.amount {
+	font-size: 10px;
 }
 
 
