@@ -30,7 +30,6 @@ BarChart.prototype.initVis = function(){
     vis.barStack = d3.stack()
         .keys(vis.keys);
 
-    console.log(vis.barStack);
 
     vis.xBar = d3.scaleBand()
         .rangeRound([0, vis.widthBar])
@@ -57,13 +56,12 @@ BarChart.prototype.initVis = function(){
         .attr("class", "y-axis axis")
         .attr("transform", "translate(30, 20)");
 
-
     vis.barLegend = vis.svgBar.append("g")
         .attr("font-family", "sans-serif")
         .attr("font-size", 10)
         .attr("text-anchor", "end")
         .selectAll("g")
-        .data(vis.zBar.range())
+        .data(vis.zBar.range().reverse())
         .enter().append("g");
 
 
@@ -126,11 +124,9 @@ BarChart.prototype.initVis = function(){
 
     vis.sliced = vis.sorted.slice(0, 4);
 
-    // console.log(vis.displayData[87]);
 
     vis.selected = vis.sorted[5];
 
-    console.log(vis.selected);
 
     //
     vis.wrangleData(vis.selected);
@@ -158,7 +154,6 @@ BarChart.prototype.wrangleData = function(data){
     vis.sliced.push(data);
 
 
-    console.log(vis.sliced);
     // value passed in by choropleth
 
     vis.updateVis();
@@ -245,7 +240,6 @@ BarChart.prototype.updateVis = function(){
     // text for tooltip
     // vis.svgBar.call(vis.tipBar);
 
-    console.log(vis.sliced);
 
     // label for cubic meters
     vis.baramount = vis.svgBar.selectAll(".amount")
