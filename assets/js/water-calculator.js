@@ -179,20 +179,91 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
         .call(vis.xAxis1);
 
     var treeMap =
+        // {
+        //     "name": "map",
+        //     "children": [
+        //         {"name": "shower", "size": 10},
+        //         {"name": "flush", "size": 15},
+        //         {"name": "sink", "size": 5},
+        //         {"name": "laundry", "size": 6},
+        //         {"name": "dishes", "size": 3},
+        //         {"name": "drinking", "size": 8},
+        //         {"name": "driving", "size": 100}
+        //     ]
+        // },
         {
-            "name": "map",
+            "name": "Map",
             "children": [
-                {"name": "shower", "size": 10},
-                {"name": "flush", "size": 15},
-                {"name": "sink", "size": 5},
-                {"name": "laundry", "size": 6},
-                {"name": "dishes", "size": 3},
-                {"name": "drinking", "size": 8},
-                {"name": "driving", "size": 100}
+                {
+                    "name": "Johanna",
+                    "children": [
+                        {"name": "shower", "size": 16},
+                        {"name": "flush", "size": 16},
+                        {"name": "sink", "size": 4},
+                        {"name": "laundry", "size": 0.80},
+                        {"name": "dishes", "size": 3.43},
+                        {"name": "drinking", "size": 0.56},
+                        {"name": "driving", "size": 20}
+                    ]
+                },
+                {
+                    "name": "Ronell",
+                    "children": [
+                        {"name": "shower", "size": 40},
+                        {"name": "flush", "size": 20},
+                        {"name": "sink", "size": 30},
+                        {"name": "laundry", "size": 1.60},
+                        {"name": "dishes", "size": 6},
+                        {"name": "drinking", "size": 0.63},
+                        {"name": "driving", "size": 10}
+                    ]
+                },
+                {
+                    "name": "Zona",
+                    "children": [
+                        {"name": "shower", "size": 60},
+                        {"name": "flush", "size": 10},
+                        {"name": "sink", "size": 30},
+                        {"name": "laundry", "size": 1.60},
+                        {"name": "dishes", "size": 6},
+                        {"name": "drinking", "size": 0.63},
+                        {"name": "driving", "size": 210}
+                    ]
+                },
+                {
+                    "name": "Fritz",
+                    "children": [
+                        {"name": "shower", "size": 20},
+                        {"name": "flush", "size": 10},
+                        {"name": "sink", "size": 6},
+                        {"name": "laundry", "size": 0.27},
+                        {"name": "dishes", "size": 8.57},
+                        {"name": "drinking", "size": 0.25},
+                        {"name": "driving", "size": 0}
+                    ]
+                }
             ]
         };
 
-    const margin = {top: 40, right: 10, bottom: 10, left: 10},
+        // { "name": "shower",
+        //     "children": [
+        //         {"name": "shower", "size": 10}
+        //         ]
+        //  },
+        // { "name": "flush",
+        //     "children": [
+        //         {"name": "flush", "size": 15}
+        //     ]
+        // };
+        //     {"name": "shower", "size": 10};
+        //     {"name": "flush", "size": 15};
+        //     {"name": "sink", "size": 5};
+        //     {"name": "laundry", "size": 6};
+        //     {"name": "dishes", "size": 3};
+        //     {"name": "drinking", "size": 8};
+        //     {"name": "driving", "size": 100};
+
+    const margin = {top: 40, right: 40, bottom: 10, left: 50},
         width = $('#water-chart1-treemap').width() - margin.left - margin.right,
         height = 300 - margin.top - margin.bottom,
         color = d3.scaleOrdinal().range(d3.schemeCategory20c);
@@ -207,7 +278,7 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
         .style("top", margin.top + "px");
 
     //get data
-    const root = d3.hierarchy(treeData, (d) => d.children)
+    const root = d3.hierarchy(treeMap, (d) => d.children)
         .sum((d) => d.size);
 
         const tree = treemap(root);
@@ -228,7 +299,7 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
                 ? (d) => { return d.size ? 1 : 0;}
         : (d) => { return d.size; };
 
-            const newRoot = d3.hierarchy(treeData, (d) => d.children)
+            const newRoot = d3.hierarchy(treeMap, (d) => d.children)
         .sum(value);
 
             treeMapNode.data(treemap(newRoot).leaves())
