@@ -2,28 +2,28 @@
 var margin1, height1, width1, svgCalculator1;
 var studentData = [
     {
-        "student": "Harvard student 1",
-        "consumption": 238,
-        "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
-        "breakdown": [16, 14, 30, 10, 0.4, 6, 0.56, 107.5]
+        "student": "Johanna",
+        "consumption": 61,
+        "labels": ["shower", "flush", "sink", "laundry", "dishes", "drinking", "driving"],
+        "breakdown": [16, 16, 4, 0.80, 3.43, 0.56, 20]
     },
     {
-        "student": "Harvard student 2",
-        "consumption": 87,
-        "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
-        "breakdown": [30, 8, 10, 0, 0.4, 0.86, 0.75, 37]
+        "student": "Ronell",
+        "consumption": 108,
+        "labels": ["shower", "flush", "sink", "laundry", "dishes", "drinking", "driving"],
+        "breakdown": [40, 20, 30, 1.60, 6, 0.63, 10]
     },
     {
-        "student": "Harvard student 3",
-        "consumption": 65,
-        "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
-        "breakdown": [40, 10, 6, 0, 0.27, 0.86, 0.56, 7]
+        "student": "Zona",
+        "consumption": 318,
+        "labels": ["shower", "flush", "sink", "laundry", "dishes", "drinking", "driving"],
+        "breakdown": [60, 10, 30, 1.60, 6, 0.63, 210]
     },
     {
-        "student": "Harvard student 4",
-        "consumption": 47,
-        "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
-        "breakdown": [10, 8, 8, 0, 0.13, 0, 0.62, 20]
+        "student": "Fritz",
+        "consumption": 45,
+        "labels": ["shower", "flush", "sink", "laundry", "dishes", "drinking", "driving"],
+        "breakdown": [20, 10, 6, 0.27, 8.57, 0.25, 0]
     }
 ];
 
@@ -46,7 +46,7 @@ function initialize(){
     document.getElementById("shower").defaultValue = 10;
     document.getElementById("flush").defaultValue = 5;
     document.getElementById("runningWater").defaultValue = 10;
-    document.getElementById("hose").defaultValue = 0;
+    // document.getElementById("hose").defaultValue = 0;
     document.getElementById("laundry").defaultValue = 4;
     document.getElementById("dishes").defaultValue = 21;
     document.getElementById("drink").defaultValue = 8;
@@ -74,28 +74,27 @@ function getValues() {
     var shower = (document.getElementById("shower").value) * 2;
     var flush = (document.getElementById("flush").value) * 2;
     var runningWater = (document.getElementById("runningWater").value) * 2;
-    var runningHose = (document.getElementById("hose").value) * 7 / 7;
+    // var runningHose = (document.getElementById("hose").value) * 7 / 7;
     var laundry = (document.getElementById("laundry").value) * 4 / 30;
     var dishes = (document.getElementById("dishes").value) * 6 / 7;
     var drinks = (document.getElementById("drink").value) * 8 / 128;
     var drives = (document.getElementById("drive").value) * 7 / 7;
 
-    waterCalculator(shower, flush, runningWater, runningHose, laundry, dishes, drinks, drives);
+    waterCalculator(shower, flush, runningWater, laundry, dishes, drinks, drives);
 }
 
-function waterCalculator(shower, flush, runningWater, runningHose, laundry, dishes, drinks, drives) {
-    var total = Math.round((+shower) + (+flush) + (+runningWater) + (+runningHose) + (+laundry) + (+dishes) + (+drinks) + (+drives));
+function waterCalculator(shower, flush, runningWater, laundry, dishes, drinks, drives) {
+    var total = Math.round((+shower) + (+flush) + (+runningWater) + (+laundry) + (+dishes) + (+drinks) + (+drives));
     $("#water-results-total").html("You directly consume <b>" + total + " gallons of water per day</b>. Here's how that compares to other Harvard students:");
 
-    updateVisualization (shower, flush, runningWater, runningHose, laundry, dishes, drinks, drives, total);
+    updateVisualization (shower, flush, runningWater, laundry, dishes, drinks, drives, total);
 
 }
 
-function updateVisualization(shower, flush, runningWater, runningHose, laundry, dishes, drinks, drives, total) {
+function updateVisualization(shower, flush, runningWater, laundry, dishes, drinks, drives, total) {
     var vis = this;
 
     // delete previous "You" data
-
     studentData.forEach(function(d, i) {
         if (d.student === "You") {studentData.splice(i, 1)}
     });
@@ -103,22 +102,19 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
     studentData.push({
         "student": "You",
         "consumption": total,
-        "labels": ["shower", "flush", "sink", "hose", "laundry", "dishes", "drinking", "driving"],
-        "breakdown": [shower, flush, runningWater, runningHose, laundry.toFixed(2), dishes, drinks.toFixed(2), drives]
+        "labels": ["shower", "flush", "sink", "laundry", "dishes", "drinking", "driving"],
+        "breakdown": [shower, flush, runningWater, laundry.toFixed(2), dishes, drinks.toFixed(2), drives]
     });
 
     studentData.sort(function (a, b) {
         return b.consumption - a.consumption;
     });
 
-    console.log(studentData);
-
     vis.x1.domain(studentData.map(function (d) {return d.student}));
 
     vis.y1.domain([0, d3.max(studentData, function (d) {return d.consumption})]);
 
-    // bars
-
+    // Draw bar chart
     vis.bars1 = vis.svgCalculator1.selectAll(".bar")
         .data(studentData);
 
@@ -182,5 +178,186 @@ function updateVisualization(shower, flush, runningWater, runningHose, laundry, 
         .transition()
         .call(vis.xAxis1);
 
+    var treeMap =
+        // {
+        //     "name": "map",
+        //     "children": [
+        //         {"name": "shower", "size": 10},
+        //         {"name": "flush", "size": 15},
+        //         {"name": "sink", "size": 5},
+        //         {"name": "laundry", "size": 6},
+        //         {"name": "dishes", "size": 3},
+        //         {"name": "drinking", "size": 8},
+        //         {"name": "driving", "size": 100}
+        //     ]
+        // },
+        {
+            "name": "Map",
+            "children": [
+                {
+                    "name": "Johanna",
+                    "children": [
+                        {"name": "shower", "size": 16},
+                        {"name": "flush", "size": 16},
+                        {"name": "sink", "size": 4},
+                        {"name": "laundry", "size": 0.80},
+                        {"name": "dishes", "size": 3.43},
+                        {"name": "drinking", "size": 0.56},
+                        {"name": "driving", "size": 20}
+                    ]
+                },
+                {
+                    "name": "Ronell",
+                    "children": [
+                        {"name": "shower", "size": 40},
+                        {"name": "flush", "size": 20},
+                        {"name": "sink", "size": 30},
+                        {"name": "laundry", "size": 1.60},
+                        {"name": "dishes", "size": 6},
+                        {"name": "drinking", "size": 0.63},
+                        {"name": "driving", "size": 10}
+                    ]
+                },
+                {
+                    "name": "Zona",
+                    "children": [
+                        {"name": "shower", "size": 60},
+                        {"name": "flush", "size": 10},
+                        {"name": "sink", "size": 30},
+                        {"name": "laundry", "size": 1.60},
+                        {"name": "dishes", "size": 6},
+                        {"name": "drinking", "size": 0.63},
+                        {"name": "driving", "size": 210}
+                    ]
+                },
+                {
+                    "name": "Fritz",
+                    "children": [
+                        {"name": "shower", "size": 20},
+                        {"name": "flush", "size": 10},
+                        {"name": "sink", "size": 6},
+                        {"name": "laundry", "size": 0.27},
+                        {"name": "dishes", "size": 8.57},
+                        {"name": "drinking", "size": 0.25},
+                        {"name": "driving", "size": 0}
+                    ]
+                },
+                {
+                    "name": "You",
+                    "children": [
+                        {"name": "shower", "size": shower},
+                        {"name": "flush", "size": flush},
+                        {"name": "sink", "size": runningWater},
+                        {"name": "laundry", "size": laundry.toFixed(2)},
+                        {"name": "dishes", "size": dishes},
+                        {"name": "drinking", "size": drinks.toFixed(2)},
+                        {"name": "driving", "size": drives}
+                    ]
+                }
+            ]
+        };
+
+        // { "name": "shower",
+        //     "children": [
+        //         {"name": "shower", "size": 10}
+        //         ]
+        //  },
+        // { "name": "flush",
+        //     "children": [
+        //         {"name": "flush", "size": 15}
+        //     ]
+        // };
+        //     {"name": "shower", "size": 10};
+        //     {"name": "flush", "size": 15};
+        //     {"name": "sink", "size": 5};
+        //     {"name": "laundry", "size": 6};
+        //     {"name": "dishes", "size": 3};
+        //     {"name": "drinking", "size": 8};
+        //     {"name": "driving", "size": 100};
+
+    const margin = {top: 40, right: 40, bottom: 10, left: 50},
+        width = $('#water-chart1-treemap').width() - margin.left - margin.right,
+        height = 300 - margin.top - margin.bottom,
+        color = d3.scaleOrdinal().range(d3.schemeCategory20c);
+
+    const treemap = d3.treemap().size([width, height]);
+
+    const div = d3.select("#water-chart1-treemap").append("div")
+        .style("position", "relative")
+        .style("width", (width + margin.left + margin.right) + "px")
+        .style("height", (height + margin.top + margin.bottom) + "px")
+        .style("left", margin.left + "px")
+        .style("top", margin.top + "px");
+
+    //get data
+    const root = d3.hierarchy(treeMap, (d) => d.children)
+        .sum((d) => d.size);
+
+        const tree = treemap(root);
+
+        // Tooltip attempts
+    // var divToolTip = d3.select("#water-chart1-treemap").append("div")
+    //     .attr("class", "tooltip")
+    //     .style("opacity", 0);
+    //
+    // var mousemove = function(d) {
+    //     var xPosition = d3.event.pageX + 5;
+    //     var yPosition = d3.event.pageY + 5;
+    //
+    //     d3.select("#tooltip")
+    //         .style("left", xPosition + "px")
+    //         .style("top", yPosition + "px");
+    //     d3.select("#tooltip")
+    //         .text(d.data.name + "<br/>" + d.data.size);
+    //     d3.select("#tooltip").classed("hidden", false);
+    // };
+    //
+    // var mouseout = function() {
+    //     d3.select("#tooltip").classed("hidden", true);
+    // };
+
+        const treeMapNode = div.datum(root).selectAll(".treeMapNode")
+            .data(tree.leaves())
+            .enter().append("div")
+            .attr("class", "treeMapNode")
+            .style("left", (d) => d.x0 + "px")
+    .style("top", (d) => d.y0 + "px")
+    .style("width", (d) => Math.max(0, d.x1 - d.x0 - 1) + "px")
+    .style("height", (d) => Math.max(0, d.y1 - d.y0  - 1) + "px")
+    .style("background", (d) => color(d.parent.data.name))
+    .text((d) => d.data.name + ": " + d.data.size);
+    // .on("mousemove", mousemove)
+    //     .on("mouseout", mouseout);
+
+
+    d3.selectAll("input").on("change", function change() {
+            const value = this.value === "count"
+                ? (d) => { return d.size ? 1 : 0;}
+        : (d) => { return d.size; };
+
+            const newRoot = d3.hierarchy(treeMap, (d) => d.children)
+        .sum(value);
+
+            treeMapNode.data(treemap(newRoot).leaves())
+                .transition()
+                .duration(1500)
+                .style("left", (d) => d.x0 + "px")
+        .style("top", (d) => d.y0 + "px")
+        .style("width", (d) => Math.max(0, d.x1 - d.x0 - 1) + "px")
+        .style("height", (d) => Math.max(0, d.y1 - d.y0  - 1) + "px")
+        });
+        // .on("mouseover", function(d) {
+        //     div.transition()
+        //         .duration(200)
+        //         .style("opacity", .9);
+        //     div.html(d.data.name + "<br/>" + d.data.size)
+        //         .style("left", (d3.event.pageX) + "px")
+        //         .style("top", (d3.event.pageY - 28) + "px");
+        // })
+        // .on("mouseout", function(d) {
+        //     div.transition()
+        //         .duration(500)
+        //         .style("opacity", 0);
+        // });
 
 }
