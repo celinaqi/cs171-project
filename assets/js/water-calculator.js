@@ -295,6 +295,27 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
 
         const tree = treemap(root);
 
+        // Tooltip attempts
+    // var divToolTip = d3.select("#water-chart1-treemap").append("div")
+    //     .attr("class", "tooltip")
+    //     .style("opacity", 0);
+    //
+    // var mousemove = function(d) {
+    //     var xPosition = d3.event.pageX + 5;
+    //     var yPosition = d3.event.pageY + 5;
+    //
+    //     d3.select("#tooltip")
+    //         .style("left", xPosition + "px")
+    //         .style("top", yPosition + "px");
+    //     d3.select("#tooltip")
+    //         .text(d.data.name + "<br/>" + d.data.size);
+    //     d3.select("#tooltip").classed("hidden", false);
+    // };
+    //
+    // var mouseout = function() {
+    //     d3.select("#tooltip").classed("hidden", true);
+    // };
+
         const treeMapNode = div.datum(root).selectAll(".treeMapNode")
             .data(tree.leaves())
             .enter().append("div")
@@ -304,9 +325,12 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
     .style("width", (d) => Math.max(0, d.x1 - d.x0 - 1) + "px")
     .style("height", (d) => Math.max(0, d.y1 - d.y0  - 1) + "px")
     .style("background", (d) => color(d.parent.data.name))
-    .text((d) => d.data.name);
+    .text((d) => d.data.name + ": " + d.data.size);
+    // .on("mousemove", mousemove)
+    //     .on("mouseout", mouseout);
 
-        d3.selectAll("input").on("change", function change() {
+
+    d3.selectAll("input").on("change", function change() {
             const value = this.value === "count"
                 ? (d) => { return d.size ? 1 : 0;}
         : (d) => { return d.size; };
@@ -322,5 +346,18 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
         .style("width", (d) => Math.max(0, d.x1 - d.x0 - 1) + "px")
         .style("height", (d) => Math.max(0, d.y1 - d.y0  - 1) + "px")
         });
+        // .on("mouseover", function(d) {
+        //     div.transition()
+        //         .duration(200)
+        //         .style("opacity", .9);
+        //     div.html(d.data.name + "<br/>" + d.data.size)
+        //         .style("left", (d3.event.pageX) + "px")
+        //         .style("top", (d3.event.pageY - 28) + "px");
+        // })
+        // .on("mouseout", function(d) {
+        //     div.transition()
+        //         .duration(500)
+        //         .style("opacity", 0);
+        // });
 
 }
