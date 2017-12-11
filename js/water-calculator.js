@@ -290,8 +290,6 @@ function updatePie (svgPie, data, radius, widthPie, colorPie) {
     //     .enter().append("g")
     //     .attr("class", "arc");
 
-    console.log(pie(data.breakdown));
-
     // Pie.append("path")
     //     .attr("d", arc)
     //     .merge(Pie)
