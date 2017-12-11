@@ -10,25 +10,24 @@ var treeData =
                     {
                         "name": "Personal",
                         "children": [
-                            {"name": "Water filtration technology"},
-                            {"name": "Boiling before drinking"},
-                            {"name": "Not using the bathroom near sources of drinking water"}
+                            {"name": "Water filtration"},
+                            {"name": "Boil water"},
+                            {"name": "Sanitary waste disposal"}
                         ]
                     },
                     {
                         "name": "Public Policy",
                         "children": [
-                            {"name": "Improving public infrastructure"},
-                            {"name": "Building latrines"},
-                            {"name": "Regulating responsible use of fertilizers, herbicides, etc."},
-                            {"name": "Not exhausting groundwater resources"}
+                            {"name": "Improve infrastructure"},
+                            {"name": "Build latrines"},
+                            {"name": "Regulate fertilizer use"}
                         ]
                     },
                     {
                         "name": "Ecological",
                         "children": [
-                            {"name": "Plant trees to minimize stormwater runoff"},
-                            {"name": "Manage trash disposal properly"}
+                            {"name": "Plant trees"},
+                            {"name": "Manage trash disposal"}
                         ]
                     }
                 ]
@@ -40,14 +39,14 @@ var treeData =
                         "name": "Tropical",
                         "children": [
                             {"name" : "Rainwater harvesting"},
-                            {"name" : "Recycling waste water"},
+                            {"name" : "Recycle waste water"},
                             {"name" : "Water-free bathing"}
                         ]
                     },
                     {
                         "name": "Dry",
                         "children": [
-                            {"name": "Recycling waste water"},
+                            {"name": "Recycle waste water"},
                             {"name" : "Water-free bathing"}
                         ]
                     },
@@ -59,19 +58,18 @@ var treeData =
                     }
                 ]
             },
-            { "name": "Inequitable Water Distribution",
+            { "name": "Unequal Distribution",
                 "children": [
                     {
                         "name": "Too expensive",
                         "children": [
-                            {"name": "Consider water harvesting"},
-                            {"name": "Call government officials"}
+                            {"name": "Water harvesting"},
+                            {"name": "Search Welfare Opportunities"}
                         ]
                     },
                     { "name": "Privatized",
                         "children": [
-                            {"name": "Call government officials"},
-                            {"name": "Compare utilities vs. bottled water prices"}
+                            {"name": "Call Government Officials"}
                         ]
                     }
                 ]
@@ -92,19 +90,19 @@ var treeData =
                         "children": [
                             {"name": "Water innovation"},
                             {"name": "Policy work"},
-                            {"name": "Relief organizations"}
+                            {"name": "Relief organizations/Charity"}
                         ]
                     },
-                    { "name": "Educating others" }
+                    { "name": "Educate others" }
                 ]
             }
         ]
     };
 
 // Draw SVG
-var margin = {top: 20, right: 50, bottom: 30, left: 50},
-    width = 1100 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top: 30, right: 30, bottom: 30, left: 30},
+    width = 1200 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
 var svgTree = d3.select("#tree-diagram").append("svg")
     .attr("width", width + margin.right + margin.left)
@@ -168,14 +166,12 @@ function draw(source) {
 
     // Add text
     nodeEnter.append('text')
+        .attr("y", function(d) {
+            return d.children || d._children ? -18 : 18; })
         .attr("dy", ".35em")
-        .attr("x", function(d) {
-            return d.children || d._children ? -13 : 13;
-        })
-        .attr("text-anchor", function(d) {
-            return d.children || d._children ? "end" : "start";
-        })
-        .text(function(d) { return d.data.name; });
+        .attr("text-anchor", "middle")
+        .text(function(d) { return d.data.name; })
+        .style("fill-opacity", 1);
 
     var nodeUpdate = nodeEnter.merge(node);
 
@@ -220,6 +216,7 @@ function draw(source) {
             return diagonal(o, o)
         });
 
+
     // Update links
     var linkUpdate = linkEnter.merge(link);
 
@@ -257,8 +254,8 @@ function diagonal(s, d) {
     var path = `M ${s.x} ${s.y}
     C ${s.x} ${(s.y + d.y) / 2},
     ${d.x} ${(s.y + d.y) / 2},
-    ${d.x} ${d.y}`
-    
+    ${d.x} ${d.y}`;
+
 
     return path
 }
@@ -288,6 +285,5 @@ function click(d)
             }
         });
     }
-
     draw(d);
 }
