@@ -120,6 +120,20 @@ function initialize(){
         .attr("class", "labelValue");
     vis.svgPie.append("g")
         .attr("class", "lines");
+    
+    // bottles
+    
+    vis.marginBottle = {top: 10, right: 20, bottom: 10, left: 20};
+    vis.widthBottle = 1250 - vis.marginBottle.left - vis.marginBottle.right;
+    vis.heightBottle = 600 - vis.marginBottle.top - vis.marginBottle.bottom;
+
+    // water bottles
+    vis.svgBottles = d3.select("#water-bottles").append("svg")
+        .attr("width", vis.widthBottle + vis.marginBottle.left + vis.marginBottle.right)
+        .attr("height", vis.heightBottle + vis.marginBottle.top + vis.marginBottle.bottom)
+        .attr("class", "bottles");
+        // .append("g")
+        // .attr("transform", "translate(" + vis.marginBottle.left + "," + vis.marginBottle.top + ")");
 
     // bottles
 
@@ -157,7 +171,11 @@ function waterCalculator(shower, flush, runningWater, laundry, dishes, drinks, d
     var total = Math.round((+shower) + (+flush) + (+runningWater) + (+laundry) + (+dishes) + (+drinks) + (+drives));
     $("#water-results-total").html("You directly consume <b>" + total + " gallons of water per day</b>. Here's how that compares to other Harvard students:");
 
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3e16bc498becd814d8b3da936b39fa187e5d507c
     vis.numBottles = total * 7.5;
 
     updateVisualization (shower, flush, runningWater, laundry, dishes, drinks, drives, total);
@@ -186,6 +204,41 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
     studentData.sort(function (a, b) {
         return b.consumption - a.consumption;
     });
+    
+    // bottles
+    
+        vis.bottleArray = [];
+
+    for (i = 0; i < vis.numBottles; i++) {
+        vis.bottleArray.push(1);
+    }
+
+    console.log(vis.bottleArray);
+
+
+    vis.bottle = vis.svgBottles.selectAll(".bottle")
+        .data(vis.bottleArray);
+
+    // console.log(Math.floor(120 % 50));
+
+    vis.bottle.enter()
+        .append("image")
+        .merge(vis.bottle)
+        .attr("class", "bottle")
+        .attr("width", 30)
+        .attr("height", 30)
+        .attr("x", function(d, i) {return (i % 60) * 20})
+        .transition()
+        .delay(function(d, i) {
+            return i * 20;
+        })
+        .attr("y", function(d, i) {
+            return Math.floor(i/60) * 40;
+        })
+        .attr("transform", "translate(0, 0)")
+        .attr("xlink:href", "images/bottle.png");
+
+    vis.bottle.exit().remove();
 
     // bottles
 
@@ -229,6 +282,8 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
     vis.y1.domain([0, d3.max(studentData, function (d) {
         return d.consumption
     })]);
+    
+    
 
 
 
