@@ -47,19 +47,6 @@ function initVis(error, stress, codes, world, aquastat) {
         .attr("width", width)
         .attr("height", height);
 
-    // var defs = svg.append("defs")
-    //     .append('pattern')
-    //     .attr('id', 'dot')
-    //     .attr('patternUnits', 'userSpaceOnUse')
-    //     .attr('width', 500)
-    //     .attr('height', 500)
-    //     .append('image')
-    //     .attr('xlink:href', 'images/dot.jpg')
-    //     .attr('x', 0)
-    //     .attr('y', 0)
-    //     .attr("width", 500)
-    //     .attr("height", 500);
-
     svg.append('defs')
         .append('pattern')
         .attr('id', 'diagonalHatch')
@@ -177,38 +164,9 @@ function initVis(error, stress, codes, world, aquastat) {
     });
 
 
-    // nesting aquastat data
-
-
-
-    // resources = d3.nest()
-    //     .key(function(d) {return d.country})
-    //     .rollup(function(v) {
-    //         return [
-    //             {type: "Agricultural", val: v[0].ag_water_withdrawal},
-    //             {type: "Industrial", val: v[0].ind_water_withdrawal},
-    //             {type: "Municipal", val: v[0].mun_water_withdrawal},
-    //             {type: "Total", val: v[0].total_water_withdrawal}
-    //         ]
-    //     })
-    //     .entries(aquastat);
-
     resources = aquastat;
-    console.log(resources);
-
-
-    console.log(codes);
-    console.log(stress);
-    console.log(world);
-    console.log(aquastat);
-
-
-    // initializing barchart
-    // barChart = new BarChart("barchart", resources);
 
     barChart = new BarChart("barchart", aquastat);
-
-    console.log(world);
 
     var defaultyear = 2020;
     updateChoropleth(defaultyear);
@@ -267,7 +225,7 @@ function selectCountry(d) {
 
     resources.forEach(function(d) {
         if (d.country == countryName) {
-            console.log(d)
+            console.log(d);
             barChart.wrangleData(d);
         };
     })

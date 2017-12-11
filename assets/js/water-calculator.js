@@ -638,11 +638,6 @@ function updatePie (svgPie, data, radius, widthPie, colorPie) {
 
 }
 
-// function pieChange(data) {
-// Pie = Pie.data(pie(data.breakdown));
-// Pie.transition().attr("d", arc);
-// }
-
 function findNeighborArc(i, data0, data1, key) {
     var d;
     return (d = findPreceding(i, data0, data1, key)) ? {startAngle: d.endAngle, endAngle: d.endAngle}
