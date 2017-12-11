@@ -3956,10 +3956,8 @@ polyline{
 #factone {display: none;}
 #facttwo{display:none;}
 #factthree {display: none;}
-
-#natgeofooter {
-	font-size: 15px;
-}
+#anchor-one {
+	display: none;}
 
 #drinking {
 	padding-top: 20px;

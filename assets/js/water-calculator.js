@@ -40,7 +40,7 @@ function initialize(){
 
     var vis = this;
     margin1 = {top: 40, right: 40, bottom: 40, left: 50};
-    width1 = $('#water-chart1').width() - margin1.left - margin1.right;
+    width1 = 1200 - margin1.left - margin1.right;
     height1 = 400 - margin1.top - margin1.bottom;
 
     svgCalculator1 = d3.select("#water-chart1").append("svg")

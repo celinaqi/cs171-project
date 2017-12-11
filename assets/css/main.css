@@ -3960,6 +3960,11 @@ polyline{
 	padding-right: 100px;
 }
 
+#water-chart1-pie {
+	padding-left: 300px;
+	padding-bottom: 0px;
+}
+
 #secondbar {
 	padding-top: 0px;
 }
@@ -3987,6 +3992,7 @@ polyline{
 #factone {display: none;}
 #facttwo{display:none;}
 #factthree {display: none;}
+#anchor-one {display: none;}
 
 #natgeofooter {
 	font-size: 15px;

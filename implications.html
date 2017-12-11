@@ -51,10 +51,8 @@
 
 				<!-- Water Calculator -->
 				<section class="wrapper style5">
-					<div class="row">
 
-
-						<div id="water-calculator" class="col-md-6">
+						<div id="water-calculator">
 							<h2 align="center">How much water do you consume?</h2>
 							<form id="waterForm" class="form-group">
 								<div class="form-group row">
@@ -105,25 +103,31 @@
 										<input class="form-control" type="number" id="drive">
 									</div>
 								</div>
-								<button type="button" class="button special fit" onClick="getValues()">Submit</button>
+								<button type="button" class="button special fit" onClick="getValues(); showDiv();">Submit</button>
 							</form>
 						</div>
 
-						<div id="water-calculator-comparison" class="col-md-6 offset-md-6">
+						<script>
+							function showDiv(){
+                                document.getElementById('water-calculator-comparison').style.display = "block";
+							}
+						</script>
+
+						<div id="water-calculator-comparison" style="display:none;">
 							<h2 id="water-calculator-title">Water Calculator Results</h2>
 							<div id="water-results-total"></div>
 							<div id="water-chart1"></div>
-							<div id="water-chart1-pie"></div>
+							<div align="center" id="water-chart1-pie"></div>
+							<div id="water-bottles"></div>
 						</div>
-					</div>
+
+
+
 				</section>
 
-				<section>
-					<div id="water-bottles"></div>
-				</section>
 
 				<!-- Second Bar Chart -->
-				<section class="wrapper style5" id="secondbar">
+				<section class="wrapper style4" id="secondbar">
 					<div class="row">
 
 						<h2>Water Consumption in the United States</h2>
@@ -180,7 +184,7 @@
 				</section>
 
 				<!-- Choropleth + Bar Graph -->
-				<section id="linkedvis1" class="wrapper style2">
+				<section id="linkedvis1" class="wrapper style5">
 					<div class="row">
 						<h2>Projected Water Stress</h2>
 					</div>
@@ -314,7 +318,7 @@
 
                 </div>
 
-				</footer>
+				</div>
 			</article>
 			</div>
 
@@ -332,8 +336,6 @@
 				<script src="assets/js/colorbrewer.js"></script>
 				<script src="assets/js/queue.v1.min.js"></script>
 				<script src="assets/js/topojson.v1.min.js"></script>
-				<!--<script src="node_modules/textures/dist/textures.js"></script>-->
-
 
 		<!-- Load data, create visualizations -->
 				<script src="assets/js/tree.js"></script>
