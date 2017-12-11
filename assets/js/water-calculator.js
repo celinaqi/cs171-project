@@ -152,6 +152,8 @@ function getValues() {
 }
 
 function waterCalculator(shower, flush, runningWater, laundry, dishes, drinks, drives) {
+
+    var vis = this;
     var total = Math.round((+shower) + (+flush) + (+runningWater) + (+laundry) + (+dishes) + (+drinks) + (+drives));
     $("#water-results-total").html("You directly consume <b>" + total + " gallons of water per day</b>. Here's how that compares to other Harvard students:");
 
