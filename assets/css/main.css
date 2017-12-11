@@ -3872,9 +3872,10 @@ div.tooltip {
 
 /* icon info */
 
-.test {
-	outline-width: 2px;
-	outline-color: black;
+.iconInfo {
+	width: 0.20;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .fact {
