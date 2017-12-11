@@ -34,7 +34,7 @@ function initialize(){
     var vis = this;
     margin1 = {top: 40, right: 40, bottom: 40, left: 50};
     width1 = $('#water-chart1').width() - margin1.left - margin1.right;
-    height1 = 300 - margin1.top - margin1.bottom;
+    height1 = 400 - margin1.top - margin1.bottom;
 
     svgCalculator1 = d3.select("#water-chart1").append("svg")
         .attr("width", width1 + margin1.left + margin1.right)
@@ -56,7 +56,7 @@ function initialize(){
         .range([0, width1]);
 
     vis.y1 = d3.scaleLinear()
-        .range([height1, 0]);
+        .range([height1, 80]);
 
     vis.xAxis1 = d3.axisBottom()
         .scale(vis.x1);
@@ -114,6 +114,13 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
 
     vis.y1.domain([0, d3.max(studentData, function (d) {return d.consumption})]);
 
+    vis.faucet = vis.svgCalculator1.append("image")
+        .attr("class", "faucet")
+        .attr("width", 90)
+        .attr("height", 90)
+        .attr("transform", "translate(-18, -30)")
+        .attr("xlink:href", "images/faucet.png");
+
     // Draw bar chart
     vis.bars1 = vis.svgCalculator1.selectAll(".bar")
         .data(studentData);
@@ -139,7 +146,7 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
             else {return "steelblue"}})
         .attr("width", vis.x1.bandwidth() - 10)
         .transition()
-        .duration(2000)
+        .duration(3000)
         .delay(function(d, i) {
             return i * 50;
         })
