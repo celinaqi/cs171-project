@@ -94,10 +94,10 @@ function initialize(){
     vis.radius = 200;
 
     vis.colorPie = d3.scaleOrdinal()
-        // .range(["#fff7fb", "#ece2f0", "#d0d1e6", "#a6bddb", "#67a9cf", "#3690c0", "#02818a", "#016450"]);
-        // .range(["#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6", "#ffffcc", "#e5d8bd"]);
+    // .range(["#fff7fb", "#ece2f0", "#d0d1e6", "#a6bddb", "#67a9cf", "#3690c0", "#02818a", "#016450"]);
+    // .range(["#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6", "#ffffcc", "#e5d8bd"]);
         .range(["#8dd3c7","#ffffb3","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69"]);
-        // .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+    // .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
 
     vis.arc = d3.arc()
@@ -121,6 +121,20 @@ function initialize(){
     vis.svgPie.append("g")
         .attr("class", "lines");
 
+    // bottles
+
+    vis.marginBottle = {top: 10, right: 20, bottom: 10, left: 20};
+    vis.widthBottle = 1250 - vis.marginBottle.left - vis.marginBottle.right;
+    vis.heightBottle = 600 - vis.marginBottle.top - vis.marginBottle.bottom;
+
+    // water bottles
+    vis.svgBottles = d3.select("#water-bottles").append("svg")
+        .attr("width", vis.widthBottle + vis.marginBottle.left + vis.marginBottle.right)
+        .attr("height", vis.heightBottle + vis.marginBottle.top + vis.marginBottle.bottom)
+        .attr("class", "bottles");
+    // .append("g")
+    // .attr("transform", "translate(" + vis.marginBottle.left + "," + vis.marginBottle.top + ")");
+
 
 }
 
@@ -138,8 +152,13 @@ function getValues() {
 }
 
 function waterCalculator(shower, flush, runningWater, laundry, dishes, drinks, drives) {
+
+    var vis = this;
     var total = Math.round((+shower) + (+flush) + (+runningWater) + (+laundry) + (+dishes) + (+drinks) + (+drives));
     $("#water-results-total").html("You directly consume <b>" + total + " gallons of water per day</b>. Here's how that compares to other Harvard students:");
+
+
+    vis.numBottles = total * 7.5;
 
     updateVisualization (shower, flush, runningWater, laundry, dishes, drinks, drives, total);
 
@@ -168,6 +187,41 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
         return b.consumption - a.consumption;
     });
 
+    // bottles
+
+    vis.bottleArray = [];
+
+    for (i = 0; i < vis.numBottles; i++) {
+        vis.bottleArray.push(1);
+    }
+
+    console.log(vis.bottleArray);
+
+
+    vis.bottle = vis.svgBottles.selectAll(".bottle")
+        .data(vis.bottleArray);
+
+    // console.log(Math.floor(120 % 50));
+
+    vis.bottle.enter()
+        .append("image")
+        .merge(vis.bottle)
+        .attr("class", "bottle")
+        .attr("width", 30)
+        .attr("height", 30)
+        .attr("x", function(d, i) {return (i % 60) * 20})
+        .transition()
+        .delay(function(d, i) {
+            return i * 20;
+        })
+        .attr("y", function(d, i) {
+            return Math.floor(i/60) * 40;
+        })
+        .attr("transform", "translate(0, 0)")
+        .attr("xlink:href", "images/bottle.png");
+
+    vis.bottle.exit().remove();
+
     vis.x1.domain(studentData.map(function (d) {
         return d.student
     }));
@@ -175,6 +229,8 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
     vis.y1.domain([0, d3.max(studentData, function (d) {
         return d.consumption
     })]);
+
+
 
     vis.faucet = vis.svgCalculator1.append("image")
         .attr("class", "faucet")
@@ -431,9 +487,9 @@ function updatePie (svgPie, data, radius, widthPie, colorPie) {
     text.enter()
         .append("text")
         .attr("dy", ".35em");
-        // .text(function(d) {
-        //     return (Math.round(d.data));
-        // });
+    // .text(function(d) {
+    //     return (Math.round(d.data));
+    // });
 
     function midAngle(d){
         return d.startAngle + (d.endAngle - d.startAngle)/2;
