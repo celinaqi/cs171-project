@@ -40,7 +40,7 @@ function initialize(){
 
     var vis = this;
     margin1 = {top: 40, right: 40, bottom: 40, left: 50};
-    width1 = 1200 - margin1.left - margin1.right;
+    width1 = 600 - margin1.left - margin1.right;
     height1 = 400 - margin1.top - margin1.bottom;
 
     svgCalculator1 = d3.select("#water-chart1").append("svg")
@@ -120,9 +120,9 @@ function initialize(){
         .attr("class", "labelValue");
     vis.svgPie.append("g")
         .attr("class", "lines");
-    
+
     // bottles
-    
+
     vis.marginBottle = {top: 10, right: 20, bottom: 10, left: 20};
     vis.widthBottle = 1250 - vis.marginBottle.left - vis.marginBottle.right;
     vis.heightBottle = 600 - vis.marginBottle.top - vis.marginBottle.bottom;
@@ -131,9 +131,10 @@ function initialize(){
     vis.svgBottles = d3.select("#water-bottles").append("svg")
         .attr("width", vis.widthBottle + vis.marginBottle.left + vis.marginBottle.right)
         .attr("height", vis.heightBottle + vis.marginBottle.top + vis.marginBottle.bottom)
-        .attr("class", "bottles");
+        .attr("class", "bottles")
         .append("g")
         .attr("transform", "translate(" + vis.marginBottle.left + "," + vis.marginBottle.top + ")");
+
 }
 
 function getValues() {
@@ -183,10 +184,10 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
     studentData.sort(function (a, b) {
         return b.consumption - a.consumption;
     });
-    
+
     // bottles
-    
-        vis.bottleArray = [];
+
+    vis.bottleArray = [];
 
     for (i = 0; i < vis.numBottles; i++) {
         vis.bottleArray.push(1);
@@ -261,8 +262,8 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
     vis.y1.domain([0, d3.max(studentData, function (d) {
         return d.consumption
     })]);
-    
-    
+
+
 
 
 
