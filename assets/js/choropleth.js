@@ -47,6 +47,30 @@ function initVis(error, stress, codes, world, aquastat) {
         .attr("width", width)
         .attr("height", height);
 
+    // var defs = svg.append("defs")
+    //     .append('pattern')
+    //     .attr('id', 'dot')
+    //     .attr('patternUnits', 'userSpaceOnUse')
+    //     .attr('width', 500)
+    //     .attr('height', 500)
+    //     .append('image')
+    //     .attr('xlink:href', 'images/dot.jpg')
+    //     .attr('x', 0)
+    //     .attr('y', 0)
+    //     .attr("width", 500)
+    //     .attr("height", 500);
+
+    svg.append('defs')
+        .append('pattern')
+        .attr('id', 'diagonalHatch')
+        .attr('patternUnits', 'userSpaceOnUse')
+        .attr('width', 4)
+        .attr('height', 4)
+        .append('path')
+        .attr('d', 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2')
+        .attr('stroke', '#000000')
+        .attr('stroke-width', 1);
+
     var countries = svg.selectAll(".world")
         .data(world);
     countries.enter()
@@ -66,7 +90,10 @@ function initVis(error, stress, codes, world, aquastat) {
                 });
             d3.select(this)
                 .classed("clicked", true)
-                .attr("fill", "navy");
+                // .attr("fill", "navy");
+                // .style("fill", "fff")
+                .attr("fill", "white")
+                .attr("fill", "url(#diagonalHatch)")
             selectCountry(d);
 
         });
@@ -114,7 +141,7 @@ function initVis(error, stress, codes, world, aquastat) {
 
     legend.append("rect")
         .attr("class", "legendBox")
-        .attr("x", 40)
+        .attr("x", 10)
         .attr("y", function(d, i){return i*20 + 290})
         .attr("width", 20)
         .attr("height", 20)
@@ -122,7 +149,7 @@ function initVis(error, stress, codes, world, aquastat) {
 
     legend.append("text")
         .attr("class", "legendText")
-        .attr("x", 70)
+        .attr("x", 40)
         .attr("y", function(d, i) {return i*20 + 305})
         .text(function(d) {
             var legendRange = colorChor.invertExtent(d);
@@ -135,7 +162,7 @@ function initVis(error, stress, codes, world, aquastat) {
 
     svg.append("text")
         .attr("class", "legendTitle")
-        .attr("x", 30)
+        .attr("x", 10)
         .attr("y", 270)
         .text("Legend");
 

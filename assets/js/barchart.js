@@ -41,6 +41,8 @@ BarChart.prototype.initVis = function(){
 
     vis.zBar = d3.scaleOrdinal()
         .range(["#98abc5", "#6b486b", "#ff8c00"]);
+        // .range(["#4682b4", "#6b486b", "#ff8c00"])
+
 
     vis.yAxisBar = d3.axisLeft()
         .scale(vis.yBar);
@@ -248,8 +250,6 @@ BarChart.prototype.updateVis = function(){
     vis.baramount.enter()
         .append("text")
         .merge(vis.baramount)
-        .transition()
-        .duration(600)
         .text(function(d) {return format(d.total_water_withdrawal)})
         .attr("class", "amount")
         .attr("Id", "amount")
@@ -257,6 +257,8 @@ BarChart.prototype.updateVis = function(){
         .attr("x", function (d) {
             return vis.xBar(d.country) + 55
         })
+        .transition()
+        .duration(600)
         .attr("y", function(d) {return vis.yBar(d.total_water_withdrawal) + 15});
 
     vis.baramount.exit().remove();
