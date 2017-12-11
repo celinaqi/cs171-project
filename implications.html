@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 
 <html>
+<<<<<<< HEAD
 	<head>
 		<title>Implications</title>
 		<meta charset="utf-8" />
@@ -143,185 +144,358 @@
 						<div class="row">
 							<div class="col-md-6 iconInfo"><img src="images/waterCotton.png" alt="" border="2"/></div>
 							<div class="col-md-6 iconInfo"><img src="images/waterPool.png" alt="" /></div>
-						</div>
-						<div class="row">
-							<p class="col-md-6 fact">It takes about 100 gallons of water to produce 1lb of cotton material, which is representative of other fabrics and furniture.</p>
-							<p class="col-md-6 fact">One olympic-sized pool holds enough water to hydrate over 3,600 people for an entire year.</p>
-						</div>
-						<p>And so on. When we account for both direct and virtual water consumption, experts estimate <b>the average American consumes 2,200 gallons of water per day</b>. This is how annual water consumption per capita in the United States compared to annual water consumption per capita in other countries in 2013:</p>
-						<!-- <div class="row"> -->
-							<div id="water-comparison-US"></div>
-							<div id="water-comparison-countries1"></div>
-							<div id="water-comparison-countries2"></div>
-						<!-- </div> -->
-					</div>
-					<div class="row">
-						<h2> Water Shortage Crisis</h2>
-						<p>Not everyone is as privileged in being able to access as much water. For many people, in many parts of the world, water shortages are serious, life-threatening problems. From lack of water to water contamination, this crisis affects millions already. Let's see how:</p>
-					</div>
-				</section>
+=======
+<head>
+	<title>Implications</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-				<!-- Images-->
-				<section id="two" class="wrapper alt style1">
-					<section class="spotlight">
-						<div class="image"><img src="images/price-hikes.png" alt="" /></div><div class="content">
-						<h2>Price Hikes</h2>
-						<p>As water becomes more scarce, it also becomes more valuable. Price hikes will make water—a natural resource and human right—available only to those who can afford it, so the world’s most vulnerable people will be impacted first and hurt the most. Even in the US, the average monthly cost of water increased 54% from 2010 - 2017.</p>
-					</div>
-					</section>
-					<section class="spotlight">
-						<div class="image"><img src="images/contaminated%20water.jpg" alt="" /></div><div class="content">
-						<h2>Contamination</h2>
-						<p>Even if it is possible to overcome the obstacle of accessing water, water contamination poses an additional threat to millions of people worldwide. For many, drinking contaminated water leads to life-threatening illnesses or death.</p>
-					</div>
-					</section>
-					<section class="spotlight">
-						<div class="image"><img src="images/water-waste.jpg" alt="" /></div><div class="content">
-						<h2>Water Waste</h2>
-						<p>While countless people struggle to procure enough water to survive, others waste it without a second thought. These habits exacerbate the water crisis by needlessly exploiting water resources that are already running out.</p>
-					</div>
-					</section>
-				</section>
+	<!-- CSS Libraries -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<link rel="stylesheet" href="assets/css/leaflet.css" />
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/ico" href="no_water.ico"/>
 
-				<!-- Choropleth + Bar Graph -->
-				<section id="linkedvis1" class="wrapper style5">
-					<div class="row">
-						<h2>Projected Water Stress</h2>
-					</div>
-						<div class="row">
-							<p>In light of these issues, water stress is projected to increase throughout the foreseeable future. The following map shows how water stress will affect different countries worldwide. Click on countries to see how their water usages compare in the bar chart on the right:</p>
-							<div class="form-group">
-									<form id="select">
-										<div class="row uniform">
-											<label>Year: </label>
-											<div class="3u 12u$(small)">
-												<input type="radio" id="2020" class="select" name="year" value="2020" checked onchange="updateChoropleth(2020)">
-												<label for="2020">2020</label>
-											</div>
-											<div class="3u 12u$(small)">
-												<input type="radio" id="2030" class="select" name="year" value="2030" onchange="updateChoropleth(2030)">
-												<label for="2030">2030</label>
-											</div>
-											<div class="3u$ 12u$(small)">
-												<input type="radio" id="2040" class="select" name="year" value="2040" onchange="updateChoropleth(2040)">
-												<label for="2040">2040</label>
-											</div>
-										</div>
-									</form>
-							</div>
-						</div>
+</head>
+<body>
 
-					<div class="row">
-						<div class="col-lg-7">
-							<div id="choropleth"> <svg height="10" width="10" xmlns="http://www.w3.org/2000/svg" version="1.1"> <defs> <pattern id="circles-2" patternUnits="userSpaceOnUse" width="10" height="10"> <image xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCc+CiAgPHJlY3Qgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJyBmaWxsPSd3aGl0ZScgLz4KICA8Y2lyY2xlIGN4PScxLjUnIGN5PScxLjUnIHI9JzEuNScgZmlsbD0nYmxhY2snLz4KPC9zdmc+Cg==" x="0" y="0" width="10" height="10"> </image> </pattern> </defs> </svg> </div>
-						</div>
+<!-- Page Wrapper -->
+<div id="page-wrapper">
 
-						<div class="col-lg-5">
-							<div id="barchart"></div>
-
-						</div>
-					</div>
-				</section>
-
-				<!-- Solutions Description -->
-				<section id="three" class="wrapper style3 special">
-					<div class="inner">
-						<header class="major">
-							<h2>Looking on the bright side: Progress</h2>
-							<p>As we zoom out, it becomes clear that water scarcity is a <u> collective action problem.</u> <br/>
-								Fortunately for us, those are the kinds of problems we as global citizens can make meaningful progress on, <br/>
-								be it <b>technologically</b>, <b>politically</b>, or <b>personally</b>.</p>
-						</header>
-						<ul class="features">
-							<li class="icon fa-paper-plane-o">
-								<h3>Raise Awareness</h3>
-								<p>Education is the first step to change. Increasing awareness of the water crisis can help everyone learn to manage this precious resource together.</p>
-							</li>
-							<li class="icon fa-laptop">
-								<h3>Create Technology</h3>
-								<p>For places where water resources are disappearing rapidly, new technologies and research could save millions of lives.</p>
-							</li>
-							<li class="icon fa-heart-o">
-								<h3>Personal Lifestyle Choices</h3>
-								<p>Waste less water. Small behavioral changes—such as taking shorter showers—can help preserve water for someone who really needs it.</p>
-							</li>
-							<li class="icon fa-flag-o">
-								<h3>Political Reform</h3>
-								<p>Governance and regulation of water will need to be ethical and sustainable in order for humanity to collectively navigate the water crisis.</p>
-							</li>
+	<!-- Header -->
+	<header id="header">
+		<h1><a href="index.html">Water We Gonna Do?</a></h1>
+		<nav id="nav">
+			<ul>
+				<li class="special">
+					<a href="#menu" class="menuToggle"><span>Menu</span></a>
+					<div id="menu">
+						<ul>
+							<li><a href="index.html">Introduction</a></li>
+							<li><a href="implications.html">Implications</a></li>
 						</ul>
 					</div>
-				</section>
+				</li>
+			</ul>
+		</nav>
+	</header>
 
-				<!-- Tree -->
-				<section id="treesection" class="wrapper style5">
-					<div class="row">
-						<h2> Specific Solutions</h2>
-						<p>In the end, however, the right solution depends on your individual circumstance. Select the path below that best applies to you in order to see ways you can help:</p>
-						<div id="tree-diagram"></div>
+	<!-- Main -->
+	<article id="main">
+		<header>
+			<h2>This problem might be global.</h2>
+			<p>But it's important to contexualize; <br/>
+				so let's start with you.</p>
+		</header>
+
+
+		<!-- Water Calculator -->
+		<section class="wrapper style5">
+
+			<div id="water-calculator">
+				<h2 align="center">How much water do you consume?</h2>
+				<form id="waterForm" class="form-group">
+					<div class="form-group row">
+						<label for="shower" class="col-md-8 col-form-label">Minutes showering per day</label>
+						<div class="col-md-2">
+							<input class="form-control" type="number" id="shower">
+						</div>
 					</div>
-				</section>
-
-				<!-- Solution + Learn More -->
-				<section id="cta" class="wrapper style4">
-					<div class="inner">
-						<header align="center">
-							<h5>Take initiative to help victims of water scarcity directly!</h5>
-							<p>And of course, there is always more to know about the issues at hand.</p>
-						</header>
-						<ul class="actions vertical">
-							<li id="solution-button"><a href="https://www.charitywater.org/about/?utm_medium=ppc&utm_source=adwords&utm_campaign=about&utm_content=believe&gclid=EAIaIQobChMI3ZuDoarg1wIVTbjACh3n3wBaEAAYASAAEgISjvD_BwE" class="button special">Donate</a></li>
-							<li><a href="https://www.watercalculator.org/intro/" class="button fit">Learn More</a></li>
-						</ul>
+					<div class="form-group row">
+						<label for="flush" class="col-md-8 col-form-label">Toilet flushes per day</label>
+						<div class="col-md-2">
+							<input class="form-control" type="number" id="flush">
+>>>>>>> 18ec5b41e235498934f2c9122967d49d67d09a7b
+						</div>
 					</div>
-				</section>
-
-				<!-- Back Home Button -->
-				<section class="wrapper style1">
-					<ul class="actions" align="center">
-						<li><a href="index.html" class="button fit">Back to Intro</a></li>
-					</ul>
-				</section>
-
-				<!-- Footer -->
-				<div id="footer">
-                <div id="sources">
-                    <h3> Sources</h3>
-
-                    <a href="https://datahub.io/core/country-codes">DataHub Country Codes</a> </br>
-                    <a href="http://www.fao.org/nr/water/aquastat/data/query/results.html?regionQuery=true&yearGrouping=SURVEY&showCodes=false&yearRange.fromYear=1958&yearRange.toYear=2017&varGrpIds=4250%2C4251%2C4252%2C4253%2C4257&cntIds=&regIds=9805%2C9806%2C9807%2C9808%2C9809&edit=0&save=0&query_type=WUpage&lowBandwidth=1&newestOnly=true&_newestOnly=on&showValueYears=true&_showValueYears=on&categoryIds=-1&_categoryIds=1&XAxis=VARIABLE&showSymbols=true&_showSymbols=on&_hideEmptyRowsColoumns=on&lang=en">Food and Agriculture Organization</a> </br>
-
-                    <!--choropleth-->
-                    <a href="http://www.wri.org/resources/data-sets/aqueduct-projected-water-stress-country-rankings">World Resources Institute</a>
-                </br>
-                    <!--counters-->
-
-                    <a href="http://www.who.int/mediacentre/news/releases/2017/water-sanitation-hygiene/en/">World Health Organization</a>
-                    </br>
-                    <a href="http://www.worldwatercouncil.org/fileadmin/wwc/Programs/Virtual_Water/virtual_water_final_synthesis.pdf">World Water Council</a>
-                    </br>
-                    <a href="http://www.ifpri.org/publication/world-water-and-food-2025">International Food Policy Research Institute</a>
-                    </br>
-                    <a href="http://www.oecd.org/environment/indicators-modelling-outlooks/oecdenvironmentaloutlookto2030.htm">Organization for Economic Cooperation and Development</a>
-                    </br>
-                    <!--water calculator-->
-                    <a href="https://www.watercalculator.org/">WaterCalculator.org</a>
-                    </br>
-                    <!--tree-->
-                    <a href="http://www.data360.org/dsg.aspx?Data_Set_Group_Id=757">Data360</a>
-                    </br>
-                    <a href="http://www.circleofblue.org/waterpricing/">Circle of Blue</a> </br>
-                    Basic design structure: HTML5Up Spectral  </br>
-                    <div class="copyright">
-                        By: Ritayan Chakraborty, Michelle Ng and Celina Qi
-                    </div>
-
-                </div>
-
-				</div>
-			</article>
+					<div class="form-group row">
+						<label for="runningWater" class="col-md-8 col-form-label">Minutes running faucet per day</label>
+						<div class="col-md-2">
+							<input class="form-control" type="number" id="runningWater">
+						</div>
+					</div>
+					<!-- <div class="form-group row">
+                        <label for="hose" class="col-md-8 col-form-label">Minutes running hose per week</label>
+                        <div class="col-md-2">
+                            <input class="form-control" type="number" id="hose">
+                        </div>
+                    </div> -->
+					<div class="form-group row">
+						<label for="laundry" class="col-md-8 col-form-label">Loads of laundry per month</label>
+						<div class="col-md-2">
+							<input class="form-control" type="number" id="laundry">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="dishes" class="col-md-8 col-form-label">Loads of dishes per week</label>
+						<div class="col-md-2">
+							<input class="form-control" type="number" id="dishes">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="drink" class="col-md-8 col-form-label">Amount of drinking water per day <br/> (8 oz cups)</label>
+						<div class="col-md-2">
+							<input class="form-control" type="number" id="drink">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="drive" class="col-md-8 col-form-label">Number of miles driven per week <br/> (shuttle counts!)</label>
+						<div class="col-md-2">
+							<input class="form-control" type="number" id="drive">
+						</div>
+					</div>
+					<button type="button" class="button special fit" onClick="getValues(); showDiv();">Submit</button>
+				</form>
 			</div>
 
+			<script>
+                function showDiv(){
+                    document.getElementById('water-calculator-comparison').style.display = "block";
+                }
+			</script>
+
+			<div id="water-calculator-comparison" style="display:none;">
+				<h2 id="water-calculator-title">Water Calculator Results</h2>
+				<div id="water-results-total"></div>
+				<div id="water-bottles"></div>
+				<div id="water-chart1"></div>
+				<div align="center" id="water-chart1-pie"></div>
+			</div>
+
+
+
+		</section>
+
+
+		<!-- Second Bar Chart -->
+		<section class="wrapper style4" id="secondbar">
+			<div class="row">
+
+				<h2>Water Consumption in the United States</h2>
+				<p>However, this is just your measurable direct water consumption. You also consume water in countless other ways. For example:</p>
+				<div class="row">
+					<div class="col-md-6 iconInfo"><img src="images/waterPhone.jpg" alt="" /></div>
+					<div class="col-md-6 iconInfo"><img src="images/waterBeef.jpg" alt="" /></div>
+				</div>
+				<div class="row">
+					<p class="col-md-6 fact">The average American household uses 120,000 - 300,000 gallons of water's worth of electricity per year (Boston gets electricity from hydropower).</p>
+					<p class="col-md-6 fact">Producing food is incredibly water intensive, requiring 11 gallons to produce 1 slice of bread and 1,799 gallons to produce 1lb of beef.</p>
+				</div>
+				<div class="row">
+					<div class="col-md-6 iconInfo"><img src="images/waterCotton.jpg" alt="" border="2"/></div>
+					<div class="col-md-6 iconInfo"><img src="images/waterPool.jpg" alt="" /></div>
+				</div>
+				<div class="row">
+					<p class="col-md-6 fact">It takes about 100 gallons of water to produce 1lb of cotton material, which is representative of other fabrics and furniture.</p>
+					<p class="col-md-6 fact">One olympic-sized pool holds enough water to hydrate over 3,600 people for an entire year.</p>
+				</div>
+				<p>And so on. When we account for both direct and virtual water consumption, experts estimate <b>the average American consumes 2,200 gallons of water per day</b>. This is how annual water consumption per capita in the United States compared to annual water consumption per capita in other countries in 2013:</p>
+				<!-- <div class="row"> -->
+				<div id="water-comparison-US"></div>
+				<div id="water-comparison-countries1"></div>
+				<div id="water-comparison-countries2"></div>
+				<!-- </div> -->
+			</div>
+			<div class="row">
+				<h2> Water Shortage Crisis</h2>
+				<p>Not everyone is as privileged in being able to access as much water. For many people, in many parts of the world, water shortages are serious, life-threatening problems. From lack of water to water contamination, this crisis affects millions already. Let's see how:</p>
+			</div>
+		</section>
+
+		<!-- Images-->
+		<section id="two" class="wrapper alt style1">
+			<section class="spotlight">
+				<div class="image"><img src="images/price-hikes.png" alt="" /></div><div class="content">
+				<h2>Price Hikes</h2>
+				<p>As water becomes more scarce, it also becomes more valuable. Price hikes will make water—a natural resource and human right—available only to those who can afford it, so the world’s most vulnerable people will be impacted first and hurt the most. Even in the US, the average monthly cost of water increased 54% from 2010 - 2017.</p>
+			</div>
+			</section>
+			<section class="spotlight">
+				<div class="image"><img src="images/contaminated%20water.jpg" alt="" /></div><div class="content">
+				<h2>Contamination</h2>
+				<p>Even if it is possible to overcome the obstacle of accessing water, water contamination poses an additional threat to millions of people worldwide. For many, drinking contaminated water leads to life-threatening illnesses or death.</p>
+			</div>
+			</section>
+			<section class="spotlight">
+				<div class="image"><img src="images/water-waste.jpg" alt="" /></div><div class="content">
+				<h2>Water Waste</h2>
+				<p>While countless people struggle to procure enough water to survive, others waste it without a second thought. These habits exacerbate the water crisis by needlessly exploiting water resources that are already running out.</p>
+			</div>
+			</section>
+		</section>
+
+		<!-- Choropleth + Bar Graph -->
+		<section id="linkedvis1" class="wrapper style5">
+			<div class="row">
+				<h2>Projected Water Stress</h2>
+			</div>
+			<div class="row">
+				<p>In light of these issues, water stress is projected to increase throughout the foreseeable future. The following map shows how water stress will affect different countries worldwide. Click on countries to see how their water usages compare in the bar chart on the right:</p>
+				<div class="form-group">
+					<form id="select">
+						<div class="row uniform">
+							<label>Year: </label>
+							<div class="3u 12u$(small)">
+								<input type="radio" id="2020" class="select" name="year" value="2020" checked onchange="updateChoropleth(2020)">
+								<label for="2020">2020</label>
+							</div>
+							<div class="3u 12u$(small)">
+								<input type="radio" id="2030" class="select" name="year" value="2030" onchange="updateChoropleth(2030)">
+								<label for="2030">2030</label>
+							</div>
+							<div class="3u$ 12u$(small)">
+								<input type="radio" id="2040" class="select" name="year" value="2040" onchange="updateChoropleth(2040)">
+								<label for="2040">2040</label>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-7">
+					<div id="choropleth"> <svg height="10" width="10" xmlns="http://www.w3.org/2000/svg" version="1.1"> <defs> <pattern id="circles-2" patternUnits="userSpaceOnUse" width="10" height="10"> <image xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCc+CiAgPHJlY3Qgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJyBmaWxsPSd3aGl0ZScgLz4KICA8Y2lyY2xlIGN4PScxLjUnIGN5PScxLjUnIHI9JzEuNScgZmlsbD0nYmxhY2snLz4KPC9zdmc+Cg==" x="0" y="0" width="10" height="10"> </image> </pattern> </defs> </svg> </div>
+				</div>
+
+				<div class="col-lg-5">
+					<div id="barchart"></div>
+
+				</div>
+			</div>
+		</section>
+
+		<!-- Solutions Description -->
+		<section id="three" class="wrapper style3 special">
+			<div class="inner">
+				<header class="major">
+					<h2>Looking on the bright side: Progress</h2>
+					<p>As we zoom out, it becomes clear that water scarcity is a <u> collective action problem.</u> <br/>
+						Fortunately for us, those are the kinds of problems we as global citizens can make meaningful progress on, <br/>
+						be it <b>technologically</b>, <b>politically</b>, or <b>personally</b>.</p>
+				</header>
+				<ul class="features">
+					<li class="icon fa-paper-plane-o">
+						<h3>Raise Awareness</h3>
+						<p>Education is the first step to change. Increasing awareness of the water crisis can help everyone learn to manage this precious resource together.</p>
+					</li>
+					<li class="icon fa-laptop">
+						<h3>Create Technology</h3>
+						<p>For places where water resources are disappearing rapidly, new technologies and research could save millions of lives.</p>
+					</li>
+					<li class="icon fa-heart-o">
+						<h3>Personal Lifestyle Choices</h3>
+						<p>Waste less water. Small behavioral changes—such as taking shorter showers—can help preserve water for someone who really needs it.</p>
+					</li>
+					<li class="icon fa-flag-o">
+						<h3>Political Reform</h3>
+						<p>Governance and regulation of water will need to be ethical and sustainable in order for humanity to collectively navigate the water crisis.</p>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- Tree -->
+		<section id="treesection" class="wrapper style5">
+			<div class="row">
+				<h2> Specific Solutions</h2>
+				<p>In the end, however, the right solution depends on your individual circumstance. Select the path below that best applies to you in order to see ways you can help:</p>
+				<div id="tree-diagram"></div>
+			</div>
+		</section>
+
+		<!-- Solution + Learn More -->
+		<section id="cta" class="wrapper style4">
+			<div class="inner">
+				<header align="center">
+					<h5>Take initiative to help victims of water scarcity directly!</h5>
+					<p>And of course, there is always more to know about the issues at hand.</p>
+				</header>
+				<ul class="actions vertical">
+					<li id="solution-button"><a href="https://www.charitywater.org/about/?utm_medium=ppc&utm_source=adwords&utm_campaign=about&utm_content=believe&gclid=EAIaIQobChMI3ZuDoarg1wIVTbjACh3n3wBaEAAYASAAEgISjvD_BwE" class="button special">Donate</a></li>
+					<li><a href="https://www.watercalculator.org/intro/" class="button fit">Learn More</a></li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- Back Home Button -->
+		<section class="wrapper style1">
+			<ul class="actions" align="center">
+				<li><a href="index.html" class="button fit">Back to Intro</a></li>
+			</ul>
+		</section>
+
+		<!-- Footer -->
+		<div id="footer">
+			<div id="sources">
+				<h3> Sources</h3>
+
+				<a href="https://datahub.io/core/country-codes">DataHub Country Codes</a> </br>
+				<a href="http://www.fao.org/nr/water/aquastat/data/query/results.html?regionQuery=true&yearGrouping=SURVEY&showCodes=false&yearRange.fromYear=1958&yearRange.toYear=2017&varGrpIds=4250%2C4251%2C4252%2C4253%2C4257&cntIds=&regIds=9805%2C9806%2C9807%2C9808%2C9809&edit=0&save=0&query_type=WUpage&lowBandwidth=1&newestOnly=true&_newestOnly=on&showValueYears=true&_showValueYears=on&categoryIds=-1&_categoryIds=1&XAxis=VARIABLE&showSymbols=true&_showSymbols=on&_hideEmptyRowsColoumns=on&lang=en">Food and Agriculture Organization</a> </br>
+
+				<!--choropleth-->
+				<a href="http://www.wri.org/resources/data-sets/aqueduct-projected-water-stress-country-rankings">World Resources Institute</a>
+				</br>
+				<!--counters-->
+
+				<a href="http://www.who.int/mediacentre/news/releases/2017/water-sanitation-hygiene/en/">World Health Organization</a>
+				</br>
+				<a href="http://www.worldwatercouncil.org/fileadmin/wwc/Programs/Virtual_Water/virtual_water_final_synthesis.pdf">World Water Council</a>
+				</br>
+				<a href="http://www.ifpri.org/publication/world-water-and-food-2025">International Food Policy Research Institute</a>
+				</br>
+				<a href="http://www.oecd.org/environment/indicators-modelling-outlooks/oecdenvironmentaloutlookto2030.htm">Organization for Economic Cooperation and Development</a>
+				</br>
+				<!--water calculator-->
+				<a href="https://www.watercalculator.org/">WaterCalculator.org</a>
+				</br>
+				<!--tree-->
+				<a href="http://www.data360.org/dsg.aspx?Data_Set_Group_Id=757">Data360</a>
+				</br>
+				<a href="http://www.circleofblue.org/waterpricing/">Circle of Blue</a> </br>
+				Basic design structure: HTML5Up Spectral  </br>
+				<div class="copyright">
+					By: Ritayan Chakraborty, Michelle Ng and Celina Qi
+				</div>
+
+			</div>
+
+<<<<<<< HEAD
+		</div>
+	</article>
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+<!-- Visualizations -->
+<script src="assets/js/d3.js"></script>
+<script src="assets/js/d3-tip.js"></script>
+<script src="assets/js/colorbrewer.js"></script>
+<script src="assets/js/queue.v1.min.js"></script>
+<script src="assets/js/topojson.v1.min.js"></script>
+
+<!-- Load data, create visualizations -->
+<script src="assets/js/tree.js"></script>
+<script src="assets/js/water-calculator.js"></script>
+<script src="assets/js/country-comparison.js"></script>
+<script src="assets/js/choropleth.js"></script>
+<script src="assets/js/barchart.js"></script>
+
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
+=======
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
@@ -337,7 +511,6 @@
 				<script src="assets/js/queue.v1.min.js"></script>
 				<script src="assets/js/topojson.v1.min.js"></script>
 
-
 		<!-- Load data, create visualizations -->
 				<script src="assets/js/tree.js"></script>
 				<script src="assets/js/water-calculator.js"></script>
@@ -350,3 +523,4 @@
 
 	</body>
 </html>
+>>>>>>> 0c8b6870408587c4572c40d4cdf6c53b0e487fd3
