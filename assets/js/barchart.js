@@ -108,13 +108,14 @@ BarChart.prototype.initVis = function(){
         .style("opacity", 0.7);
 
     vis.tooltip.append("rect")
-        .attr("width", 140)
-        .attr("height", 30)
+        .attr("width", 110)
+        .attr("height", 20)
         .attr("fill", "white");
 
     vis.tooltip.append("text")
         .attr("x", 50)
         .attr("dy", "1.2em")
+        .attr("dx", "1.2em")
         .style("text-anchor", "middle")
         .attr("font-size", "12px")
         .attr("font-weight", "bold");
@@ -230,12 +231,12 @@ BarChart.prototype.updateVis = function(){
         .on("mouseover", function() { vis.tooltip.style("display", null); })
         .on("mouseout", function() { vis.tooltip.style("display", "none"); })
         .on("mousemove", function(d) {
-            var xPosition = d3.mouse(this)[0] - 25;
+            var xPosition = d3.mouse(this)[0] - 10;
             var yPosition = d3.mouse(this)[1] + 10;
             vis.tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
             vis.tooltip.select("text")
                 // .text("Total: " + Math.round(d[1]-d[0]) + " Billion m^3");
-                .text("Total: " + d.data.total_water_withdrawal + "Billion")
+                .text(" Total: " + d.data.total_water_withdrawal + " Billion ")
                 .attr("text-anchor", "middle")
         });
 
