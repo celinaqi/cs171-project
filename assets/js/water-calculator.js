@@ -405,8 +405,7 @@ function updatePie (svgPie, data, radius, widthPie, colorPie) {
     //         return Math.round(d.data);
     //     })
     //     .attr("fill", "black");
-
-
+    
 
     var name = svgPie.selectAll(".username")
         .data([data.student]);
