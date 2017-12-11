@@ -132,24 +132,8 @@ function initialize(){
         .attr("width", vis.widthBottle + vis.marginBottle.left + vis.marginBottle.right)
         .attr("height", vis.heightBottle + vis.marginBottle.top + vis.marginBottle.bottom)
         .attr("class", "bottles");
-        // .append("g")
-        // .attr("transform", "translate(" + vis.marginBottle.left + "," + vis.marginBottle.top + ")");
-
-    // bottles
-
-    vis.marginBottle = {top: 10, right: 20, bottom: 10, left: 20};
-    vis.widthBottle = 1250 - vis.marginBottle.left - vis.marginBottle.right;
-    vis.heightBottle = 600 - vis.marginBottle.top - vis.marginBottle.bottom;
-
-    // water bottles
-    vis.svgBottles = d3.select("#water-bottles").append("svg")
-        .attr("width", vis.widthBottle + vis.marginBottle.left + vis.marginBottle.right)
-        .attr("height", vis.heightBottle + vis.marginBottle.top + vis.marginBottle.bottom)
-        .attr("class", "bottles");
-    // .append("g")
-    // .attr("transform", "translate(" + vis.marginBottle.left + "," + vis.marginBottle.top + ")");
-
-
+        .append("g")
+        .attr("transform", "translate(" + vis.marginBottle.left + "," + vis.marginBottle.top + ")");
 }
 
 function getValues() {
