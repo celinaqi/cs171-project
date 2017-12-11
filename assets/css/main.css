@@ -3870,12 +3870,19 @@ div.tooltip {
 	text-indent: 2px;
 }
 
-/* icon imfo */
+/* icon info */
 
-.test {
-	outline-width: 2px;
+.iconInfo {
+	width: 0.20;
+	padding-left: 10px;
+	padding-right: 10px;
 }
- */
+
+.fact {
+	text-align: center;
+	outline-width: 2px;
+	outline-color: black;
+}
 /* Choropleth Viz */
 
 .legendTitle {
@@ -4050,4 +4057,5 @@ polyline{
 .labelName {
 	font-size: 10px;
 }
+
 

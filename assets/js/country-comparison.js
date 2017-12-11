@@ -1,115 +1,220 @@
-// Second bar chart
-var countryData = [
-    {"country" : "United States", "consumption" : 100},
-    {"country" : "Australia", "consumption" : 86},
-    {"country" : "Japan", "consumption" : 65},
-    {"country" : "France", "consumption" : 50},
-    {"country" : "Peru", "consumption" : 30},
-    {"country" : "India", "consumption" : 23},
-    {"country" : "Nigeria", "consumption" : 06},
-    {"country" : "Haiti", "consumption" : 03},
-    {"country" : "Mozambique", "consumption" : 01}
-];
+// TREE MAP UNITED STATES
+var treeMapDataUS =
+    { "name": "visualization",
+    "children": [
+        {
+            "name": "United States", "size": 1583
+        }
+    ]};
 
-var margin2 = {top: 60, right: 20, bottom: 40, left: 80},
-    // width2 = $('#water-chart2').width() - margin2.left - margin2.right,
-    width2 = 1200 - margin2.left - margin2.right,
-    height2 = 450 - margin2.top - margin2.bottom;
 
-var svgCalculator2 = d3.select("#water-chart2").append("svg")
-    .attr("width", width2 + margin2.left + margin2.right)
-    .attr("height", height2 + margin2.top + margin2.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
+var margin = {top: 40, right: 40, bottom: 10, left: 50},
+    width = 600 - margin.left - margin.right,
+    // width = $('#water-chart2').width() - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom,
+    color = d3.scaleOrdinal().range(d3.schemeCategory20c);
 
-// set scales
-var x2 = d3.scaleBand()
-    .range([0, width2])
-    .domain(countryData.map(function(d) {
-        return d.country;
-    }));
+var treemapUS = d3.treemap().size([width, height]);
 
-var y2 = d3.scaleLinear()
-    .range([height2, 0])
-    .domain([0, d3.max(countryData, function(d) {
-        return d.consumption;
-    })]);
+var divUS = d3.select("#water-comparison-US").append("div")
+    .style("position", "relative")
+    .style("width", (width + margin.left + margin.right) + "px")
+    .style("height", (height + margin.top + margin.bottom) + "px")
+    .style("left", margin.left + "px")
+    .style("top", margin.top + "px");
 
-var xAxis2 = d3.axisBottom()
-    .scale(x2);
+//get data
+var rootUS = d3.hierarchy(treeMapDataUS, (d) => d.children)
+.sum((d) => d.size);
 
-var yAxis2 = d3.axisLeft()
-    .scale(y2);
+var treeUS = treemapUS(rootUS);
 
-var xAxisGroup2 = svgCalculator2.append("g")
-    .attr("class", "x-axis axis")
-    .attr("transform", "translate(0," + height2 + ")");
+// Tooltip attempts
+// var divToolTip = d3.select("#water-chart1-treemap").append("div")
+//     .attr("class", "tooltip")
+//     .style("opacity", 0);
+//
+// var mousemove = function(d) {
+//     var xPosition = d3.event.pageX + 5;
+//     var yPosition = d3.event.pageY + 5;
+//
+//     d3.select("#tooltip")
+//         .style("left", xPosition + "px")
+//         .style("top", yPosition + "px");
+//     d3.select("#tooltip")
+//         .text(d.data.name + "<br/>" + d.data.size);
+//     d3.select("#tooltip").classed("hidden", false);
+// };
+//
+// var mouseout = function() {
+//     d3.select("#tooltip").classed("hidden", true);
+// };
 
-var yAxisGroup2 = svgCalculator2.append("g")
-    .attr("class", "y-axis axis");
+var treeMapNodeUS = divUS.datum(root).selectAll(".treeMapNodeUS")
+    .data(treeUS.leaves())
+    .enter().append("div")
+    .attr("class", "treeMapNodeUS")
+    .style("left", (d) => d.x0 + "px")
+.style("top", (d) => d.y0 + "px")
+.style("width", (d) => Math.max(0, d.x1 - d.x0 - 1) + "px")
+.style("height", (d) => Math.max(0, d.y1 - d.y0  - 1) + "px")
+.style("background", (d) => color(d.parent.data.name))
+.text((d) => d.data.name + ": " + d.data.size);
+// .on("mousemove", mousemove)
+//     .on("mouseout", mouseout);
 
-svgCalculator2.append("text")
-    .attr("class", "label")
-    .attr("x", -230)
-    .attr("y", -30)
-    .attr("transform", "rotate(-90)")
-    .text("% US consumption");
 
-svgCalculator2.append("text")
-    .attr("class", "label")
-    .attr("x", width2 / 2 - 25)
-    .attr("y", height2 + 35)
-    .text("Country");
+d3.selectAll("input").on("change", function change() {
+    var value = this.value === "count"
+        ? (d) => { return d.size ? 1 : 0;}
+: (d) => { return d.size; };
 
-svgCalculator2.append("text")
-    .attr("class", "title")
-    .attr("x", 200)
-    .attr("y", -20)
-    .text("Countries' Percentage of United States' Water Consumptions Per Capita Per Day");
+    var newRootUS = d3.hierarchy(treeMapDataUS, (d) => d.children)
+.sum(value);
 
-var bars2 = svgCalculator2.selectAll(".bar2")
-    .data(countryData);
+    treeMapNodeUS.data(treemapUS(newRootUS).leaves())
+        .transition()
+        .duration(1500)
+        .style("left", (d) => d.x0 + "px")
+.style("top", (d) => d.y0 + "px")
+.style("width", (d) => Math.max(0, d.x1 - d.x0 - 1) + "px")
+.style("height", (d) => Math.max(0, d.y1 - d.y0  - 1) + "px")
+});
+// .on("mouseover", function(d) {
+//     div.transition()
+//         .duration(200)
+//         .style("opacity", .9);
+//     div.html(d.data.name + "<br/>" + d.data.size)
+//         .style("left", (d3.event.pageX) + "px")
+//         .style("top", (d3.event.pageY - 28) + "px");
+// })
+// .on("mouseout", function(d) {
+//     div.transition()
+//         .duration(500)
+//         .style("opacity", 0);
+// });
 
-bars2.exit().remove();
 
-bars2.enter()
-    .append("rect")
-    .attr("class", "bar2")
-    .merge(bars2)
-    .attr("x", function(d) {
-        return x2(d.country);
-    })
-    .attr("y", function(d) {
-        return y2(d.consumption);
-    })
-    .attr("height", function(d) {
-        return height2 - y2(d.consumption);
-    })
-    .attr("width", 100)
-    // .attr("width", x2.bandwidth() - 10)
-    .attr("fill", function(d) {
-    if (d.country === "United States") {return d3.rgb("#ed4933")}
-    else {return "steelblue"}});
 
-xAxisGroup2 = svgCalculator2.select(".x-axis")
-    .attr("transform", "translate(0," + height2 + ")")
-    .call(xAxis2);
+// TREE MAP COUNTRIES
+var treeMapDataCountries =
+    {
+        "name": "visualization",
+        "children": [
+            {
+                "name": "country1",
+                "children": [
+                    {"name": "Slovakia", "size": 118}
+                ]
+            },
+            {
+                "name": "country2",
+                "children": [
+                    {"name": "Israel", "size": 172}
+                ]
+            },
+            {
+                "name": "country3",
+                "children": [
+                    {"name": "France", "size": 472}
+                ]
+            },
+            {
+                "name": "country4",
+                "children": [
+                    {"name": "Australia", "size": 629}
+                ]
+            },
+            {
+                "name": "country5",
+                "children": [
+                    {"name": "Ireland", "size": 167}
+                ]
+            }
+        ]
+    };
 
-yAxisGroup2 = svgCalculator2.select(".y-axis")
-    .call(yAxis2);
+var marginCountries = {top: 40, right: 40, bottom: 10, left: 50},
+    widthCountries = 600 - margin.left - margin.right,
+    heightCountries = 300 - margin.top - margin.bottom,
+    colorCountries = d3.scaleOrdinal().range(d3.schemeCategory20c);
 
-// Add numbers
-var numbers2 = svgCalculator2.selectAll("text.numbers2")
-    .data(countryData)
-    .enter()
-    .append("text")
-    .attr("x", function (d, i) {
-        return i * x2.bandwidth() + x2.bandwidth()/3;
-    })
-    .attr("y", function (d) {
-        return y2(d.consumption) - 5;
-    })
-    .text(function(d) {
-        return d.consumption + "%";
-    })
-    .attr("font-size", 10);
+var treemapCountries = d3.treemap().size([widthCountries, heightCountries]);
+
+var divCountries = d3.select("#water-comparison-countries").append("div")
+    .style("position", "relative")
+    .style("width", (width + margin.left + margin.right) + "px")
+    .style("height", (height + margin.top + margin.bottom) + "px")
+    .style("left", margin.left + "px")
+    .style("top", margin.top + "px");
+
+//get data
+var rootCountries = d3.hierarchy(treeMapDataCountries, (d) => d.children)
+.sum((d) => d.size);
+
+var treeCountries = treemapCountries(rootCountries);
+
+// Tooltip attempts
+// var divToolTip = d3.select("#water-chart1-treemap").append("div")
+//     .attr("class", "tooltip")
+//     .style("opacity", 0);
+//
+// var mousemove = function(d) {
+//     var xPosition = d3.event.pageX + 5;
+//     var yPosition = d3.event.pageY + 5;
+//
+//     d3.select("#tooltip")
+//         .style("left", xPosition + "px")
+//         .style("top", yPosition + "px");
+//     d3.select("#tooltip")
+//         .text(d.data.name + "<br/>" + d.data.size);
+//     d3.select("#tooltip").classed("hidden", false);
+// };
+//
+// var mouseout = function() {
+//     d3.select("#tooltip").classed("hidden", true);
+// };
+
+var treeMapNodeCountries = divCountries.datum(rootCountries).selectAll(".treeMapNodeCountries")
+    .data(treeCountries.leaves())
+    .enter().append("div")
+    .attr("class", "treeMapNodeCountries")
+    .style("left", (d) => d.x0 + "px")
+.style("top", (d) => d.y0 + "px")
+.style("width", (d) => Math.max(0, d.x1 - d.x0 - 1) + "px")
+.style("height", (d) => Math.max(0, d.y1 - d.y0  - 1) + "px")
+.style("background", (d) => colorCountries(d.parent.data.name))
+.text((d) => d.data.name + ": " + d.data.size);
+// .on("mousemove", mousemove)
+//     .on("mouseout", mouseout);
+
+
+d3.selectAll("input").on("change", function change() {
+    var value = this.value === "count"
+        ? (d) => { return d.size ? 1 : 0;}
+: (d) => { return d.size; };
+
+    var newRootCountries = d3.hierarchy(treeMapDataCountries, (d) => d.children)
+.sum(value);
+
+    treeMapNodeCountries.data(treemapCountries(newRootCountries).leaves())
+        .transition()
+        .duration(1500)
+        .style("left", (d) => d.x0 + "px")
+.style("top", (d) => d.y0 + "px")
+.style("width", (d) => Math.max(0, d.x1 - d.x0 - 1) + "px")
+.style("height", (d) => Math.max(0, d.y1 - d.y0  - 1) + "px")
+});
+// .on("mouseover", function(d) {
+//     div.transition()
+//         .duration(200)
+//         .style("opacity", .9);
+//     div.html(d.data.name + "<br/>" + d.data.size)
+//         .style("left", (d3.event.pageX) + "px")
+//         .style("top", (d3.event.pageY - 28) + "px");
+// })
+// .on("mouseout", function(d) {
+//     div.transition()
+//         .duration(500)
+//         .style("opacity", 0);
+// });
