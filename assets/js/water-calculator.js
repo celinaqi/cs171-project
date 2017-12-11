@@ -132,12 +132,15 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
         .attr("x", function (d) {
             return vis.x1(d.student);
         })
+
         .attr("y", function (d) {
             return vis.y1(d.consumption);
         })
         .attr("height", function (d) {
-            return height1 - vis.y1(d.consumption);
+            return 0
+            // return height1 - vis.y1(d.consumption);
         })
+<<<<<<< HEAD
         .attr("width", vis.x1.bandwidth() - 10)
         .attr("fill", function (d) {
             if (d.student === "You") {
@@ -147,6 +150,22 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
                 return "steelblue"
             }
         })
+=======
+        .attr("fill", function(d) {
+            if (d.student === "You") {return d3.rgb("#ed4933")}
+            else {return "steelblue"}})
+        .attr("width", vis.x1.bandwidth() - 10)
+        .transition()
+        .duration(2000)
+        .delay(function(d, i) {
+            return i * 50;
+        })
+        .attr("y", function (d) {
+            // return height1;
+            return vis.y1(d.consumption)
+        })
+        .attr("height", function (d) {return height1 - vis.y1(d.consumption)});
+>>>>>>> eb78ac884d5edbc6933e1082413296e19bf72940
 
     vis.bars1.exit().remove();
 
