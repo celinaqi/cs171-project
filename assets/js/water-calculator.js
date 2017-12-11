@@ -170,12 +170,7 @@ function waterCalculator(shower, flush, runningWater, laundry, dishes, drinks, d
     var vis = this;
     var total = Math.round((+shower) + (+flush) + (+runningWater) + (+laundry) + (+dishes) + (+drinks) + (+drives));
     $("#water-results-total").html("You directly consume <b>" + total + " gallons of water per day</b>. Here's how that compares to other Harvard students:");
-
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3e16bc498becd814d8b3da936b39fa187e5d507c
     vis.numBottles = total * 7.5;
 
     updateVisualization (shower, flush, runningWater, laundry, dishes, drinks, drives, total);
