@@ -1,115 +1,117 @@
-// Second bar chart
-var countryData = [
-    {"country" : "United States", "consumption" : 100},
-    {"country" : "Australia", "consumption" : 86},
-    {"country" : "Japan", "consumption" : 65},
-    {"country" : "France", "consumption" : 50},
-    {"country" : "Peru", "consumption" : 30},
-    {"country" : "India", "consumption" : 23},
-    {"country" : "Nigeria", "consumption" : 06},
-    {"country" : "Haiti", "consumption" : 03},
-    {"country" : "Mozambique", "consumption" : 01}
-];
+var treeMap =
+    // {
+    //     "name": "map",
+    //     "children": [
+    //         {"name": "shower", "size": 10},
+    //         {"name": "flush", "size": 15},
+    //         {"name": "sink", "size": 5},
+    //         {"name": "laundry", "size": 6},
+    //         {"name": "dishes", "size": 3},
+    //         {"name": "drinking", "size": 8},
+    //         {"name": "driving", "size": 100}
+    //     ]
+    // };
+    {
+        "name": "country1",
+        "children": [
+            {"name": "United States", "size": 16}
+        ]
+    },
+    {
+        "name": "country2",
+        "children": [
+            {"name": "Canada", "size": 6}
+        ]
+    },
+    {
+        "name": "country3",
+        "children": [
+            {"name": "errr", "size": 36}
+        ]
+    }
 
-var margin2 = {top: 60, right: 20, bottom: 40, left: 80},
-    // width2 = $('#water-chart2').width() - margin2.left - margin2.right,
-    width2 = 1200 - margin2.left - margin2.right,
-    height2 = 450 - margin2.top - margin2.bottom;
+var margin = {top: 40, right: 40, bottom: 10, left: 50},
+    width = $('#water-chart2').width() - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom,
+    color = d3.scaleOrdinal().range(d3.schemeCategory20c);
 
-var svgCalculator2 = d3.select("#water-chart2").append("svg")
-    .attr("width", width2 + margin2.left + margin2.right)
-    .attr("height", height2 + margin2.top + margin2.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
+var treemap = d3.treemap().size([width, height]);
 
-// set scales
-var x2 = d3.scaleBand()
-    .range([0, width2])
-    .domain(countryData.map(function(d) {
-        return d.country;
-    }));
+var div = d3.select("#water-chart2").append("div")
+    .style("position", "relative")
+    .style("width", (width + margin.left + margin.right) + "px")
+    .style("height", (height + margin.top + margin.bottom) + "px")
+    .style("left", margin.left + "px")
+    .style("top", margin.top + "px");
 
-var y2 = d3.scaleLinear()
-    .range([height2, 0])
-    .domain([0, d3.max(countryData, function(d) {
-        return d.consumption;
-    })]);
+//get data
+var root = d3.hierarchy(treeMap, (d) => d.children)
+.sum((d) => d.size);
 
-var xAxis2 = d3.axisBottom()
-    .scale(x2);
+var tree = treemap(root);
 
-var yAxis2 = d3.axisLeft()
-    .scale(y2);
+// Tooltip attempts
+// var divToolTip = d3.select("#water-chart1-treemap").append("div")
+//     .attr("class", "tooltip")
+//     .style("opacity", 0);
+//
+// var mousemove = function(d) {
+//     var xPosition = d3.event.pageX + 5;
+//     var yPosition = d3.event.pageY + 5;
+//
+//     d3.select("#tooltip")
+//         .style("left", xPosition + "px")
+//         .style("top", yPosition + "px");
+//     d3.select("#tooltip")
+//         .text(d.data.name + "<br/>" + d.data.size);
+//     d3.select("#tooltip").classed("hidden", false);
+// };
+//
+// var mouseout = function() {
+//     d3.select("#tooltip").classed("hidden", true);
+// };
 
-var xAxisGroup2 = svgCalculator2.append("g")
-    .attr("class", "x-axis axis")
-    .attr("transform", "translate(0," + height2 + ")");
+var treeMapNode = div.datum(root).selectAll(".treeMapNode")
+    .data(tree.leaves())
+    .enter().append("div")
+    .attr("class", "treeMapNode")
+    .style("left", (d) => d.x0 + "px")
+.style("top", (d) => d.y0 + "px")
+.style("width", (d) => Math.max(0, d.x1 - d.x0 - 1) + "px")
+.style("height", (d) => Math.max(0, d.y1 - d.y0  - 1) + "px")
+.style("background", (d) => color(d.parent.data.name))
+.text((d) => d.data.name + ": " + d.data.size);
+// .on("mousemove", mousemove)
+//     .on("mouseout", mouseout);
 
-var yAxisGroup2 = svgCalculator2.append("g")
-    .attr("class", "y-axis axis");
 
-svgCalculator2.append("text")
-    .attr("class", "label")
-    .attr("x", -230)
-    .attr("y", -30)
-    .attr("transform", "rotate(-90)")
-    .text("% US consumption");
+d3.selectAll("input").on("change", function change() {
+    var value = this.value === "count"
+        ? (d) => { return d.size ? 1 : 0;}
+: (d) => { return d.size; };
 
-svgCalculator2.append("text")
-    .attr("class", "label")
-    .attr("x", width2 / 2 - 25)
-    .attr("y", height2 + 35)
-    .text("Country");
+    var newRoot = d3.hierarchy(treeMap, (d) => d.children)
+.sum(value);
 
-svgCalculator2.append("text")
-    .attr("class", "title")
-    .attr("x", 200)
-    .attr("y", -20)
-    .text("Countries' Percentage of United States' Water Consumptions Per Capita Per Day");
+    treeMapNode.data(treemap(newRoot).leaves())
+        .transition()
+        .duration(1500)
+        .style("left", (d) => d.x0 + "px")
+.style("top", (d) => d.y0 + "px")
+.style("width", (d) => Math.max(0, d.x1 - d.x0 - 1) + "px")
+.style("height", (d) => Math.max(0, d.y1 - d.y0  - 1) + "px")
+});
+// .on("mouseover", function(d) {
+//     div.transition()
+//         .duration(200)
+//         .style("opacity", .9);
+//     div.html(d.data.name + "<br/>" + d.data.size)
+//         .style("left", (d3.event.pageX) + "px")
+//         .style("top", (d3.event.pageY - 28) + "px");
+// })
+// .on("mouseout", function(d) {
+//     div.transition()
+//         .duration(500)
+//         .style("opacity", 0);
+// });
 
-var bars2 = svgCalculator2.selectAll(".bar2")
-    .data(countryData);
-
-bars2.exit().remove();
-
-bars2.enter()
-    .append("rect")
-    .attr("class", "bar2")
-    .merge(bars2)
-    .attr("x", function(d) {
-        return x2(d.country);
-    })
-    .attr("y", function(d) {
-        return y2(d.consumption);
-    })
-    .attr("height", function(d) {
-        return height2 - y2(d.consumption);
-    })
-    .attr("width", 100)
-    // .attr("width", x2.bandwidth() - 10)
-    .attr("fill", function(d) {
-    if (d.country === "United States") {return d3.rgb("#ed4933")}
-    else {return "steelblue"}});
-
-xAxisGroup2 = svgCalculator2.select(".x-axis")
-    .attr("transform", "translate(0," + height2 + ")")
-    .call(xAxis2);
-
-yAxisGroup2 = svgCalculator2.select(".y-axis")
-    .call(yAxis2);
-
-// Add numbers
-var numbers2 = svgCalculator2.selectAll("text.numbers2")
-    .data(countryData)
-    .enter()
-    .append("text")
-    .attr("x", function (d, i) {
-        return i * x2.bandwidth() + x2.bandwidth()/3;
-    })
-    .attr("y", function (d) {
-        return y2(d.consumption) - 5;
-    })
-    .text(function(d) {
-        return d.consumption + "%";
-    })
-    .attr("font-size", 10);
