@@ -4077,10 +4077,11 @@ polyline{
     padding-top: 20px;
 }
 
-<<<<<<< HEAD
 #infotext {
-	padding-top: 30px;
+	padding-top: 40px;
 	padding-bottom: 30px;
+    padding-left: 30px;
+
 }
 
 #water-demand {
