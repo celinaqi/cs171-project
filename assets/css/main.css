@@ -4075,3 +4075,7 @@ polyline{
 	font-size: 20px;
 	padding-bottom: 30px;
 }
+
+.section-title {
+    padding-top: 20px;
+}
