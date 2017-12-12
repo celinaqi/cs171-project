@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e5164ad-43fd-40ff-a9fb-51adc1cd28e5" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/waterBeef.png" afterPath="$PROJECT_DIR$/images/waterBeef.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/waterCotton.png" afterPath="$PROJECT_DIR$/images/waterCotton.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/waterPhone.png" afterPath="$PROJECT_DIR$/images/waterPhone.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/waterPool.png" afterPath="$PROJECT_DIR$/images/waterPool.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/main.css" afterPath="$PROJECT_DIR$/assets/css/main.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/country-comparison.js" afterPath="$PROJECT_DIR$/assets/js/country-comparison.js" />
@@ -19,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="3861" column="1" lean-forward="false" selection-start-line="3861" selection-start-column="1" selection-end-line="3861" selection-end-column="1" />
+            <state relative-caret-position="265">
+              <caret line="1489" column="28" lean-forward="false" selection-start-line="1489" selection-start-column="28" selection-end-line="1489" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -32,20 +36,22 @@
       <file leaf-file-name="country-comparison.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/country-comparison.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="134" column="14" lean-forward="false" selection-start-line="134" selection-start-column="14" selection-end-line="134" selection-end-column="14" />
+            <state relative-caret-position="272">
+              <caret line="161" column="52" lean-forward="false" selection-start-line="161" selection-start-column="52" selection-end-line="161" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="implications.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="implications.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/implications.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
-              <caret line="169" column="26" lean-forward="false" selection-start-line="169" selection-start-column="26" selection-end-line="169" selection-end-column="26" />
+            <state relative-caret-position="127">
+              <caret line="134" column="139" lean-forward="false" selection-start-line="134" selection-start-column="139" selection-end-line="134" selection-end-column="139" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#section#0;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h2#0;n#div#0;n#section#2;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h2#0;n#div#0;n#section#3;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -54,9 +60,12 @@
       <file leaf-file-name="water-calculator.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/water-calculator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2322">
-              <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="326">
+              <caret line="71" column="23" lean-forward="true" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="23" />
+              <folding>
+                <marker date="1513045700000" expanded="true" signature="1063:2403" ph="{...}" />
+                <marker date="1513045700000" expanded="true" signature="12984:13952" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,12 +88,18 @@
       <find>parent.data</find>
       <find>color</find>
       <find>wrapper</find>
-      <find>axis</find>
       <find>treemapnod</find>
       <find>two</find>
       <find>alt</find>
       <find>style</find>
+      <find>axis</find>
+      <find>white</find>
       <find>waterbeef</find>
+      <find>treemapnode</find>
+      <find>indirect water</find>
+      <find>h2</find>
+      <find>black</find>
+      <find>water shortage</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -100,10 +115,10 @@
         <option value="$PROJECT_DIR$/js/tree" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/assets/js/tree.js" />
-        <option value="$PROJECT_DIR$/assets/js/water-calculator.js" />
         <option value="$PROJECT_DIR$/assets/js/country-comparison.js" />
-        <option value="$PROJECT_DIR$/implications.html" />
         <option value="$PROJECT_DIR$/assets/css/main.css" />
+        <option value="$PROJECT_DIR$/assets/js/water-calculator.js" />
+        <option value="$PROJECT_DIR$/implications.html" />
       </list>
     </option>
   </component>
@@ -215,7 +230,7 @@
       <workItem from="1512922442456" duration="3672000" />
       <workItem from="1512943041934" duration="10064000" />
       <workItem from="1513010934870" duration="2720000" />
-      <workItem from="1513035494295" duration="7353000" />
+      <workItem from="1513035494295" duration="9045000" />
     </task>
     <task id="LOCAL-00001" summary="changed photo, removed &quot;hose&quot; from water calculator form">
       <created>1512833465832</created>
@@ -361,7 +376,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30337000" />
+    <option name="totallyTimeSpent" value="32029000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="438" y="23" width="830" height="773" extended-state="0" />
@@ -433,6 +448,8 @@
           <caret line="140" column="50" lean-forward="true" selection-start-line="140" selection-start-column="50" selection-end-line="140" selection-end-column="50" />
           <folding>
             <element signature="n#style#0;n#div#1;n#section#0;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#section#2;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#section#3;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -459,6 +476,8 @@
           <caret line="140" column="64" lean-forward="false" selection-start-line="140" selection-start-column="64" selection-end-line="140" selection-end-column="64" />
           <folding>
             <element signature="n#style#0;n#div#1;n#section#0;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#section#2;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#section#3;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -509,6 +528,8 @@
           <caret line="112" column="37" lean-forward="true" selection-start-line="112" selection-start-column="37" selection-end-line="112" selection-end-column="57" />
           <folding>
             <element signature="n#style#0;n#div#1;n#section#0;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#section#2;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#section#3;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -527,6 +548,8 @@
           <caret line="112" column="37" lean-forward="true" selection-start-line="112" selection-start-column="37" selection-end-line="112" selection-end-column="57" />
           <folding>
             <element signature="n#style#0;n#div#1;n#section#0;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#section#2;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#section#3;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -569,6 +592,8 @@
           <caret line="112" column="37" lean-forward="true" selection-start-line="112" selection-start-column="37" selection-end-line="112" selection-end-column="57" />
           <folding>
             <element signature="n#style#0;n#div#1;n#section#0;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#section#2;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#section#3;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -676,37 +701,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/water-calculator.js">
+    <entry file="file://$PROJECT_DIR$/assets/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2322">
-          <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+        <state relative-caret-position="265">
+          <caret line="1489" column="28" lean-forward="false" selection-start-line="1489" selection-start-column="28" selection-end-line="1489" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/country-comparison.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="134" column="14" lean-forward="false" selection-start-line="134" selection-start-column="14" selection-end-line="134" selection-end-column="14" />
+        <state relative-caret-position="272">
+          <caret line="161" column="52" lean-forward="false" selection-start-line="161" selection-start-column="52" selection-end-line="161" selection-end-column="52" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/water-calculator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="71" column="23" lean-forward="true" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="23" />
+          <folding>
+            <marker date="1513045700000" expanded="true" signature="1063:2403" ph="{...}" />
+            <marker date="1513045700000" expanded="true" signature="12984:13952" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/implications.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="169" column="26" lean-forward="false" selection-start-line="169" selection-start-column="26" selection-end-line="169" selection-end-column="26" />
+        <state relative-caret-position="127">
+          <caret line="134" column="139" lean-forward="false" selection-start-line="134" selection-start-column="139" selection-end-line="134" selection-end-column="139" />
           <folding>
             <element signature="n#style#0;n#div#1;n#section#0;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#section#2;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#section#3;n#article#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="3861" column="1" lean-forward="false" selection-start-line="3861" selection-start-column="1" selection-end-line="3861" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>

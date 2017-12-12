@@ -3863,7 +3863,7 @@ div.tooltip {
 }
 
 .treeMapNode {
-	border: solid 1px black;
+	/*border: solid 1px black;*/
 	font: 10px sans-serif;
 	line-height: 12px;
 	overflow: hidden;

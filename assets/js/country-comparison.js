@@ -53,21 +53,18 @@ svgCalculator2.append("text")
     .attr("x", -230)
     .attr("y", -30)
     .attr("transform", "rotate(-90)")
-    .attr("fill", "white")
     .text("% US consumption");
 
 svgCalculator2.append("text")
     .attr("class", "label")
     .attr("x", width2 / 2 - 25)
     .attr("y", height2 + 35)
-    .attr("fill", "white")
     .text("Country");
 
 svgCalculator2.append("text")
     .attr("class", "title")
     .attr("x", 200)
     .attr("y", -20)
-    .attr("fill", "white")
     .text("Countries' Percentage of United States' Water Consumptions Per Capita Per Day");
 
 var bars2 = svgCalculator2.selectAll(".bar2")
@@ -162,8 +159,7 @@ var treeMapNodeUS = divUS.datum(root).selectAll(".treeMapNode")
 .style("width", (d) => Math.max(0, d.x1 - d.x0 - 1) + "px")
 .style("height", (d) => Math.max(0, d.y1 - d.y0  - 1) + "px")
 .style("background", (d) => color(d.parent.data.name))
-.text((d) => d.data.name + ": " + d.data.size + "%")
-.style("fill", "black");
+.text((d) => d.data.name + ": " + d.data.size + "%");
 
 
 // TREE MAP COUNTRIES1
