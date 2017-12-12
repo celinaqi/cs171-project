@@ -2,127 +2,134 @@
 
 <html>
 <<<<<<< HEAD
-	<head>
-		<title>Implications</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+	<title>Implications</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<!-- CSS Libraries -->
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<link rel="stylesheet" href="assets/css/leaflet.css" />
-		<!-- Favicon -->
-		<link rel="shortcut icon" type="image/ico" href="no_water.ico"/>
+	<!-- CSS Libraries -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<link rel="stylesheet" href="assets/css/leaflet.css" />
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/ico" href="no_water.ico"/>
 
-	</head>
-	<body>
+</head>
+<body>
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+<!-- Page Wrapper -->
+<div id="page-wrapper">
 
-				<!-- Header -->
-					<header id="header">
-						<h1><a href="index.html">Water We Gonna Do?</a></h1>
-						<nav id="nav">
-							<ul>
-								<li class="special">
-									<a href="#menu" class="menuToggle"><span>Menu</span></a>
-									<div id="menu">
-										<ul>
-											<li><a href="index.html">Introduction</a></li>
-											<li><a href="implications.html">Implications</a></li>
-										</ul>
-									</div>
-								</li>
-							</ul>
-						</nav>
-					</header>
+	<!-- Header -->
+	<header id="header">
+		<h1><a href="index.html">Water We Gonna Do?</a></h1>
+		<nav id="nav">
+			<ul>
+				<li class="special">
+					<a href="#menu" class="menuToggle"><span>Menu</span></a>
+					<div id="menu">
+						<ul>
+							<li><a href="index.html">Introduction</a></li>
+							<li><a href="implications.html">Implications</a></li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</header>
 
-		<!-- Main -->
-			<article id="main">
-				<header>
-					<h2>This problem might be global.</h2>
-					<p>But it's important to contexualize; <br/>
-					so let's start with you.</p>
-				</header>
+	<!-- Main -->
+	<article id="main">
+		<header>
+			<h2>This problem might be global.</h2>
+			<p>But it's important to contexualize; <br/>
+				so let's start with you.</p>
+		</header>
 
 
-				<!-- Water Calculator -->
-				<section class="wrapper style5">
+		<!-- Water Calculator -->
+		<section class="wrapper style5">
 
-						<div id="water-calculator">
-							<h2 align="center">How much water do you consume?</h2>
-							<form id="waterForm" class="form-group">
-								<div class="form-group row">
-									<label for="shower" class="col-md-8 col-form-label">Minutes showering per day</label>
-									<div class="col-md-2">
-										<input class="form-control" type="number" id="shower">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="flush" class="col-md-8 col-form-label">Toilet flushes per day</label>
-									<div class="col-md-2">
-										<input class="form-control" type="number" id="flush">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="runningWater" class="col-md-8 col-form-label">Minutes running faucet per day</label>
-									<div class="col-md-2">
-										<input class="form-control" type="number" id="runningWater">
-									</div>
-								</div>
-								<!-- <div class="form-group row">
-									<label for="hose" class="col-md-8 col-form-label">Minutes running hose per week</label>
-									<div class="col-md-2">
-										<input class="form-control" type="number" id="hose">
-									</div>
-								</div> -->
-								<div class="form-group row">
-									<label for="laundry" class="col-md-8 col-form-label">Loads of laundry per month</label>
-									<div class="col-md-2">
-										<input class="form-control" type="number" id="laundry">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="dishes" class="col-md-8 col-form-label">Loads of dishes per week</label>
-									<div class="col-md-2">
-										<input class="form-control" type="number" id="dishes">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="drink" class="col-md-8 col-form-label">Amount of drinking water per day <br/> (8 oz cups)</label>
-									<div class="col-md-2">
-										<input class="form-control" type="number" id="drink">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="drive" class="col-md-8 col-form-label">Number of miles driven per week <br/> (shuttle counts!)</label>
-									<div class="col-md-2">
-										<input class="form-control" type="number" id="drive">
-									</div>
-								</div>
-								<button type="button" class="button special fit" onClick="getValues(); showDiv();">Submit</button>
-							</form>
-						</div></br>
-
-						<script>
-							function showDiv(){
-                                document.getElementById('water-calculator-comparison').style.display = "block";
-							}
-						</script>
-
-						<div id="water-calculator-comparison" style="display:none;">
-							<h2 id="water-calculator-title">Water Calculator Results</h2>
-							<div id="water-results-total"></div>
-							<div id="water-chart1"></div>
-							<div align="center" id="water-chart1-pie"></div>
-							<div id="water-bottles"></div>
+			<div id="water-calculator">
+				<h2 align="center">How much water do you consume?</h2>
+				<form id="waterForm" class="form-group">
+					<div class="form-group row">
+						<label for="shower" class="col-md-8 col-form-label">Minutes showering per day</label>
+						<div class="col-md-2">
+							<input class="form-control" type="number" id="shower">
 						</div>
+					</div>
+					<div class="form-group row">
+						<label for="flush" class="col-md-8 col-form-label">Toilet flushes per day</label>
+						<div class="col-md-2">
+							<input class="form-control" type="number" id="flush">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="runningWater" class="col-md-8 col-form-label">Minutes running faucet per day</label>
+						<div class="col-md-2">
+							<input class="form-control" type="number" id="runningWater">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="laundry" class="col-md-8 col-form-label">Loads of laundry per month</label>
+						<div class="col-md-2">
+							<input class="form-control" type="number" id="laundry">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="dishes" class="col-md-8 col-form-label">Loads of dishes per week</label>
+						<div class="col-md-2">
+							<input class="form-control" type="number" id="dishes">
+<!---->
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="drink" class="col-md-8 col-form-label">Amount of drinking water per day <br/> (8 oz cups)</label>
+						<div class="col-md-2">
+							<input class="form-control" type="number" id="drink">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="drive" class="col-md-8 col-form-label">Number of miles driven per week <br/> (shuttle counts!)</label>
+						<div class="col-md-2">
+							<input class="form-control" type="number" id="drive">
+						</div>
+					</div>
+					<button type="button" class="button special fit" onClick="getValues(); showDiv();">Submit</button>
+				</form>
+			</div>
 
+<<<<<<< HEAD
 					<h2 align="center">Indirect Water Consumption</h2>
+=======
+			<script>
+                function showDiv(){
+                    document.getElementById('water-calculator-comparison').style.display = "block";
+                }
+			</script>
+
+			<div id="water-calculator-comparison" style="display:none;">
+				<h2 id="water-calculator-title">Water Calculator Results</h2>
+				<div id="water-results-total"></div>
+				<div id="water-bottles"></div>
+
+				<p class="water-chart-text"> Here's how the breakdown of your daily water consumption compares to that of the CS171 staff: </p>
+				<div class="row">
+					<div class="col-lg-6">
+						<div id="water-chart1"></div>
+					</div>
+
+					<div class="col-lg-6">
+						<div id="water-chart1-pie"></div>
+					</div>
+				</div>
+			</div>
+
+>>>>>>> 6d5cd0824d5b0a3f9f85bb3990646d3f07ace4f9
 					<p>However, this is just your measurable direct water consumption. You also consume water in countless other ways. For example:</p>
 					<!--<div class="row">-->
 						<!--<div class="col-md-6 iconInfo"><img src="images/waterPhone.png" height="400" width="700" alt="" /></div>-->
@@ -172,7 +179,7 @@
 				<!-- Second Bar Chart -->
 				<section class="wrapper style2" id="secondbar"></br>
 					<div class="row">
-						<h2>Water Consumption in the United States</h2>
+						<h2 class="section-title">Water Consumption in the United States</h2>
 				<p>When we account for both direct and virtual water consumption, experts estimate <b>the average American consumes 2,200 gallons of water per day</b>. This is how water consumption one person in the United States consumes per day compared to the water consumption per capita per day in other countries in 2013:</p>
 				<!-- <div class="row"> -->
 							<div align="center" id="water-chart2"></div>
@@ -345,8 +352,6 @@
 				</div>
 
 			</div>
-
-<<<<<<< HEAD
 		</div>
 	</article>
 </div>
@@ -378,32 +383,3 @@
 
 </body>
 </html>
-<!--=======-->
-		<!--&lt;!&ndash; Scripts &ndash;&gt;-->
-			<!--<script src="assets/js/jquery.min.js"></script>-->
-			<!--<script src="assets/js/jquery.scrollex.min.js"></script>-->
-			<!--<script src="assets/js/jquery.scrolly.min.js"></script>-->
-			<!--<script src="assets/js/skel.min.js"></script>-->
-			<!--<script src="assets/js/util.js"></script>-->
-			<!--<script src="assets/js/bootstrap.min.js"></script>-->
-
-		<!--&lt;!&ndash; Visualizations &ndash;&gt;-->
-				<!--<script src="assets/js/d3.js"></script>-->
-				<!--<script src="assets/js/d3-tip.js"></script>-->
-				<!--<script src="assets/js/colorbrewer.js"></script>-->
-				<!--<script src="assets/js/queue.v1.min.js"></script>-->
-				<!--<script src="assets/js/topojson.v1.min.js"></script>-->
-
-		<!--&lt;!&ndash; Load data, create visualizations &ndash;&gt;-->
-				<!--<script src="assets/js/tree.js"></script>-->
-				<!--<script src="assets/js/water-calculator.js"></script>-->
-				<!--<script src="assets/js/country-comparison.js"></script>-->
-				<!--<script src="assets/js/choropleth.js"></script>-->
-				<!--<script src="assets/js/barchart.js"></script>-->
-
-			<!--&lt;!&ndash;[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]&ndash;&gt;-->
-			<!--<script src="assets/js/main.js"></script>-->
-
-	<!--</body>-->
-<!--</html>-->
-<!--&gt;>>>>>> 0c8b6870408587c4572c40d4cdf6c53b0e487fd3-->

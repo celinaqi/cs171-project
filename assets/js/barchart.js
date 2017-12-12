@@ -12,7 +12,7 @@ BarChart = function(_parentElement, _data, _config){
 BarChart.prototype.initVis = function(){
     var vis = this;
     vis.margin = {top: 40, right: 0, bottom: 80, left: 0};
-    vis.widthBar = 400 - vis.margin.left - vis.margin.right,
+    vis.widthBar = 500 - vis.margin.left - vis.margin.right,
         vis.heightBar = 410 - vis.margin.top - vis.margin.bottom;
 
     // appending svg
@@ -32,7 +32,7 @@ BarChart.prototype.initVis = function(){
 
 
     vis.xBar = d3.scaleBand()
-        .rangeRound([0, vis.widthBar])
+        .rangeRound([0, (vis.widthBar - 70)])
         .paddingInner(0.10)
         .align(0.1);
 
@@ -115,7 +115,7 @@ BarChart.prototype.initVis = function(){
     vis.tooltip.append("text")
         .attr("x", 50)
         .attr("dy", "1.2em")
-        .attr("dx", "1.2em")
+        .attr("dx", "0.4em")
         .style("text-anchor", "middle")
         .attr("font-size", "12px")
         .attr("font-weight", "bold");
