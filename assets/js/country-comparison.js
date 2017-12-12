@@ -89,7 +89,7 @@ bars2.enter()
     // .attr("width", x2.bandwidth() - 10)
     .attr("fill", function(d) {
         if (d.country === "United States") {return d3.rgb("#ed4933")}
-        else {return "steelblue"}});
+        else {return d3.rgb("#3863a8")}});
 
 xAxisGroup2 = svgCalculator2.select(".x-axis")
     .attr("transform", "translate(0," + height2 + ")")

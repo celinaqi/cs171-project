@@ -69,7 +69,7 @@ BarChart.prototype.initVis = function(){
 
 
     vis.barLegend.append("rect")
-        .attr("x", vis.widthBar - 75)
+        .attr("x", vis.widthBar - 120)
         .attr("y", function(d, i){return i*21 + 20})
         .attr("width", 15)
         .attr("height", 15)
@@ -84,7 +84,7 @@ BarChart.prototype.initVis = function(){
     vis.barLegend.append("text")
         .attr("class", "legendText")
         .attr("text-anchor", "start")
-        .attr("x", vis.widthBar - 55)
+        .attr("x", vis.widthBar - 100)
         .attr("y", function(d, i) {return i*21 + 30})
         .text(function(d, i) {
             switch (i) {

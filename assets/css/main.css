@@ -3856,6 +3856,7 @@ div.tooltip {
 
 .form-group {
 	padding-left: 30px;
+    margin-bottom: 0px;
 }
 
 .axislabel {
@@ -4074,4 +4075,9 @@ polyline{
 
 .section-title {
     padding-top: 20px;
+}
+
+#form-buttons {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
 }
