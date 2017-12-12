@@ -3861,10 +3861,6 @@ div.tooltip {
 	font-size: 12px;
 }
 
-.axis {
-	stroke: white;
-}
-
 .treeMapNode {
 	border: solid 1px black;
 	font: 10px sans-serif;
