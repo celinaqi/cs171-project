@@ -3819,12 +3819,13 @@
 /* Viz 0: water calculator */
 #water-calculator-title {
 	text-align: center;
+	padding-top: 15px;
 }
 
-/*.bar {*/
-	/*fill: steelblue;*/
-/*}*/
-
+.water-chart-text {
+	font-weight: bold;
+	text-align: center;
+}
 
 .bar:hover {
 	opacity: .8;
@@ -3896,7 +3897,7 @@ div.tooltip {
 }
 
 .bartitle {
-	font-size: 13px;
+	font-size: 12px;
 	fill: black;
 }
 
@@ -3961,7 +3962,6 @@ polyline{
 }
 
 #water-chart1-pie {
-	padding-left: 300px;
 	padding-bottom: 0px;
 }
 
@@ -4064,8 +4064,9 @@ polyline{
 	font-size: 10px;
 }
 
-/*body {*/
-	/*background:radial-gradient(ellipse at center, rgba(255,254,234,1) 0%, rgba(255,254,234,1) 35%, #B7E8EB 100%);*/
-/*// background:#B7E8EB;*/
-	/*overflow: hidden;*/
-/*}*/
+
+#water-results-total {
+	text-align: center;
+	font-size: 20px;
+	padding-bottom: 30px;
+}

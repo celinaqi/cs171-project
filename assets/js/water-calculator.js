@@ -75,13 +75,14 @@ function initialize(){
         .attr("class", "x-axis axis")
         .attr("transform", "translate(0," + height1 +  ")");
 
-
-
     // pie stuff
 
-    vis.marginPie = {top: 200, right: 500, bottom: 400, left: 200};
-    vis.widthPie = $('#water-chart1-pie').width() - marginPie.left - marginPie.right;
-    vis.heightPie = 500 - marginPie.top - marginPie.bottom;
+    vis.marginPie = {top: 200, right: 10, bottom: 400, left: 10};
+    // vis.widthPie = $('#water-chart1-pie').width() - vis.marginPie.left - vis.marginPie.right;
+
+    vis.widthPie = 600 - vis.marginPie.left - vis.marginPie.right;
+
+    vis.heightPie = 500 - vis.marginPie.top - vis.marginPie.bottom;
 
     vis.svgPie = d3.select("#water-chart1-pie").append("svg")
         .attr("width", vis.widthPie + vis.marginPie.left + vis.marginPie.right)
@@ -153,10 +154,14 @@ function getValues() {
 function waterCalculator(shower, flush, runningWater, laundry, dishes, drinks, drives) {
 
     var vis = this;
+
     var total = Math.round((+shower) + (+flush) + (+runningWater) + (+laundry) + (+dishes) + (+drinks) + (+drives));
-    $("#water-results-total").html("You directly consume <b>" + total + " gallons of water per day</b>. Here's how that compares to other Harvard students:");
 
     vis.numBottles = total * 7.5;
+
+    $("#water-results-total").html("You directly consume <b>" + total + " gallons of water per day</b>. </br> To put it in context, this means you use the equivalent of <b> " + vis.numBottles + " full water bottles </b> every single day. </br> ");
+
+    // $("#water-results-total").html("You directly consume <b>" + total + " gallons, or </b> <b> " + vis.numBottles + "</b> water bottles' worth of water every single day </br>Here's that amount visualized: ");
 
     updateVisualization (shower, flush, runningWater, laundry, dishes, drinks, drives, total);
 
@@ -354,12 +359,12 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
                 return d3.rgb("#ed4933")
             }
             else {
-                return "steelblue"
+                return "blue"
             }
         })
         .attr("fill", function(d) {
             if (d.student === "You") {return d3.rgb("#ed4933")}
-            else {return "steelblue"}})
+            else {return "navy"}})
         .attr("width", vis.x1.bandwidth() - 10)
         .transition()
         .duration(2000)
@@ -407,7 +412,7 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
         .append("text")
         .attr("class", "bartitle")
         .attr("x", width1 / 5)
-        .attr("y", -10)
+        .attr("y", -30)
         .text("Consumption of Water (Gallons per Day)");
 
     bartitle.exit().remove();
