@@ -9,6 +9,8 @@ The code we worked with lies in the cs171-project/assets folder. We used two dif
 
 We separated our code into different js files for each different set of visualizations, and mainly each took responsibility for one type of visualization. As such, all of the information pertaining to the water calculator lies in the water-calculator.js folder, all of the information regarding the choropleth lies in choropleth.js, etc. 
 
+Our styling css code all lie in our css folder, as well as the images and icons we use throughout our website.
+
 * [Code](https://github.com/celinaqi/cs171-project/tree/master/assets)
 * [Libraries](https://github.com/celinaqi/cs171-project/tree/master/assets/js/lib)
 * [Data](https://github.com/celinaqi/cs171-project/tree/master/data)
@@ -16,5 +18,5 @@ We separated our code into different js files for each different set of visualiz
 
 ## Links
 * [Project Website](https://celinaqi.github.io/cs171-project/)
-* [Screencast Video]
+* [Screencast Video](https://youtu.be/p_mKcOKhKWk)
 * [Process Book](https://docs.google.com/a/college.harvard.edu/document/d/1ikvStdYGJXRAqBMB7wghdQQ6VSUoIPfzjRja2IFow-U/edit?usp=sharing)
