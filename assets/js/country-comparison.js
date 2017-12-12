@@ -166,7 +166,6 @@ var treeMapNodeUS = divUS.datum(root).selectAll(".treeMapNode")
 .style("fill", "black");
 
 
-
 // TREE MAP COUNTRIES1
 var treeMapDataCountries1 =
     {
