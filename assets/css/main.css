@@ -3856,6 +3856,7 @@ div.tooltip {
 
 .form-group {
 	padding-left: 30px;
+    margin-bottom: 0px;
 }
 
 .axislabel {
@@ -3863,7 +3864,7 @@ div.tooltip {
 }
 
 .treeMapNode {
-	border: solid 1px black;
+	/*border: solid 1px black;*/
 	font: 10px sans-serif;
 	line-height: 12px;
 	overflow: hidden;
@@ -4076,6 +4077,7 @@ polyline{
     padding-top: 20px;
 }
 
+<<<<<<< HEAD
 #infotext {
 	padding-top: 30px;
 	padding-bottom: 30px;
@@ -4102,4 +4104,9 @@ polyline{
 
 #counter3 {
 	padding-top: 60px;
+=======
+#form-buttons {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+>>>>>>> d4bd27595bae9fb3086249ca75cf23b059f13c35
 }

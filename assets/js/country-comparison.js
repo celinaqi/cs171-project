@@ -53,21 +53,18 @@ svgCalculator2.append("text")
     .attr("x", -230)
     .attr("y", -30)
     .attr("transform", "rotate(-90)")
-    .attr("fill", "white")
     .text("% US consumption");
 
 svgCalculator2.append("text")
     .attr("class", "label")
     .attr("x", width2 / 2 - 25)
     .attr("y", height2 + 35)
-    .attr("fill", "white")
     .text("Country");
 
 svgCalculator2.append("text")
     .attr("class", "title")
     .attr("x", 200)
     .attr("y", -20)
-    .attr("fill", "white")
     .text("Countries' Percentage of United States' Water Consumptions Per Capita Per Day");
 
 var bars2 = svgCalculator2.selectAll(".bar2")
@@ -92,7 +89,7 @@ bars2.enter()
     // .attr("width", x2.bandwidth() - 10)
     .attr("fill", function(d) {
         if (d.country === "United States") {return d3.rgb("#ed4933")}
-        else {return "steelblue"}});
+        else {return d3.rgb("#3863a8")}});
 
 xAxisGroup2 = svgCalculator2.select(".x-axis")
     .attr("transform", "translate(0," + height2 + ")")
@@ -142,6 +139,7 @@ var treemapUS = d3.treemap().size([width, height]);
 
 var divUS = d3.select("#water-comparison-US").append("div")
     .style("position", "relative")
+    .style("class", "divUS")
     .style("width", (width + margin.left + margin.right) + "px")
     .style("height", (height + margin.top + margin.bottom) + "px")
     .style("left", margin.left + "px")
@@ -162,8 +160,7 @@ var treeMapNodeUS = divUS.datum(root).selectAll(".treeMapNode")
 .style("width", (d) => Math.max(0, d.x1 - d.x0 - 1) + "px")
 .style("height", (d) => Math.max(0, d.y1 - d.y0  - 1) + "px")
 .style("background", (d) => color(d.parent.data.name))
-.text((d) => d.data.name + ": " + d.data.size + "%")
-.style("fill", "black");
+.text((d) => d.data.name + ": " + d.data.size + "%");
 
 
 // TREE MAP COUNTRIES1
@@ -256,6 +253,7 @@ const treemapCountries1 = d3.treemap().size([widthCountries1, heightCountries1])
 
 const divCountries1 = d3.select("#water-comparison-countries1").append("div")
     .style("position", "relative")
+    .attr("class", "divCountries")
     .style("width", (widthCountries1 + marginCountries1.left + marginCountries1.right) + "px")
     .style("height", (heightCountries1 + marginCountries1.top + marginCountries1.bottom) + "px")
     .style("left", marginCountries1.left + "px")
