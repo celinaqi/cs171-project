@@ -40,7 +40,7 @@ BarChart.prototype.initVis = function(){
         .range([vis.heightBar, 0]);
 
     vis.zBar = d3.scaleOrdinal()
-        .range(["#98abc5", "#6b486b", "#379837"]);
+        .range(["#01a3c5", "#6b486b", "#379837"]);
         // .range(["#4682b4", "#6b486b", "#ff8c00"])
         // .range(["#8dd3c7", "#ffffb3", "#bebada"]);
 
