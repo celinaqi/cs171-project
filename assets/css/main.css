@@ -3865,9 +3865,9 @@ div.tooltip {
 
 .treeMapNode {
 	/*border: solid 1px black;*/
-	font: 10px sans-serif;
-	line-height: 12px;
-	overflow: hidden;
+	font: 9px sans-serif;
+	line-height: 10px;
+	overflow: auto;
 	position: absolute;
 	text-indent: 2px;
 	text-stroke-color: black;
@@ -4103,10 +4103,16 @@ polyline{
 }
 
 #counter3 {
-	padding-top: 60px;
-=======
+    padding-top: 60px;
+
+}
+
 #form-buttons {
     padding-bottom: 0px;
     margin-bottom: 0px;
->>>>>>> d4bd27595bae9fb3086249ca75cf23b059f13c35
+}
+
+.water-chart-p {
+    padding-top: 0px;
+    text-align: center;
 }

@@ -129,7 +129,7 @@ var treeMapDataUS =
     ]};
 
 var margin = {top: 40, right: 40, bottom: 50, left: 50},
-    width = 550 - margin.left - margin.right,
+    width = 580 - margin.left - margin.right,
     // width = $('#water-chart2').width() - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom,
     color = d3.scaleOrdinal()
@@ -244,7 +244,7 @@ var treeMapDataCountries1 =
     };
 
 const marginCountries1 = {top: 40, right: 40, bottom: 50, left: 50},
-    widthCountries1 = 550 - marginCountries1.left - marginCountries1.right,
+    widthCountries1 = 580 - marginCountries1.left - marginCountries1.right,
     heightCountries1 = 400 - marginCountries1.top - marginCountries1.bottom,
     colorCountries1 = d3.scaleOrdinal()
         .range(["#8dd3c7", "#ffffb3", "#bebada", "#fb8072", "#80b1d3", "#fdb462", "#b3de69", "#fccde5", "#d9d9d9", "#bc80bd", "#ccebc5", "#ffed6f"]);
