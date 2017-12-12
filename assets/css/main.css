@@ -4077,7 +4077,36 @@ polyline{
     padding-top: 20px;
 }
 
+<<<<<<< HEAD
+#infotext {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+#water-demand {
+	padding-top: 15px;
+}
+
+#childtitle {
+	font-size: 50px;
+	padding-bottom: 60px;
+}
+
+#drinking2 {
+	padding-top: 20px;
+	padding-left: 30px;
+	padding-bottom: 50px;
+}
+
+#counter2 {
+	padding-top: 190px;
+}
+
+#counter3 {
+	padding-top: 60px;
+=======
 #form-buttons {
     padding-bottom: 0px;
     margin-bottom: 0px;
+>>>>>>> d4bd27595bae9fb3086249ca75cf23b059f13c35
 }
