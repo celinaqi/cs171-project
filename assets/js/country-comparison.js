@@ -89,7 +89,7 @@ bars2.enter()
     // .attr("width", x2.bandwidth() - 10)
     .attr("fill", function(d) {
         if (d.country === "United States") {return d3.rgb("#ed4933")}
-        else {return "steelblue"}});
+        else {return d3.rgb("#3863a8")}});
 
 xAxisGroup2 = svgCalculator2.select(".x-axis")
     .attr("transform", "translate(0," + height2 + ")")
@@ -139,6 +139,7 @@ var treemapUS = d3.treemap().size([width, height]);
 
 var divUS = d3.select("#water-comparison-US").append("div")
     .style("position", "relative")
+    .style("class", "divUS")
     .style("width", (width + margin.left + margin.right) + "px")
     .style("height", (height + margin.top + margin.bottom) + "px")
     .style("left", margin.left + "px")
@@ -252,6 +253,7 @@ const treemapCountries1 = d3.treemap().size([widthCountries1, heightCountries1])
 
 const divCountries1 = d3.select("#water-comparison-countries1").append("div")
     .style("position", "relative")
+    .attr("class", "divCountries")
     .style("width", (widthCountries1 + marginCountries1.left + marginCountries1.right) + "px")
     .style("height", (heightCountries1 + marginCountries1.top + marginCountries1.bottom) + "px")
     .style("left", marginCountries1.left + "px")

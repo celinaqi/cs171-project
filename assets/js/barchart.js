@@ -40,8 +40,9 @@ BarChart.prototype.initVis = function(){
         .range([vis.heightBar, 0]);
 
     vis.zBar = d3.scaleOrdinal()
-        .range(["#98abc5", "#6b486b", "#ff8c00"]);
+        .range(["#98abc5", "#6b486b", "#379837"]);
         // .range(["#4682b4", "#6b486b", "#ff8c00"])
+        // .range(["#8dd3c7", "#ffffb3", "#bebada"]);
 
 
     vis.yAxisBar = d3.axisLeft()
@@ -68,7 +69,7 @@ BarChart.prototype.initVis = function(){
 
 
     vis.barLegend.append("rect")
-        .attr("x", vis.widthBar - 75)
+        .attr("x", vis.widthBar - 120)
         .attr("y", function(d, i){return i*21 + 20})
         .attr("width", 15)
         .attr("height", 15)
@@ -83,7 +84,7 @@ BarChart.prototype.initVis = function(){
     vis.barLegend.append("text")
         .attr("class", "legendText")
         .attr("text-anchor", "start")
-        .attr("x", vis.widthBar - 55)
+        .attr("x", vis.widthBar - 100)
         .attr("y", function(d, i) {return i*21 + 30})
         .text(function(d, i) {
             switch (i) {

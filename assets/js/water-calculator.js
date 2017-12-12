@@ -358,13 +358,11 @@ function updateVisualization(shower, flush, runningWater, laundry, dishes, drink
             if (d.student === "You") {
                 return d3.rgb("#ed4933")
             }
-            else {
-                return "blue"
-            }
+            else {return d3.rgb("#3863a8")}
         })
         .attr("fill", function(d) {
             if (d.student === "You") {return d3.rgb("#ed4933")}
-            else {return "navy"}})
+            else {return d3.rgb("#3863a8")}})
         .attr("width", vis.x1.bandwidth() - 10)
         .transition()
         .duration(2000)
