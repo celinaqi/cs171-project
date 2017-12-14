@@ -3867,7 +3867,7 @@ div.tooltip {
 	/*border: solid 1px black;*/
 	font: 9px sans-serif;
 	line-height: 10px;
-	overflow: auto;
+	overflow: hidden;
 	position: absolute;
 	text-indent: 2px;
 	text-stroke-color: black;
